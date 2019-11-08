@@ -33,6 +33,7 @@ public class Finger : MonoBehaviour
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             Bird.GetComponent<Bird>().Attack = true;
             Over = true;
+            gameObject.transform.position = Bird.transform.position;
             Destroy(GetComponent<SpriteRenderer>());
         }
         

@@ -83,6 +83,7 @@ public class Bird : MonoBehaviour
             }
             if (gameObject.transform.position.y < -3 && Fly == true && IsJump == false)
             {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);
                 rb2d.velocity = Vector2.zero;
                 rb2d.AddForce(new Vector2(0, Jumphigh));
                 IsJump = true;

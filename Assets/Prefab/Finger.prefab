@@ -112,7 +112,7 @@ SpringJoint2D:
   m_GameObject: {fileID: 4374310274697487609}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -121,7 +121,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
-  m_DampingRatio: 0
+  m_DampingRatio: 0.5
   m_Frequency: 1
 --- !u!114 &4747004792445167549
 MonoBehaviour:
@@ -136,5 +136,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bird: {fileID: 0}
-  Body: {fileID: 0}
   Over: 0

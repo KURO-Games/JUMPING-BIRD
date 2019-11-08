@@ -64,6 +64,7 @@
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Finger.cs" />
     <Compile Include="Assets\Script\FirstJump.cs" />
+    <Compile Include="Assets\Script\GameStart.cs" />
     <Compile Include="Assets\Script\haikei.cs" />
     <Compile Include="Assets\Script\Jump.cs" />
     <Compile Include="Assets\Script\Life.cs" />
