@@ -18,6 +18,8 @@ public class Bird : MonoBehaviour
     public bool IsJump = true;
     public bool FirstJumpLimit = false;
     public bool Die = false;
+    public bool CollisionBuilding = false;
+
     void Start()
     {
         Life = 3f;
@@ -31,13 +33,16 @@ public class Bird : MonoBehaviour
     {
         MouseInBird = false;
     }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Building")
+        {
+            CollisionBuilding = true;
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Building" && Attack == true)
-        {
-            Destroy(other.gameObject);
-        }
-
         if (other.gameObject.tag == "Zombie")
         {
             if (Attack == false)
@@ -61,7 +66,7 @@ public class Bird : MonoBehaviour
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         if (Die == false)
@@ -81,7 +86,7 @@ public class Bird : MonoBehaviour
                     FirstJumpLimit = true;
                 }
             }
-            if (gameObject.transform.position.y < -3 && Fly == true && IsJump == false)
+            if (gameObject.transform.position.y < -3&& IsJump == false)
             {
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);
                 rb2d.velocity = Vector2.zero;
@@ -89,13 +94,20 @@ public class Bird : MonoBehaviour
                 IsJump = true;
                 Invoke("JumpReset", 0.5f);
                 Attack = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                CollisionBuilding = false;
             }
             if (gameObject.transform.position.y > 7)
             {
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
                 Invoke("PositionYReset", 0.5f);
-
+                CollisionBuilding = false;
+            }
+            if (CollisionBuilding == true)
+            {
+                transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y + 0.1f);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
     }

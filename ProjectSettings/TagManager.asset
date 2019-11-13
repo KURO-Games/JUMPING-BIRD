@@ -9,6 +9,7 @@ TagManager:
   - Zombie
   - Ground
   - Catapult
+  - Finger
   layers:
   - Default
   - TransparentFX

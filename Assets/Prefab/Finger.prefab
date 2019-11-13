@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7440844425860414596}
   - component: {fileID: 1484713239986262530}
   - component: {fileID: 4747004792445167549}
+  - component: {fileID: 6130058490247340626}
   m_Layer: 0
   m_Name: Finger
   m_TagString: Untagged
@@ -137,3 +138,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bird: {fileID: 0}
   Over: 0
+--- !u!61 &6130058490247340626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374310274697487609}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3, y: 2.37}
+    newSize: {x: 3, y: 2.37}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2.37}
+  m_EdgeRadius: 0

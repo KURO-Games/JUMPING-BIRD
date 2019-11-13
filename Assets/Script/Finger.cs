@@ -6,14 +6,38 @@ public class Finger : MonoBehaviour
 {
     public GameObject Bird;
     public bool Over = false;
+    public bool Limit = true;
+
     void Start()
     {
         Bird = GameObject.Find("Bird");
+    }
+
+    void JumpLimitSet()
+    {
+        Limit = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (Over == true)
+        {
+            if (other.gameObject.tag == "Building")
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
     void PositionYReset()
     {
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
+
+    void PositionFix()
+    {
+        gameObject.transform.position = Bird.transform.position;
+    }
+
     void FixedUpdate()
     {
 
@@ -21,39 +45,43 @@ public class Finger : MonoBehaviour
         {
             GetComponent<SpringJoint2D>().connectedAnchor = Bird.transform.position;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10);
-            transform.position = mousePos;
+            transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
-            if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             Bird.GetComponent<Bird>().MousePush = false;
             Bird.GetComponent<Bird>().Fly = true;
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            Bird.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             Bird.GetComponent<Bird>().Attack = true;
             Over = true;
-            gameObject.transform.position = Bird.transform.position;
             Destroy(GetComponent<SpriteRenderer>());
+            Invoke("PositionFix", 0.1f);
+            Invoke("JumpLimitSet", 0.5f);
         }
-        
 
-        if (gameObject.transform.position.y < -3&&Over == true)
+        if (Over == true)
         {
-            Destroy(gameObject);
+            if (gameObject.transform.position.y < -3 && Limit == false)
+            {
+                Destroy(gameObject);
+            }
+
+            if (gameObject.transform.position.x > Bird.transform.position.x)
+            {
+                Bird.transform.position = transform.position;
+                Destroy(GetComponent<SpringJoint2D>());
+            }
         }
+
         if (gameObject.transform.position.y > 7)
         {
             gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
             Invoke("PositionYReset", 0.5f);
-
         }
 
-            if (gameObject.transform.position.x > Bird.transform.position.x && Over == true)
-            {
-                Bird.transform.position = transform.position;
-                Destroy(GetComponent<SpringJoint2D>());
-            }
     }
 }
+

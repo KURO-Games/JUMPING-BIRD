@@ -8,9 +8,9 @@ public class Make : MonoBehaviour
     public GameObject Bird;
     public GameObject Zombie;
     public GameObject Building;
-    public float Random1 = 1;
-    public float Random2 = 10;
-    public float MakeTime = 0.3f;
+    public float Random1;
+    public float Random2;
+    public float MakeTime = 1f;
     public int MakeMin = 8;
     public int MakeMax = 40;
     void Start()
@@ -21,7 +21,7 @@ public class Make : MonoBehaviour
 
     void MakeZoB()
     {
-        if (Random1 < 1)
+        if (Random1 < 3)
         {
             Instantiate(Zombie, new Vector3(Bird.transform.position.x+ Random2, -3f,1f), Quaternion.identity);
         }
@@ -34,7 +34,7 @@ public class Make : MonoBehaviour
 
     void Update()
     {
-        Random1 = Random.Range(0f, 2f);
+        Random1 = Random.Range(0f, 4f);
         Random2 = Random.Range(MakeMin, MakeMax);
     }
 }
