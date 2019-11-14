@@ -283,3 +283,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bird: {fileID: 0}
+  Rock: {fileID: 5297147740563826184, guid: 9013731b286818747b257ef24ec16b9c, type: 3}
+  ZAttack: 0

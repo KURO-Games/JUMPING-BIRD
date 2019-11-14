@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\Life.cs" />
     <Compile Include="Assets\Script\Make.cs" />
     <Compile Include="Assets\Script\MakeDel.cs" />
+    <Compile Include="Assets\Script\Rock.cs" />
     <Compile Include="Assets\Script\Zombie.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/kousei/Documents/GitHub/JUMPING-BIRD/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

@@ -5,13 +5,29 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     public GameObject Bird;
+    public GameObject Rock;
+    public bool ZAttack = false;
+
     void Start()
     {
         Bird = GameObject.Find("Bird");
     }
 
+    void RockAttack()
+    {
+        if (ZAttack == false)
+        {
+            Instantiate(Rock, this.gameObject.transform.position, Quaternion.identity);
+            ZAttack = true;
+        }
+    }
+
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.transform.position.x,-2.8f), Time.deltaTime);
+        if(gameObject.transform.position.x + 5 > Bird.transform.position.x && gameObject.transform.position.x - 5 < Bird.transform.position.x)
+        {
+            RockAttack();
+        }
     }
 }
