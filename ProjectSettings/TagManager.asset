@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Catapult
   - Finger
+  - Rock
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FirstJump : MonoBehaviour
 {
     public GameObject Bird;
+    public GameObject Make;
     void Start()
     {
         Bird = GameObject.Find("Bird");
@@ -29,6 +30,7 @@ public class FirstJump : MonoBehaviour
             Bird.GetComponent<Bird>().Fly = true;
             Bird.GetComponent<Bird>().Attack = true;
             Bird.GetComponent<Bird>().FirstJumpOver = true;
+            Instantiate(Make, gameObject.transform.position, Quaternion.identity);
             Destroy(this);
         }
 

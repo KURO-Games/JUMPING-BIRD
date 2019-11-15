@@ -12,7 +12,7 @@ public class Make : MonoBehaviour
     public float Random2;
     public float MakeTime = 1f;
     public int MakeMin = 8;
-    public int MakeMax = 40;
+    public int MakeMax = 20;
     void Start()
     {
         Bird = GameObject.Find("Bird");
@@ -21,15 +21,15 @@ public class Make : MonoBehaviour
 
     void MakeZoB()
     {
-        if (Random1 < 3)
-        {
-            Instantiate(Zombie, new Vector3(Bird.transform.position.x+ Random2, -3f,1f), Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(Building, new Vector3(Bird.transform.position.x+ Random2, 0f,2f), Quaternion.identity);
-        }
-        Invoke("MakeZoB", MakeTime);
+            if (Random1 < 3)
+            {
+                Instantiate(Zombie, new Vector3(Bird.transform.position.x + Random2, -3f, 1f), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(Building, new Vector3(Bird.transform.position.x + Random2, 0f, 2f), Quaternion.identity);
+            }
+            Invoke("MakeZoB", MakeTime);
     }
 
     void Update()

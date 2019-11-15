@@ -5,7 +5,7 @@ using UnityEngine;
 public class haikei : MonoBehaviour
 {
     public GameObject Bird;
-    float size = 26.6f;
+    float size = 20f;
     void Start()
     {
         Bird = GameObject.Find("Bird");

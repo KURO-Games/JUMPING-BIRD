@@ -13,7 +13,7 @@ public class Rock : MonoBehaviour
         BirdTransform = Bird.transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, BirdTransform, Time.deltaTime * 5);
         if (transform.position.x == BirdTransform.x)

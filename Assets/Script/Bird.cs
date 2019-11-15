@@ -17,8 +17,8 @@ public class Bird : MonoBehaviour
     public float Jumphigh = 350f;
     public bool IsJump = true;
     public bool FirstJumpLimit = false;
-    public bool Die = false;
-    public bool CollisionBuilding = false;
+    public bool Die = false;//死んだのか
+    public bool CollisionBuilding = false;//ビルに当たったのか
 
     void Start()
     {
@@ -41,9 +41,22 @@ public class Bird : MonoBehaviour
             CollisionBuilding = true;
         }
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Zombie")
+        {
+            if (Attack == false)
+            {
+                //Life -= 1;
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
+        }
+
+        if (other.gameObject.tag == "Rock")
         {
             if (Attack == false)
             {
@@ -73,7 +86,7 @@ public class Bird : MonoBehaviour
         {
             if (Life <= 0)
             {
-                GetComponent<SpriteRenderer>().sprite = Bird0;//gameover\
+                transform.rotation = Quaternion.Euler(180, 0, 0);//gameover
                 Die = true;
             }
 
@@ -103,11 +116,13 @@ public class Bird : MonoBehaviour
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
                 Invoke("PositionYReset", 0.5f);
                 CollisionBuilding = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             if (CollisionBuilding == true)
             {
-                transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y + 0.1f);
+                transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
+                Invoke("PositionYReset", 0.5f);
             }
         }
     }
