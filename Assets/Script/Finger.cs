@@ -18,16 +18,6 @@ public class Finger : MonoBehaviour
         Limit = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (Over == true)
-        {
-            if (other.gameObject.tag == "Building")
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
     void PositionYReset()
     {
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;

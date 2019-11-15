@@ -38,7 +38,15 @@ public class Bird : MonoBehaviour
     {
         if (other.gameObject.tag == "Building")
         {
-            CollisionBuilding = true;
+            if (Attack == false)
+            {
+                CollisionBuilding = true;
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
+            
         }
     }
 
