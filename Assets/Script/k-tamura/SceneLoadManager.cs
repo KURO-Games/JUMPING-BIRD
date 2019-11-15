@@ -5,40 +5,156 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class SceneLoadManager : SingletonMonoBehaviour<SceneLoadManager>
+public class SceneLoadManager : MonoBehaviour
 {
-    private Color color;
-    private float SceneSpeed;
+    #region Singleton
+        private static SceneLoadManager instance = null;
+        public static SceneLoadManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = FindObjectOfType<SceneLoadManager>();
+                    if (instance == null)
+                    {
+                        GameObject obj = new GameObject(typeof(SceneLoadManager).Name);
+                        instance = obj.AddComponent<SceneLoadManager>();
+                    }
+                }
+                return instance;
+            }
+        }
 
-    // Start is called before the first frame update
-    void Start()
+        void Awake()
+        {
+            if (CheckInstance())
+            {
+                DontDestroyOnLoad(this);
+            }
+        }
+
+        bool CheckInstance()
+        {
+            if (instance == null)
+            {
+                instance = this;
+                return true;
+            }
+            else if (Instance == this)
+            {
+                return true;
+            }
+
+            enabled = false;
+            DestroyImmediate(gameObject);
+            return false;
+        }
+    #endregion
+
+    static string nextScene = "";
+    public static string NextScene { get { return nextScene; } }
+
+    static bool isFading = false;
+    float fadeAlpha = 0;
+
+    public float fadeTime = 2f;
+    public Color fadeColor = Color.white;
+
+    IEnumerator fadeOut;
+    IEnumerator fadeIn;
+
+    public void OnGUI()
     {
-        
+        if (isFading)
+        {
+            fadeColor.a = fadeAlpha;
+            GUI.color = fadeColor;
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void LoadScene(string sceneName)
     {
-        
+        nextScene = sceneName;
+        Instance.StartCoroutine(Instance.FadeOutScene(Instance.fadeTime, () =>
+                {
+                    SceneManager.LoadScene("Loading");
+                }
+            )
+        );
     }
-    private static void FadeOut()
+    public static void FadeOut(float time, System.Action callback = null)
     {
+        if (Instance.fadeIn != null) Instance.StopCoroutine(Instance.fadeIn);
+        Instance.fadeOut = Instance.FadeOutScene(time, callback);
+        Instance.StartCoroutine(Instance.fadeOut);
+    }
+    public static void FadeOut(System.Action callback)
+    {
+        FadeOut(Instance.fadeTime, callback);
+    }
 
-    }
-    private static void FadeIn()
+    public static void FadeOut()
     {
+        FadeOut(Instance.fadeTime);
+    }
 
-    }
-    public static void LoadScene(string SceneName)
+    public static void FadeIn(float time, System.Action callback = null)
     {
+        if (Instance.fadeOut != null) Instance.StopCoroutine(Instance.fadeOut);
+        Instance.fadeIn = Instance.FadeInScene(time, callback);
+        Instance.StartCoroutine(Instance.fadeIn);
+    }
 
-    }
-    IEnumerator FadeIn()
+    public static void FadeIn(System.Action callback)
     {
-       
+        FadeIn(Instance.fadeTime, callback);
     }
-    IEnumerator FadeOut()
-    {
 
+    public static void FadeIn(float time)
+    {
+        FadeIn(time, null);
     }
+
+    public static void FadeIn()
+    {
+        FadeIn(Instance.fadeTime);
+    }
+
+    IEnumerator FadeOutScene(float interval, System.Action callback)
+    {
+        isFading = true;
+        float time = 0;
+        while (time <= interval)
+        {
+            fadeAlpha = Mathf.Lerp(0f, 1f, time / interval);
+            time += Time.unscaledDeltaTime;
+            yield return 0;
+        }
+
+        if (callback != null)
+        {
+            callback();
+        }
+    }
+
+    IEnumerator FadeInScene(float interval, System.Action callback)
+    {
+        isFading = true;
+        float time = 0;
+        while (time <= interval)
+        {
+            fadeAlpha = Mathf.Lerp(1f, 0f, time / interval);
+            time += Time.unscaledDeltaTime;
+            yield return 0;
+        }
+
+        if (callback != null)
+        {
+            callback();
+        }
+        isFading = false;
+    }
+
 }
