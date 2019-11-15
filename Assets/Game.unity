@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a9363379845f44ebe8ebbae819b837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bird: {fileID: 0}
+  Bird: {fileID: 942968264}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
