@@ -74,7 +74,7 @@ public class Bird : MonoBehaviour
             }
             else
             {
-                Life -= 1;
+                //Life -= 1;
                 Destroy(other.gameObject);
             }
         }
