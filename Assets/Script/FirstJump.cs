@@ -30,7 +30,6 @@ public class FirstJump : MonoBehaviour
             Bird.GetComponent<Bird>().Fly = true;
             Bird.GetComponent<Bird>().Attack = true;
             Bird.GetComponent<Bird>().FirstJumpOver = true;
-            Instantiate(Make, gameObject.transform.position, Quaternion.identity);
             Destroy(this);
         }
 

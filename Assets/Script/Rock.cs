@@ -16,7 +16,7 @@ public class Rock : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, BirdTransform, Time.deltaTime * 5);
-        if (transform.position.x == BirdTransform.x)
+        if(transform.position.x == BirdTransform.x && transform.position.y == BirdTransform.y)
         {
             Destroy(this.gameObject);
         }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 40863783282742436}
   - component: {fileID: 40863783282742437}
-  - component: {fileID: 4363009858209627882}
   - component: {fileID: 8341887747845450660}
   - component: {fileID: 5037210723905053152}
+  - component: {fileID: 2543525505155256518}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -82,19 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4363009858209627882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40863783282742619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5870cd0970f2840a6a3f98b1d4f7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bird: {fileID: 0}
 --- !u!114 &8341887747845450660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,3 +643,16 @@ PolygonCollider2D:
       - {x: 4.5562887, y: 7.8964252}
       - {x: 4.5734177, y: 7.8621674}
       - {x: 4.5734177, y: 7.8792963}
+--- !u!114 &2543525505155256518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40863783282742619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5870cd0970f2840a6a3f98b1d4f7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bird: {fileID: 0}
