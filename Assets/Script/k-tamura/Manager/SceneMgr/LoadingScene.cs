@@ -8,16 +8,16 @@ public class LoadingScene : MonoBehaviour
 {
     [SerializeField]
     private AsyncOperation async;
-    [SerializeField] GameObject error;
-    [SerializeField]
-    private GameObject loadUI;
-    [SerializeField]
-    private Slider slider;
+    [SerializeField]GameObject error;
+    //[SerializeField]
+    //private GameObject loadUI;
+    //[SerializeField]
+    //private Slider slider;
     string nextScene;
     bool _error;
     public void NextScene()
     {
-        loadUI.SetActive(true);
+        //loadUI.SetActive(true);
         StartCoroutine("Loaddata");
     }
     IEnumerator Loaddata()

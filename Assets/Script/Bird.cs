@@ -66,6 +66,7 @@ public class Bird : MonoBehaviour
 
         if (other.gameObject.tag == "Rock")
         {
+            Debug.LogWarning("RockHit");
             if (Attack == false)
             {
                 Life -= 1;
@@ -73,6 +74,7 @@ public class Bird : MonoBehaviour
             }
             else
             {
+                //Life -= 1;
                 Destroy(other.gameObject);
             }
         }

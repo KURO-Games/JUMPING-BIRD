@@ -22,7 +22,10 @@ public class Zombie : MonoBehaviour
     {
         if (ZAttack == false)
         {
-            Instantiate(Rock, this.gameObject.transform.position, Quaternion.identity);
+            Vector2 InstantiateRock;
+            InstantiateRock.x = this.gameObject.transform.position.x-1;
+            InstantiateRock.y = this.gameObject.transform.position.y - 1;
+            Instantiate(Rock, InstantiateRock, Quaternion.identity);
             ZAttack = true;
             Invoke("AttackReset", 3f);
         }
