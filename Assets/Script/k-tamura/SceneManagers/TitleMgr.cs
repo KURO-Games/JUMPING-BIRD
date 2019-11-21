@@ -10,8 +10,12 @@ using System.Runtime.InteropServices;
 using UnityEditor;
 #endif
 
-public class TitleScene : MonoBehaviour
+public class TitleMgr : MonoBehaviour
 {
+#if UNITY_IOS
+    [DllImport("__Internal")]
+    static extern string GetBundleVersion();
+#endif
     bool Tap;
     [SerializeField]
     Text version;
@@ -21,9 +25,10 @@ public class TitleScene : MonoBehaviour
     void Start()
     {
         if (verstr != "")
-            version.text = "Ver: " + verstr + "." + Application.version+"."+GetBuildNumber();
+            version.text = "Ver: " + verstr + "." + Application.version + "." + GetBuildNumber();
         else
-            version.text = "Ver: " + Application.version+"."+GetBuildNumber();
+            version.text = "Ver: " + Application.version + "." + GetBuildNumber();
+        
     }
 
     // Update is called once per frame
@@ -45,8 +50,5 @@ public class TitleScene : MonoBehaviour
             return null;
         #endif
     }
-    #if UNITY_IOS
-        [DllImport("__Internal")]
-        static extern string GetBundleVersion();
-    #endif
+
 }
