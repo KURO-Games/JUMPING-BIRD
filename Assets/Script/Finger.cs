@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Finger : MonoBehaviour
 {
     public GameObject Bird;
-    public bool Over = false;
-    public bool Limit = true;
+    private bool Over = false;
+    private bool Limit = true;
+    private readonly float yLimit = 5;
     Vector3 rotat;
+    private bool limitPos = true;
+    private float fingerPos = 0;    
 
     void Start()
     {
-        Bird = GameObject.Find("Bird");
+        Bird = GameObject.Find("Bird");        
     }
 
     void JumpLimitSet()
@@ -38,10 +42,11 @@ public class Finger : MonoBehaviour
     {
         if (!Over)
         {
-            
+            Vector3 birdPos = Bird.transform.position;
+            Debug.Log("MouseDown");
             GetComponent<SpringJoint2D>().connectedAnchor = Bird.transform.position;
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10);
-            transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(birdPos.x, birdPos.y, -5f);                        
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             
         }
@@ -60,21 +65,29 @@ public class Finger : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            Bird.GetComponent<Bird>().MousePush = false;
-            Bird.GetComponent<Bird>().Fly = true;
+            //Debug.Log("MouseUp");
+            setBool();
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-            Bird.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-            Bird.GetComponent<Bird>().Attack = true;
-            Over = true;
+            Bird.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;                        
             Destroy(GetComponent<SpriteRenderer>());
             Invoke("PositionFix", 0.1f);
-            Invoke("JumpLimitSet", 0.5f);
+            Invoke("JumpLimitSet", 0.5f);              
         }
-        if (gameObject.transform.position.y > 7)
-        {
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);
+        if (Math.Abs(gameObject.transform.position.y) > yLimit)
+        {            
+            if (limitPos)
+            {
+                limitPos = false;
+                fingerPos = Mathf.Round(gameObject.transform.position.y);
+                Debug.Log(fingerPos);
+            }
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x, fingerPos);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
             Invoke("PositionYReset", 0.5f);
+        }
+        else if (Math.Abs(gameObject.transform.position.y) < yLimit)
+        {
+            limitPos = true;
         }
     }
     private float Angle(Vector2 startpos,Vector2 targetpos)
@@ -83,6 +96,14 @@ public class Finger : MonoBehaviour
         float rad = Mathf.Atan2(dt.y, dt.x);
         float degree = rad * Mathf.Rad2Deg;
         return degree;
+    }
+
+    private void setBool()
+    {
+        Bird.GetComponent<Bird>().Attack = true;
+        Bird.GetComponent<Bird>().MousePush = false;
+        Bird.GetComponent<Bird>().Fly = true;
+        Over = true;
     }
 }
 
