@@ -21,6 +21,8 @@ public class Bird : MonoBehaviour
     public bool CollisionBuilding = false;//ビルに当たったのか
     public GameObject Make;
 
+    public bool isEffect;
+
 
     void Start()
     {
@@ -48,6 +50,7 @@ public class Bird : MonoBehaviour
             else
             {
                 Destroy(other.gameObject);
+                isEffect = true;
             }
             
         }
