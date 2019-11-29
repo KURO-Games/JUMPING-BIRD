@@ -12,25 +12,7 @@ using UnityEditor;
 
 public class TitleMgr : MonoBehaviour
 {
-#if UNITY_IOS
-    [DllImport("__Internal")]
-    static extern string GetBundleVersion();
-#endif
     bool Tap;
-    [SerializeField]
-    Text version;
-    [SerializeField]
-    string verstr;
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (verstr != "")
-            version.text = "Ver: " + verstr + "." + Application.version + "." + GetBuildNumber();
-        else
-            version.text = "Ver: " + Application.version + "." + GetBuildNumber();
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -39,16 +21,6 @@ public class TitleMgr : MonoBehaviour
             Tap = true;
             SceneLoadManager.LoadScene("Game");
         }
-    }
-    public static string GetBuildNumber()
-    {
-        #if UNITY_EDITOR
-            return PlayerSettings.iOS.buildNumber;
-        #elif UNITY_IOS
-            return GetBundleVersion();
-        #else
-            return null;
-        #endif
     }
 
 }
