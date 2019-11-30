@@ -125,7 +125,7 @@ public class Bird : MonoBehaviour
                 CollisionBuilding = false;
             }
             if (gameObject.transform.position.y > 7)
-            {
+            {                
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
                 Invoke("PositionYReset", 0.5f);
@@ -133,7 +133,7 @@ public class Bird : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             if (CollisionBuilding == true)
-            {
+            {                
                 transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 Invoke("PositionYReset", 0.5f);

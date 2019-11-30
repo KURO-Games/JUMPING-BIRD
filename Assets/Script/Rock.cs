@@ -40,6 +40,10 @@ public class Rock : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+<<<<<<< HEAD
        // Debug.Log(this.transform.position.x - BirdTransform.x);
+=======
+        //Debug.Log(this.transform.position.x - BirdTransform.x);
+>>>>>>> 88a6b1381ae05ee41c2df754c0a6722cd67cb457
     }
 }

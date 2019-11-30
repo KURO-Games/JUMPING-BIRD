@@ -137,8 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bird: {fileID: 0}
-  Over: 0
-  Limit: 1
 --- !u!61 &6130058490247340626
 BoxCollider2D:
   m_ObjectHideFlags: 0
