@@ -8,9 +8,9 @@ public class Zombie : MonoBehaviour
     public GameObject Rock;
     public bool ZAttack = false;
 
-    void Start()
+    void Awake()
     {
-        Bird = GameObject.Find("Bird");
+        Bird = GameObject.FindGameObjectWithTag("Bird");
     }
 
     void AttackReset()

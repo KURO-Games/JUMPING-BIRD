@@ -13,9 +13,12 @@ public class Make : MonoBehaviour
     public int MakeMin = 20;
     public int MakeMax = 40;
     public bool CanMakeBuilding = false;
+    private void Awake()
+    {
+        Bird = GameObject.FindGameObjectWithTag("Bird");
+    }
     void Start()
     {
-        Bird = GameObject.Find("Bird");
         Invoke("MakeZombie", 10f);
     }
 

@@ -17,7 +17,7 @@ public class Rock : MonoBehaviour
 
     private void Awake()
     {
-        Bird = GameObject.Find("Bird");
+        Bird = GameObject.FindGameObjectWithTag("Bird");
     }
 
     void Start()

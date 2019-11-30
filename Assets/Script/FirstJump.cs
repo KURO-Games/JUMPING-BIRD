@@ -6,9 +6,9 @@ public class FirstJump : MonoBehaviour
 {
     public GameObject Bird;
     public GameObject Make;
-    void Start()
+    void Awake()
     {
-        Bird = GameObject.Find("Bird");
+        Bird = GameObject.FindGameObjectWithTag("Bird");
     }
 
     void Update()

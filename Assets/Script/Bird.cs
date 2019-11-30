@@ -24,7 +24,7 @@ public class Bird : MonoBehaviour
     public bool isEffect;
 
 
-    void Start()
+    void Awake()
     {
         Life = 3f;
         rb2d = GetComponent<Rigidbody2D>();

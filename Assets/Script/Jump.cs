@@ -6,12 +6,11 @@ public class Jump : MonoBehaviour
 {
     public GameObject Bird;
     public GameObject Finger;
-    
-    void Start()
-    {
-        Bird = GameObject.Find("Bird");
-    }
 
+    void Awake()
+    {
+        Bird = GameObject.FindGameObjectWithTag("Bird");
+    }
     void Update()
     {
         if (Bird.GetComponent<Bird>().FirstJumpOver)
