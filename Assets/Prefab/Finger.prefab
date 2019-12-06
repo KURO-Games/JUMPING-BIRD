@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6130058490247340626}
   m_Layer: 0
   m_Name: Finger
-  m_TagString: Untagged
+  m_TagString: Finger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f856e5544ae6cfb419c6f900683f46a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bird: {fileID: 0}
 --- !u!61 &6130058490247340626
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ public class Finger : MonoBehaviour
         if (!Over)
         {            
             Vector3 birdPos = Bird.transform.position;
-            Debug.Log("MouseDown");
+            //Debug.Log("MouseDown");
             GetComponent<SpringJoint2D>().connectedAnchor = Bird.transform.position;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
