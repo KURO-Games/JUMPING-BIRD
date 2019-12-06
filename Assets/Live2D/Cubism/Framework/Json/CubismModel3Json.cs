@@ -1,8 +1,8 @@
-﻿/*
+﻿/**
  * Copyright(c) Live2D Inc. All rights reserved.
- * 
+ *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 
@@ -102,6 +102,50 @@ namespace Live2D.Cubism.Framework.Json
             modelJson.LoadAssetAtPath = loadAssetAtPath;
 
 
+            // Set motion references.
+            var value = CubismJsonParser.ParseFromString(modelJsonAsset);
+
+            // Return early if there is no references.
+            if (!value.Get("FileReferences").GetMap(null).ContainsKey("Motions"))
+            {
+                return modelJson;
+            }
+
+
+            var motionGroupNames = value.Get("FileReferences").Get("Motions").KeySet().ToArray();
+            modelJson.FileReferences.Motions.GroupNames = motionGroupNames;
+
+            var motionGroupNamesCount = motionGroupNames.Length;
+            modelJson.FileReferences.Motions.Motions = new SerializableMotion[motionGroupNamesCount][];
+
+            for (var i = 0; i < motionGroupNamesCount; i++)
+            {
+                var motionGroup = value.Get("FileReferences").Get("Motions").Get(motionGroupNames[i]);
+                var motionCount = motionGroup.GetVector(null).ToArray().Length;
+
+                modelJson.FileReferences.Motions.Motions[i] = new SerializableMotion[motionCount];
+
+
+                for (var j = 0; j < motionCount; j++)
+                {
+                    if (motionGroup.Get(j).GetMap(null).ContainsKey("File"))
+                    {
+                        modelJson.FileReferences.Motions.Motions[i][j].File = motionGroup.Get(j).Get("File").toString();
+                    }
+
+                    if (motionGroup.Get(j).GetMap(null).ContainsKey("FadeInTime"))
+                    {
+                        modelJson.FileReferences.Motions.Motions[i][j].FadeInTime = motionGroup.Get(j).Get("FadeInTime").ToFloat();
+                    }
+
+                    if (motionGroup.Get(j).GetMap(null).ContainsKey("FadeOutTime"))
+                    {
+                        modelJson.FileReferences.Motions.Motions[i][j].FadeOutTime = motionGroup.Get(j).Get("FadeOutTime").ToFloat();
+                    }
+                }
+            }
+
+
             return modelJson;
         }
 
@@ -194,7 +238,7 @@ namespace Live2D.Cubism.Framework.Json
         /// The referenced expression assets.
         /// </summary>
         /// <remarks>
-        /// The references aren't chached internally.
+        /// The references aren't cached internally.
         /// </remarks>
         public CubismExp3Json[] Expression3Jsons
         {
@@ -253,7 +297,7 @@ namespace Live2D.Cubism.Framework.Json
         /// The referenced texture assets.
         /// </summary>
         /// <remarks>
-        /// The references aren't chached internally.
+        /// The references aren't cached internally.
         /// </remarks>
         public Texture2D[] Textures
         {
@@ -352,7 +396,7 @@ namespace Live2D.Cubism.Framework.Json
             }
 
 
-            // Initialize drawables. 
+            // Initialize drawables.
             if(HitAreas != null)
             {
                 for (var i = 0; i < HitAreas.Length; i++)
@@ -425,9 +469,9 @@ namespace Live2D.Cubism.Framework.Json
             if(shouldImportAsOriginalWorkflow)
             {
                 // Add cubism update manager.
-                var updateaManager = model.gameObject.GetComponent<CubismUpdateController>();
+                var updateManager = model.gameObject.GetComponent<CubismUpdateController>();
 
-                if(updateaManager == null)
+                if(updateManager == null)
                 {
                     model.gameObject.AddComponent<CubismUpdateController>();
                 }
@@ -739,7 +783,7 @@ namespace Live2D.Cubism.Framework.Json
             /// </summary>
             [SerializeField]
             public string Name;
-            
+
             /// <summary>
             /// Expression File.
             /// </summary>
@@ -760,22 +804,22 @@ namespace Live2D.Cubism.Framework.Json
         }
 
         /// <summary>
-        /// Motion datas.
+        /// Motion data.
         /// </summary>
         [Serializable]
         public struct SerializableMotions
         {
             /// <summary>
-            /// Motion group Idle.
+            /// Motion group names.
             /// </summary>
             [SerializeField]
-            public SerializableMotion[] Idle;
+            public string[] GroupNames;
 
             /// <summary>
-            /// Motion group TapBody.
+            /// Motion groups.
             /// </summary>
             [SerializeField]
-            public SerializableMotion[] TapBody;
+            public SerializableMotion[][] Motions;
         }
 
         /// <summary>
@@ -814,7 +858,7 @@ namespace Live2D.Cubism.Framework.Json
             /// </summary>
             [SerializeField]
             public string Name;
-            
+
             /// <summary>
             /// Hit area id.
             /// </summary>

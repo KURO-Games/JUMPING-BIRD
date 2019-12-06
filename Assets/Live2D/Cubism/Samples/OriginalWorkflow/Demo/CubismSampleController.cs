@@ -1,8 +1,8 @@
-﻿/*
+﻿/**
  * Copyright(c) Live2D Inc. All rights reserved.
- * 
+ *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 
@@ -44,9 +44,9 @@ namespace Live2D.Cubism.Samples.OriginalWorkflow.Demo
         private AnimationClip[] _tapBodyMotions;
 
         /// <summary>
-        /// Motion set in roop motion.
+        /// Motion set in loop motion.
         /// </summary>
-        private AnimationClip _roopMotion;
+        private AnimationClip _loopMotion;
 
         /// <summary>
         /// List of Drawables info.
@@ -178,18 +178,18 @@ namespace Live2D.Cubism.Samples.OriginalWorkflow.Demo
                         if (hitArea == HitArea.Body)
                         {
                             // Decide motion to play at random.
-                            var motionIndex = UnityEngine.Random.Range(0, _tapBodyMotions.Length - 1);
-
-                            _motionController.PlayAnimation(_tapBodyMotions[motionIndex], isLoop: false);
+                            var motionIndex = UnityEngine.Random.Range(0, _tapBodyMotions.Length);
 
                             Debug.Log("Tap body : Play : " + _tapBodyMotions[motionIndex].name);
+
+                            _motionController.PlayAnimation(_tapBodyMotions[motionIndex], isLoop: false, priority:CubismMotionPriority.PriorityNormal);
                         }
                         // Tap head.
                         else if (hitArea == HitArea.Head)
                         {
                             // Decide expression motion to play at random.
                             var expressionNum = _expressionController.ExpressionsList.CubismExpressionObjects.Length;
-                            var expressionIndex = UnityEngine.Random.Range(0, expressionNum - 1);
+                            var expressionIndex = UnityEngine.Random.Range(0, expressionNum);
 
                             _expressionController.CurrentExpressionIndex = expressionIndex;
 
@@ -208,12 +208,13 @@ namespace Live2D.Cubism.Samples.OriginalWorkflow.Demo
         /// </summary>
         private void SpecifiedAnimationCheck()
         {
-            if(_bodyAnimation != _roopMotion)
+            if(_bodyAnimation != _loopMotion)
             {
-                _roopMotion = _bodyAnimation;
-                _motionController.PlayAnimation(_roopMotion);
+                _loopMotion = _bodyAnimation;
 
-                Debug.Log("Body animation : Play : " + _roopMotion.name);
+                Debug.Log("Body animation : Play : " + _loopMotion.name);
+
+                _motionController.PlayAnimation(_loopMotion, priority:CubismMotionPriority.PriorityIdle);
             }
         }
 
@@ -224,10 +225,10 @@ namespace Live2D.Cubism.Samples.OriginalWorkflow.Demo
         /// <param name="instanceId"></param>
         private void AnimationEnded(float instanceId)
         {
-            // Play roop motion.
-            _motionController.PlayAnimation(_roopMotion);
+            // Play loop motion.
+            _motionController.PlayAnimation(_loopMotion, priority:CubismMotionPriority.PriorityIdle);
 
-            Debug.Log("Body animation : Play : " + _roopMotion.name);
+            Debug.Log("Body animation : Play : " + _loopMotion.name);
         }
     }
 }

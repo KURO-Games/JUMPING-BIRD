@@ -1,8 +1,8 @@
-﻿/*
+﻿/**
  * Copyright(c) Live2D Inc. All rights reserved.
- * 
+ *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 
@@ -74,7 +74,7 @@ namespace Live2D.Cubism.Framework.MotionFade
         /// <returns>Fade data created based on motion3json.</returns>
         public static CubismFadeMotionData CreateInstance(
             CubismMotion3Json motion3Json, string motionName, float motionLength,
-             bool shouldImportAsOriginalWorkflow = false, bool isCallFormModelJson = false)
+             bool shouldImportAsOriginalWorkflow = false, bool isCallFromModelJson = false)
         {
             var fadeMotion = CreateInstance<CubismFadeMotionData>();
             var curveCount = motion3Json.Curves.Length;
@@ -83,7 +83,7 @@ namespace Live2D.Cubism.Framework.MotionFade
             fadeMotion.ParameterFadeOutTimes = new float[curveCount];
             fadeMotion.ParameterCurves = new AnimationCurve[curveCount];
 
-            return CreateInstance(fadeMotion, motion3Json, motionName, motionLength, shouldImportAsOriginalWorkflow, isCallFormModelJson);
+            return CreateInstance(fadeMotion, motion3Json, motionName, motionLength, shouldImportAsOriginalWorkflow, isCallFromModelJson);
         }
 
         /// <summary>
