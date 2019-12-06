@@ -32,6 +32,7 @@ Material:
     - _DstColor: 10
     - _SrcAlpha: 1
     - _SrcColor: 1
+    - cubism_InvertOn: 0
     - cubism_MaskOn: 1
     - cubism_ModelOpacity: 1
     m_Colors:

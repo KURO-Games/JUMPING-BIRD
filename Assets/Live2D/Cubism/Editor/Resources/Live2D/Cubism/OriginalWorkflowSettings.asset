@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: OriginalWorkflowSettings
   m_EditorClassIdentifier: 
   ShouldImportAsOriginalWorkflow: 1
-  ShouldClearAnimationCurves: 0
+  ShouldClearAnimationCurves: 1
