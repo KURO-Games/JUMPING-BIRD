@@ -31,8 +31,8 @@ public class EffectController : MonoBehaviour
         if (Bird.CrashBuilding)
         {
             Instantiate(StarEffectMain, Bird.transform.position, Quaternion.identity);
-            Instantiate(CrashEffect_B, Bird.transform.position, Quaternion.identity);
-            Instantiate(StarEffectSub, Bird.BuildingPos, Quaternion.identity);
+            Instantiate(CrashEffect_B, Bird.BuildingPos, Quaternion.identity);
+            Instantiate(StarEffectSub, Bird.transform.position, Quaternion.identity);
             Bird.CrashBuilding = false;
         }
 
