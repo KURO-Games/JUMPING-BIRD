@@ -9,32 +9,39 @@ public class Make : MonoBehaviour
     public GameObject Zombie;
     public GameObject Building;
     public float Random1;
-    public float Random2;
-    public float MakeTime = 1f;
-    public int MakeMin = 8;
-    public int MakeMax = 20;
+    public float MakeTime = 2f;
+    public int MakeMin = 20;
+    public int MakeMax = 40;
+    public bool CanMakeBuilding = false;
     void Start()
     {
         Bird = GameObject.Find("Bird");
-        MakeZoB();
+        Invoke("MakeZombie", 10f);
     }
 
-    void MakeZoB()
+    void MakeZombie()
     {
-            if (Random1 < 3)
-            {
-                Instantiate(Zombie, new Vector3(Bird.transform.position.x + Random2, -3f, 1f), Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(Building, new Vector3(Bird.transform.position.x + Random2, 0f, 2f), Quaternion.identity);
-            }
-            Invoke("MakeZoB", MakeTime);
+        if (Bird.GetComponent<Bird>().Die == false)
+        {
+            
+            Instantiate(Zombie, new Vector3(Bird.transform.position.x + Random1, -3f, 1f), Quaternion.identity);
+
+            Invoke("MakeZombie", MakeTime);
+        }
+    }
+
+    void MakeBuilding()
+    {
+        if (CanMakeBuilding == true)
+        {
+            Instantiate(Building, new Vector3(Bird.transform.position.x + Random1, 0f, 2f), Quaternion.identity);
+            CanMakeBuilding = false;
+        }
     }
 
     void Update()
     {
-        Random1 = Random.Range(0f, 4f);
-        Random2 = Random.Range(MakeMin, MakeMax);
+        Random1 = Random.Range(MakeMin, MakeMax);
+        MakeBuilding();
     }
 }

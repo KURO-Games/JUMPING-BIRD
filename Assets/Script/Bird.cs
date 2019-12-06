@@ -19,11 +19,16 @@ public class Bird : MonoBehaviour
     public bool FirstJumpLimit = false;
     public bool Die = false;//死んだのか
     public bool CollisionBuilding = false;//ビルに当たったのか
+    public GameObject Make;
+
+    public bool isEffect;
+
 
     void Start()
     {
         Life = 3f;
         rb2d = GetComponent<Rigidbody2D>();
+        Make = GameObject.Find("Make");
     }
     private void OnMouseEnter()
     {
@@ -45,6 +50,7 @@ public class Bird : MonoBehaviour
             else
             {
                 Destroy(other.gameObject);
+                isEffect = true;
             }
             
         }
@@ -54,12 +60,9 @@ public class Bird : MonoBehaviour
     {
         if (other.gameObject.tag == "Zombie")
         {
-            if (Attack == false)
+            if (Attack == true)
             {
-                //Life -= 1;
-            }
-            else
-            {
+                Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
             }
         }
@@ -70,7 +73,7 @@ public class Bird : MonoBehaviour
             if (Attack == false)
             {
                 Life -= 1;
-
+                Destroy(other.gameObject);
             }
             else
             {
@@ -134,6 +137,11 @@ public class Bird : MonoBehaviour
                 transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 Invoke("PositionYReset", 0.5f);
+            }
+
+            if(Attack == false && MousePush == false && FirstJumpOver == true)
+            {
+                transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);
             }
         }
     }

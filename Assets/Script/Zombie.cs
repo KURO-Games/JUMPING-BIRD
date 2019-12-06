@@ -13,6 +13,11 @@ public class Zombie : MonoBehaviour
         Bird = GameObject.Find("Bird");
     }
 
+    void AttackReset()
+    {
+        ZAttack = false;
+    }
+
     void RockAttack()
     {
         if (ZAttack == false)
@@ -22,15 +27,19 @@ public class Zombie : MonoBehaviour
             InstantiateRock.y = this.gameObject.transform.position.y - 1;
             Instantiate(Rock, InstantiateRock, Quaternion.identity);
             ZAttack = true;
+            Invoke("AttackReset", 3f);
         }
     }
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.transform.position.x,-2.8f), Time.deltaTime);
-        if(gameObject.transform.position.x + 5 > Bird.transform.position.x && gameObject.transform.position.x - 5 < Bird.transform.position.x)
+        if (Bird.GetComponent<Bird>().Die == false)
         {
-            RockAttack();
+            transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.transform.position.x, -2.8f), Time.deltaTime);
+            if (gameObject.transform.position.x + 5 > Bird.transform.position.x && gameObject.transform.position.x - 5 < Bird.transform.position.x)
+            {
+                RockAttack();
+            }
         }
     }
 }

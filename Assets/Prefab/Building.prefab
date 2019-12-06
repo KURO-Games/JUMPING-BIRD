@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5712830823095646721}
   - component: {fileID: 5712830823095646726}
-  - component: {fileID: 7266605877663086435}
   - component: {fileID: 4206622453039618264}
+  - component: {fileID: 1906869163722368485}
   m_Layer: 0
   m_Name: Building
   m_TagString: Building
@@ -81,19 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7266605877663086435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712830823095646724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5870cd0970f2840a6a3f98b1d4f7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bird: {fileID: 0}
 --- !u!61 &4206622453039618264
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107,7 +94,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.75, y: -1}
+  m_Offset: {x: -2.75, y: -1.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -118,5 +105,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 12}
+  m_Size: {x: 2, y: 13}
   m_EdgeRadius: 0
+--- !u!114 &1906869163722368485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712830823095646724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5870cd0970f2840a6a3f98b1d4f7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bird: {fileID: 0}
