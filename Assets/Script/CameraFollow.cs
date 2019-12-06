@@ -18,7 +18,11 @@ public class CameraFollow : MonoBehaviour
     {
         if (Bird.GetComponent<Bird>().Fly == true)
         {
-            transform.position = new Vector3(Bird.transform.position.x + 3f, 0, -10);
+            if (Bird.transform.position.y >= 2)
+            {
+                transform.position = new Vector3(Bird.transform.position.x + 3f, Bird.transform.position.y-2, -10);
+            }
+            else transform.position = new Vector3(Bird.transform.position.x + 3f, 0, -10);
         }
     }
 }

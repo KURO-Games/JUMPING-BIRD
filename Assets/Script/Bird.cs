@@ -21,6 +21,8 @@ public class Bird : MonoBehaviour
     public bool CollisionBuilding = false;//ビルに当たったのか
     public GameObject Make;
 
+    public bool isEffect;
+
 
     void Start()
     {
@@ -48,6 +50,7 @@ public class Bird : MonoBehaviour
             else
             {
                 Destroy(other.gameObject);
+                isEffect = true;
             }
             
         }
@@ -66,6 +69,7 @@ public class Bird : MonoBehaviour
 
         if (other.gameObject.tag == "Rock")
         {
+            Debug.LogWarning("RockHit");
             if (Attack == false)
             {
                 Life -= 1;
@@ -73,6 +77,7 @@ public class Bird : MonoBehaviour
             }
             else
             {
+                //Life -= 1;
                 Destroy(other.gameObject);
             }
         }
@@ -120,7 +125,7 @@ public class Bird : MonoBehaviour
                 CollisionBuilding = false;
             }
             if (gameObject.transform.position.y > 7)
-            {
+            {                
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
                 Invoke("PositionYReset", 0.5f);
@@ -128,7 +133,7 @@ public class Bird : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             if (CollisionBuilding == true)
-            {
+            {                
                 transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 Invoke("PositionYReset", 0.5f);
