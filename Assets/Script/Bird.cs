@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Bird : MonoBehaviour
 {
@@ -21,48 +20,18 @@ public class Bird : MonoBehaviour
     public bool Die = false;//死んだのか
     public bool CollisionBuilding = false;//ビルに当たったのか
     public GameObject Make;
-    
-    [SerializeField]
-    private Image Gauge;
 
-    [SerializeField]
-    private Image birdIcon;
-    private Color iconColor;
+    public bool CrashBuilding = false;
+    public bool CrashZombie = false;
+    public Vector3 BuildingPos;
 
-    public bool isEffect;
+   public  Collider[] hitColliders;
 
-    private bool SPBool = false;
-    private bool doOnceSP = true;
-    [SerializeField]
-    private GameObject SPPos;
-    //[SerializeField]
-    //private Image hippareUI;
-    [SerializeField]
-    private Text hippareText;
-    [SerializeField]
-    private GameObject Finger;
-
-
-
-
-    void Awake()
+    void Start()
     {
-        Gauge.fillAmount = 1;
         Life = 3f;
         rb2d = GetComponent<Rigidbody2D>();
         Make = GameObject.Find("Make");
-        iconColor = birdIcon.color;
-    }
-    private void Update()
-    {
-        if(Gauge.fillAmount == 1 && doOnceSP)
-        {
-            doOnceSP = false;
-            Debug.Log("GaugeMax");
-            iconColor.a = 1;
-            birdIcon.color = iconColor;
-            SPBool = true;
-        }
     }
     private void OnMouseEnter()
     {
@@ -83,10 +52,10 @@ public class Bird : MonoBehaviour
             }
             else
             {
+                BuildingPos = other.gameObject.transform.position;
+                Debug.Log(BuildingPos);
                 Destroy(other.gameObject);
-                //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-                Gauge.fillAmount += (1f / 20f) * 3f;
-                isEffect = true;
+                CrashBuilding = true;
             }
             
         }
@@ -100,7 +69,7 @@ public class Bird : MonoBehaviour
             {
                 Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
-                Gauge.fillAmount += (1f / 20f) * 3f;
+                CrashZombie = true;
             }
         }
 
@@ -162,7 +131,7 @@ public class Bird : MonoBehaviour
                 CollisionBuilding = false;
             }
             if (gameObject.transform.position.y > 7)
-            {                
+            {
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
                 Invoke("PositionYReset", 0.5f);
@@ -170,74 +139,21 @@ public class Bird : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             if (CollisionBuilding == true)
-            {                
+            {
                 transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 Invoke("PositionYReset", 0.5f);
             }
 
-            if(Attack == false && MousePush == false && FirstJumpOver == true && SPBool)
+            if(Attack == false && MousePush == false && FirstJumpOver == true)
             {
                 transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);
             }
         }
     }
-
-    public void SPGimick()
+    void OnDrawGizmosSelected()
     {
-        if (SPBool)
-        {
-            IsJump = true;
-            Fly = false;
-            Attack = false;
-            
-            rb2d.velocity = Vector2.zero;
-            rb2d.constraints = RigidbodyConstraints2D.FreezePosition;
-            //ゲージを0にする
-            Gauge.fillAmount = 0;            
-            SPBool = false;
-            //Debug.Log("inSP");
-
-            //SPアイコンのa値を半分にする
-            iconColor.a = 0.5f;            
-            birdIcon.color = iconColor;            
-            doOnceSP = true;
-
-            //鳥が画面の真上に来る処理
-            this.gameObject.transform.position = SPPos.transform.position;
-            Destroy(GameObject.FindWithTag("Finger"));
-
-            //ゾンビの動きを止める
-
-            //飛んでいる岩を消す
-
-            //SP技の関数を実行
-            SPmain();
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    private IEnumerator WaitText(float time)
-    {
-        yield return new WaitForSeconds(time);
-    }
-
-    private void SPmain()
-    {
-        //強く引っ張れ！という画像を表示
-        StartCoroutine(WaitText(1.5f));
-        //hippareUI.gameObject.SetActive(true);
-        hippareText.gameObject.SetActive(true);
-        if (Input.GetMouseButtonDown(0))
-        {
-            Instantiate(Finger, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -5f), Quaternion.identity);
-            GetComponent<SpringJoint2D>().connectedAnchor = SPPos.transform.position;
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(SPPos.transform.position.x, SPPos.transform.position.y, -5f);
-        }
-            
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 1);
     }
 }
