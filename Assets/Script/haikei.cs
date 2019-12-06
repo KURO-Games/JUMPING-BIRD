@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class haikei : MonoBehaviour
 {
-    public GameObject Bird;
-    float size = 20f;
+    [SerializeField]
+    private GameObject bird;
+    private float size = 20;
     void Start()
     {
-        Bird = GameObject.Find("Bird");
+        
     }
 
     
     void Update()
     {
-        if(gameObject.transform.position.x < Bird.transform.position.x - size)
+        if(gameObject.transform.position.x < bird.transform.position.x - size)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + size*2, gameObject.transform.position.y,9);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x + size*2, gameObject.transform.position.y, 9);
+        }
+        else if (gameObject.transform.position.x > bird.transform.position.x + size)
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x - size * 2, gameObject.transform.position.y, 9);
         }
     }
 }
