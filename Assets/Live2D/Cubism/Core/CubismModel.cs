@@ -1,8 +1,8 @@
-﻿/*
+﻿/**
  * Copyright(c) Live2D Inc. All rights reserved.
- * 
+ *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 
@@ -48,7 +48,7 @@ namespace Live2D.Cubism.Core
         /// <returns>Instance.</returns>
         public static CubismModel InstantiateFrom(CubismMoc moc)
         {
-            // Return if argument is invailed.
+            // Return if argument is invalid.
             if (moc == null)
             {
                 return null;
@@ -229,7 +229,7 @@ namespace Live2D.Cubism.Core
                 return;
             }
 
-        
+
             // Return if revive isn't possible.
             if (!CanRevive)
             {
@@ -300,7 +300,7 @@ namespace Live2D.Cubism.Core
         #region Unity Event Handling
 
         /// <summary>
-        /// Ttrue on the frame the instance was enabled.
+        /// True on the frame the instance was enabled.
         /// </summary>
         private bool WasJustEnabled { get; set; }
 
