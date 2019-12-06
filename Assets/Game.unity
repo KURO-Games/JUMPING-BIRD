@@ -271,7 +271,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dc2baaff2fdf2444f8df165941e39833, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -315,7 +315,7 @@ Transform:
   m_Children:
   - {fileID: 931186482}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &442114516
 MonoBehaviour:
@@ -709,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 5712830823095646721, guid: 9a4791e35a26d954e8442ea2e7fba2da,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5712830823095646721, guid: 9a4791e35a26d954e8442ea2e7fba2da,
         type: 3}
@@ -936,7 +936,10 @@ MonoBehaviour:
   Die: 0
   CollisionBuilding: 0
   Make: {fileID: 0}
-  isEffect: 0
+  CrashBuilding: 0
+  CrashZombie: 0
+  BuildingPos: {x: 0, y: 0, z: 0}
+  hitColliders: []
 --- !u!50 &942968266
 Rigidbody2D:
   serializedVersion: 4
@@ -1124,9 +1127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 942968264}
-  BirdEffect: {fileID: 4637083179421640691, guid: 713f23395d0aa2a4e9edbe64a5b3576c,
+  StarEffectSub: {fileID: 4637083179421640691, guid: 713f23395d0aa2a4e9edbe64a5b3576c,
     type: 3}
-  CrashEffect: {fileID: 2389331062151390429, guid: a1c7f9d726186904396b440238f1e87a,
+  StarEffectMain: {fileID: 2389331062151390429, guid: a1c7f9d726186904396b440238f1e87a,
+    type: 3}
+  CrashEffect_Z: {fileID: 5955469579272162762, guid: 636592f0e4054664abeca799254b5943,
+    type: 3}
+  CrashEffect_B: {fileID: 8842771501781888909, guid: f1118ad675dd9e748bbd260bc2da99fd,
     type: 3}
 --- !u!4 &1233493711
 Transform:
@@ -1140,7 +1147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476012870
 GameObject:
@@ -1671,7 +1678,7 @@ Transform:
   m_Children:
   - {fileID: 809500227}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2091889534
 PrefabInstance:
@@ -1723,7 +1730,7 @@ PrefabInstance:
     - target: {fileID: 6802278547532519228, guid: 270feae3b2a1c89459ba96a8687f898f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6802278547532519228, guid: 270feae3b2a1c89459ba96a8687f898f,
         type: 3}
@@ -1749,6 +1756,11 @@ PrefabInstance:
         type: 3}
       propertyPath: MakeMax
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802278547532519229, guid: 270feae3b2a1c89459ba96a8687f898f,
+        type: 3}
+      propertyPath: CanMakeBuilding
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 270feae3b2a1c89459ba96a8687f898f, type: 3}

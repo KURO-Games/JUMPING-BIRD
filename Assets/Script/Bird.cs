@@ -21,8 +21,11 @@ public class Bird : MonoBehaviour
     public bool CollisionBuilding = false;//ビルに当たったのか
     public GameObject Make;
 
-    public bool isEffect;
+    public bool CrashBuilding = false;
+    public bool CrashZombie = false;
+    public Vector3 BuildingPos;
 
+   public  Collider[] hitColliders;
 
     void Start()
     {
@@ -49,8 +52,10 @@ public class Bird : MonoBehaviour
             }
             else
             {
+                BuildingPos = other.gameObject.transform.position;
+                Debug.Log(BuildingPos);
                 Destroy(other.gameObject);
-                isEffect = true;
+                CrashBuilding = true;
             }
             
         }
@@ -64,6 +69,7 @@ public class Bird : MonoBehaviour
             {
                 Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
+                CrashZombie = true;
             }
         }
 
@@ -144,5 +150,10 @@ public class Bird : MonoBehaviour
                 transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);
             }
         }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 1);
     }
 }
