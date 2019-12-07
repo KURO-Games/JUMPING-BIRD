@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : MonoBehaviour
+public class Bird :SingletonMonoBehaviour<Bird>
 {
     public float Life;//鳥のHP
     public GameObject Catapult;//最初の飛行判定
@@ -40,6 +40,12 @@ public class Bird : MonoBehaviour
     private void OnMouseExit()
     {
         MouseInBird = false;
+    }
+
+    public GameObject bird()
+    {
+        
+        return this.gameObject;
     }
 
     void OnTriggerStay2D(Collider2D other)

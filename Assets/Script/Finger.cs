@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Finger : MonoBehaviour
-{    
+public class Finger : SingletonMonoBehaviour<Finger>
+{
+    [SerializeField]
     private GameObject Bird;
+    private Bird _Bird;
     private bool Over = false;
     private bool Limit = true;
     private readonly float yLimit = 5;

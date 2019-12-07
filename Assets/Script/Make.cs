@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Make : MonoBehaviour
+public class Make : SingletonMonoBehaviour<Make>
 {
     public GameObject Bird;
     public GameObject Zombie;
@@ -13,12 +13,9 @@ public class Make : MonoBehaviour
     public int MakeMin = 20;
     public int MakeMax = 40;
     public bool CanMakeBuilding = false;
-    private void Awake()
+    private void Start()
     {
         Bird = GameObject.FindGameObjectWithTag("Bird");
-    }
-    void Start()
-    {
         Invoke("MakeZombie", 10f);
     }
 
