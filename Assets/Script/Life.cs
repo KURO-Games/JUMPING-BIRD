@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Life : MonoBehaviour
+public class Life : SingletonMonoBehaviour<Life>
 {
     public GameObject Bird;
-    public float LifeNum = 3;
+    public int LifeNum = 3;
     public Sprite Life1;
     public Sprite Life0;
 
     void Start()
     {
-        Bird = GameObject.Find("Bird");
+        Bird = GameObject.FindGameObjectWithTag("Bird");
     }
 
     

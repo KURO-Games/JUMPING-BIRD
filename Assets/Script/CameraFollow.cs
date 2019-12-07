@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     Vector3 offset;
     void Start()
     {
-        Bird = GameObject.Find("Bird");
+        Bird = GameObject.FindGameObjectWithTag("Bird");
 
     }
     void Update()

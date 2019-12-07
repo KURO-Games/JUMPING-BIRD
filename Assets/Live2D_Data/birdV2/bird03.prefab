@@ -19,9 +19,14 @@ GameObject:
   - component: {fileID: 8121468073778839726}
   - component: {fileID: 8722227403143569471}
   - component: {fileID: 351958042460340539}
+  - component: {fileID: 7269747366783397244}
+  - component: {fileID: 7604367878408704674}
+  - component: {fileID: 5652917262351592150}
+  - component: {fileID: 2279149090123571025}
+  - component: {fileID: 1918074878921496401}
   m_Layer: 0
   m_Name: bird03
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,6 +189,112 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CubismFadeMotionList: {fileID: 0}
+--- !u!50 &7269747366783397244
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337933366504957074}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.65
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!114 &7604367878408704674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337933366504957074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d68a0f8476da54390af92c0a3ecbfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Life: 0
+  Catapult: {fileID: 0}
+  Bird1: {fileID: 21300000, guid: 2cfc8dcefc94a664a9cf4e2e9c24b8b4, type: 3}
+  Bird0: {fileID: 21300000, guid: 59898125fb7e12642860234630d0c0b8, type: 3}
+  MouseInBird: 0
+  MousePush: 0
+  Fly: 0
+  Attack: 0
+  FirstJumpOver: 0
+  Jumphigh: 350
+  IsJump: 1
+  FirstJumpLimit: 0
+  Die: 0
+  CollisionBuilding: 0
+  Make: {fileID: 0}
+  CrashBuilding: 0
+  CrashZombie: 0
+  BuildingPos: {x: 0, y: 0, z: 0}
+  hitColliders: []
+--- !u!114 &5652917262351592150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337933366504957074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc8dfe24b8462041ba04a2fe2f9a880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bird: {fileID: 0}
+  Make: {fileID: 6802278547532519230, guid: 270feae3b2a1c89459ba96a8687f898f, type: 3}
+--- !u!114 &2279149090123571025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337933366504957074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef417365390e4ce45b4e0a9affc405ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bird: {fileID: 0}
+  Finger: {fileID: 4374310274697487609, guid: 0e815518da0c00b459839d6ecb4ed169, type: 3}
+--- !u!61 &1918074878921496401
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337933366504957074}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05735141, y: 0.018895566}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 35.079998, y: 24.8}
+    newSize: {x: 35.079998, y: 24.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5405036, y: 0.461228}
+  m_EdgeRadius: 0
 --- !u!1 &1959460671657255177
 GameObject:
   m_ObjectHideFlags: 0
