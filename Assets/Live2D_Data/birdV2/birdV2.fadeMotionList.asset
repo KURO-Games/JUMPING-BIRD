@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a56ae1006344897956b6d5b0cc507b, type: 3}
+  m_Name: birdV2.fadeMotionList
+  m_EditorClassIdentifier: 
+  MotionInstanceIds: 30efffff24efffff1cefffff14efffff0cefffffa4edffff9cedffff
+  CubismFadeMotionObjects:
+  - {fileID: 11400000, guid: ad8e8b85b21e147fea88ca3a28abaa90, type: 2}
+  - {fileID: 11400000, guid: cc6d558282e7542aaac0b841f8e6222d, type: 2}
+  - {fileID: 11400000, guid: ddcc5642223e14c9fab661bb9a333a2c, type: 2}
+  - {fileID: 11400000, guid: 150c429a7afb646b2a4c56b89a76c747, type: 2}
+  - {fileID: 11400000, guid: b83e8fb637cf341da966562295ffb1d0, type: 2}
+  - {fileID: 11400000, guid: 51c6a903792af4e508ecffb5804797a6, type: 2}
+  - {fileID: 11400000, guid: 5d872d9451d9f4a37a2f8773bc567a2a, type: 2}

@@ -4,32 +4,33 @@ using UnityEngine;
 
 public class FirstJump : MonoBehaviour
 {
-    public GameObject Bird;
-    public GameObject Make;
+    private Bird _birdScript;
+    [SerializeField]
+    private GameObject Make;
     void Awake()
     {
-        Bird = GameObject.FindGameObjectWithTag("Bird");
+        _birdScript = this.gameObject.GetComponent<Bird>();
     }
 
     void Update()
     {
-        if (Bird.GetComponent<Bird>().MouseInBird == true && Input.GetMouseButtonDown(0))
+        if (_birdScript.MouseInBird == true && Input.GetMouseButtonDown(0))
         {
-            Bird.GetComponent<Bird>().MousePush = true;
+            _birdScript.MousePush = true;
         }
 
-        if (Bird.GetComponent<Bird>().MousePush == true)
+        if (_birdScript.MousePush == true)
         {           
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10);
             transform.position = mousePos;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;            
         }
-        if (Bird.GetComponent<Bird>().MousePush == true && Input.GetMouseButtonUp(0))
+        if (_birdScript.MousePush == true && Input.GetMouseButtonUp(0))
         {            
-            Bird.GetComponent<Bird>().MousePush = false;
-            Bird.GetComponent<Bird>().Fly = true;
-            Bird.GetComponent<Bird>().Attack = true;
-            Bird.GetComponent<Bird>().FirstJumpOver = true;
+            _birdScript.MousePush = false;
+            _birdScript.Fly = true;
+            _birdScript.Attack = true;
+            _birdScript.FirstJumpOver = true;
             Destroy(this);
         }
 

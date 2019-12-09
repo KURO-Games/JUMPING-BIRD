@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public GameObject Bird;
-    public GameObject Finger;
-
-    void Awake()
+    private Bird _birdScript;
+    [SerializeField]
+    private GameObject Finger;
+    private void Awake()
     {
-        Bird = GameObject.FindGameObjectWithTag("Bird");
+        _birdScript = this.gameObject.GetComponent<Bird>();
     }
+
     void Update()
     {
-        if (Bird.GetComponent<Bird>().FirstJumpOver)
+        if (_birdScript.FirstJumpOver)
         {            
-            if (!Bird.GetComponent<Bird>().Attack)
-            {
-                if (Bird.GetComponent<Bird>().MouseInBird && Input.GetMouseButtonDown(0))
+            //if (!Bird.GetComponent<Bird>().Attack)
+            //{
+                if (_birdScript.MouseInBird && Input.GetMouseButtonDown(0))
                 {
                     Instantiate(Finger, new Vector3(gameObject.transform.position.x,gameObject.transform.position.y,-5f) ,Quaternion.identity);
-                    Bird.GetComponent<Bird>().MousePush = true;
-                    GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+                    _birdScript.MousePush = true;
+                    //this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
                 }
-            }
+            //}
         }
     }
 }

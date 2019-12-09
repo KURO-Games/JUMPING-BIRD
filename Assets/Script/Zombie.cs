@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    public GameObject Bird;
-    public GameObject Rock;
+    [SerializeField]
+    public GameObject Bird,Rock;
     public bool ZAttack = false;
 
     void Awake()
@@ -25,7 +25,8 @@ public class Zombie : MonoBehaviour
             Vector2 InstantiateRock;
             InstantiateRock.x = this.gameObject.transform.position.x-1;
             InstantiateRock.y = this.gameObject.transform.position.y - 1;
-            Instantiate(Rock, InstantiateRock, Quaternion.identity);
+            GameObject _Rockinstance = Instantiate(Rock, InstantiateRock, Quaternion.identity);
+            _Rockinstance.name = Rock.name+this.gameObject.name;
             ZAttack = true;
             Invoke("AttackReset", 3f);
         }

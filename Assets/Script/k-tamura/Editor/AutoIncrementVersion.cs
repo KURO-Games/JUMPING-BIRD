@@ -1,9 +1,12 @@
 ﻿using UnityEditor;
 using UnityEditor.Callbacks;
-
+/// <summary>
+/// ビルドする度にバージョンを上げていくスクリプト
+/// </summary>
 public class AutoIncrementVersion
 {
 	[PostProcessBuild]
+
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
 	{
 

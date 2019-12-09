@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System;
-
+/// <summary>
+/// シングルトン継承
+/// </summary>
+/// <typeparam name="T">メソッド</typeparam>
 public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
 

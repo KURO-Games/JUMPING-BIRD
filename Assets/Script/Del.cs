@@ -5,9 +5,9 @@ using UnityEngine;
 public class Del : MonoBehaviour
 {
     public GameObject Bird;
-    void Start()
+    void Awake()
     {
-        Bird = GameObject.Find("Bird");
+        Bird = GameObject.FindGameObjectWithTag("Bird");
     }
 
     void Destroy()

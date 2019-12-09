@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : MonoBehaviour
+public class Bird :SingletonMonoBehaviour<Bird>
 {
     public float Life;//鳥のHP
     public GameObject Catapult;//最初の飛行判定
@@ -21,10 +21,13 @@ public class Bird : MonoBehaviour
     public bool CollisionBuilding = false;//ビルに当たったのか、trueにすると跳ね返る
     public GameObject Make;
 
-    public bool isEffect;
+    public bool CrashBuilding = false;
+    public bool CrashZombie = false;
+    public Vector3 BuildingPos;
 
+   public  Collider[] hitColliders;
 
-    void Awake()
+    void Start()
     {
         Life = 3f;
         rb2d = GetComponent<Rigidbody2D>();
@@ -39,6 +42,12 @@ public class Bird : MonoBehaviour
         MouseInBird = false;
     }
 
+    public GameObject bird()
+    {
+        
+        return this.gameObject;
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Building")
@@ -49,8 +58,10 @@ public class Bird : MonoBehaviour
             }
             else
             {
+                BuildingPos = other.gameObject.transform.position;
+                Debug.Log(BuildingPos);
                 Destroy(other.gameObject);
-                isEffect = true;
+                CrashBuilding = true;
             }
             
         }
@@ -64,6 +75,7 @@ public class Bird : MonoBehaviour
             {
                 Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
+                CrashZombie = true;
             }
         }
 
@@ -144,5 +156,10 @@ public class Bird : MonoBehaviour
                 transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);//自動で前に進めるの処理
             }
         }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 1);
     }
 }

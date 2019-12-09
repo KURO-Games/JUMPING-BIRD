@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Finger : MonoBehaviour
-{    
+public class Finger : SingletonMonoBehaviour<Finger>
+{
+    [SerializeField]
     private GameObject Bird;
+    private Bird _Bird;
     private bool Over = false;
     private bool Limit = true;
     private readonly float yLimit = 5;
@@ -18,19 +20,22 @@ public class Finger : MonoBehaviour
         Bird = GameObject.FindGameObjectWithTag("Bird");
     }
 
-    void JumpLimitSet()
+    IEnumerator JumpLimitSet()
     {
+        yield return new WaitForSeconds(0.5f);
         Limit = false;
     }
 
-    void PositionYReset()
+    IEnumerator PositionYReset()
     {
+        yield return new WaitForSeconds(0.5f);
         Debug.Log("aaaaa");
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
-    void PositionFix()
+    IEnumerator PositionFix()
     {
+        yield return new WaitForSeconds(0.1f);
         gameObject.transform.position = Bird.transform.position;
     }
 
@@ -41,7 +46,7 @@ public class Finger : MonoBehaviour
         if (!Over)
         {            
             Vector3 birdPos = Bird.transform.position;
-            Debug.Log("MouseDown");
+            //Debug.Log("MouseDown");
             GetComponent<SpringJoint2D>().connectedAnchor = Bird.transform.position;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
@@ -68,8 +73,8 @@ public class Finger : MonoBehaviour
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             Bird.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             Destroy(GetComponent<SpriteRenderer>());
-            Invoke("PositionFix", 0.1f);
-            Invoke("JumpLimitSet", 0.5f);
+            StartCoroutine(PositionFix());
+            StartCoroutine(JumpLimitSet());
         }
 
         //画面外にマウスを飛ばしてもゲーム画面内に矢印が残る処理。
@@ -103,7 +108,7 @@ public class Finger : MonoBehaviour
             }
             gameObject.transform.position = new Vector2(gameObject.transform.position.x, fingerPos);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-            Invoke("PositionYReset", 0.5f);
+            StartCoroutine(PositionYReset());
         }
         else if (Math.Abs(gameObject.transform.position.y) < yLimit)
         {
