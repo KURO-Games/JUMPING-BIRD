@@ -8,11 +8,16 @@ public class Make : SingletonMonoBehaviour<Make>
     public GameObject Bird;
     public GameObject Zombie;
     public GameObject Building;
+    [Header("子オブジェクト追加")]
+    [SerializeField]
+    private GameObject Zombies, Buildings;
+    [Header("")]
     public float Random1;
     public float MakeTime = 2f;
     public int MakeMin = 20;
     public int MakeMax = 40;
     public bool CanMakeBuilding = false;
+    private int _makeZombies=0, _makeBuildings=0;
     private void Start()
     {
         Bird = GameObject.FindGameObjectWithTag("Bird");
@@ -24,8 +29,10 @@ public class Make : SingletonMonoBehaviour<Make>
         if (Bird.GetComponent<Bird>().Die == false)
         {
             
-            Instantiate(Zombie, new Vector3(Bird.transform.position.x + Random1, -3f, 1f), Quaternion.identity);
-
+            GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.transform.position.x + Random1, -3f, 1f), Quaternion.identity);
+            _zombie.name = Zombie.name+_makeZombies.ToString();
+            _makeZombies++;
+            _zombie.transform.parent = Zombies.transform;
             Invoke("MakeZombie", MakeTime);
         }
     }
@@ -34,7 +41,10 @@ public class Make : SingletonMonoBehaviour<Make>
     {
         if (CanMakeBuilding == true)
         {
-            Instantiate(Building, new Vector3(Bird.transform.position.x + Random1, 0f, 2f), Quaternion.identity);
+            GameObject _building = Instantiate(Building, new Vector3(Bird.transform.position.x + Random1, 0f, 2f), Quaternion.identity);
+            _building.name = Building.name+_makeBuildings.ToString();
+            _makeBuildings++;
+            _building.transform.parent = Buildings.transform;
             CanMakeBuilding = false;
         }
     }
