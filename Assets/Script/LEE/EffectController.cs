@@ -9,10 +9,9 @@ public class EffectController : MonoBehaviour
     public GameObject Player;
     public GameObject StarEffectSub;
     public GameObject StarEffectMain;
-    public GameObject CrashEffect_Z;
-    public GameObject CrashEffect_B;
+    public GameObject DestroyEffect_Z;
+    public GameObject DestroyEffect_B;
 
-    private Vector3 CrashZombiePos;
 
     // Start is called before the first frame update
     void Start()
@@ -31,17 +30,14 @@ public class EffectController : MonoBehaviour
         if (Bird.CrashBuilding)
         {
             Instantiate(StarEffectMain, Bird.transform.position, Quaternion.identity);
-            Instantiate(CrashEffect_B, Bird.BuildingPos, Quaternion.identity);
+            Instantiate(DestroyEffect_B, Bird.BuildingPos, Quaternion.identity);
             Instantiate(StarEffectSub, Bird.transform.position, Quaternion.identity);
             Bird.CrashBuilding = false;
         }
 
         else if (Bird.CrashZombie)
         {
-            CrashZombiePos = Bird.transform.position;
-            CrashZombiePos.y = -3f;
-
-            Instantiate(CrashEffect_Z, CrashZombiePos, Quaternion.identity);
+            Instantiate(DestroyEffect_Z, Bird.ZombiePos, Quaternion.identity);
             Bird.CrashZombie = false;
         }
     }   
