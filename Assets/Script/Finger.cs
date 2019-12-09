@@ -20,19 +20,22 @@ public class Finger : SingletonMonoBehaviour<Finger>
         Bird = GameObject.FindGameObjectWithTag("Bird");
     }
 
-    void JumpLimitSet()
+    IEnumerator JumpLimitSet()
     {
+        yield return new WaitForSeconds(0.5f);
         Limit = false;
     }
 
-    void PositionYReset()
+    IEnumerator PositionYReset()
     {
+        yield return new WaitForSeconds(0.5f);
         Debug.Log("aaaaa");
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
-    void PositionFix()
+    IEnumerator PositionFix()
     {
+        yield return new WaitForSeconds(0.1f);
         gameObject.transform.position = Bird.transform.position;
     }
 
@@ -70,8 +73,8 @@ public class Finger : SingletonMonoBehaviour<Finger>
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             Bird.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             Destroy(GetComponent<SpriteRenderer>());
-            Invoke("PositionFix", 0.1f);
-            Invoke("JumpLimitSet", 0.5f);
+            StartCoroutine(PositionFix());
+            StartCoroutine(JumpLimitSet());
         }
 
         //画面外にマウスを飛ばしてもゲーム画面内に矢印が残る処理。
@@ -105,7 +108,7 @@ public class Finger : SingletonMonoBehaviour<Finger>
             }
             gameObject.transform.position = new Vector2(gameObject.transform.position.x, fingerPos);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-            Invoke("PositionYReset", 0.5f);
+            StartCoroutine(PositionYReset());
         }
         else if (Math.Abs(gameObject.transform.position.y) < yLimit)
         {
