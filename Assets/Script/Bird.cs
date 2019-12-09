@@ -15,10 +15,10 @@ public class Bird : MonoBehaviour
     public bool FirstJumpOver = false;
     Rigidbody2D rb2d;
     public float Jumphigh = 350f;
-    public bool IsJump = true;
+    public bool IsJump = true; //連続のジャンプを防ぐためのもの
     public bool FirstJumpLimit = false;
     public bool Die = false;//死んだのか
-    public bool CollisionBuilding = false;//ビルに当たったのか
+    public bool CollisionBuilding = false;//ビルに当たったのか、trueにすると跳ね返る
     public GameObject Make;
 
     public bool isEffect;
@@ -43,9 +43,9 @@ public class Bird : MonoBehaviour
     {
         if (other.gameObject.tag == "Building")
         {
-            if (Attack == false)
+            if (Attack == false)　//引っ張てない状態(自動ジャンプ)てビルに当たると攻撃状態はfalse
             {
-                CollisionBuilding = true;
+                CollisionBuilding = true;　
             }
             else
             {
@@ -96,15 +96,15 @@ public class Bird : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Die == false)
+        if (Die == false)　//もし死んでいなかったら
         {
-            if (Life <= 0)
+            if (Life <= 0)　//ライフが0になったら
             {
-                transform.rotation = Quaternion.Euler(180, 0, 0);//gameover
+                transform.rotation = Quaternion.Euler(180, 0, 0);//gameover鳥のY軸を180度反転
                 Die = true;
             }
 
-            if (Fly == true)
+            if (Fly == true)　//ここは一回目の飛ぶ処理　一回目のジャンプが終わったらFly = true
             {
                 Destroy(GetComponent<SpringJoint2D>());
                 if (FirstJumpLimit == false)
@@ -115,33 +115,33 @@ public class Bird : MonoBehaviour
             }
             if (gameObject.transform.position.y < -3&& IsJump == false)
             {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);//Y座標が-3より低かったら一旦-3に戻る
                 rb2d.velocity = Vector2.zero;
-                rb2d.AddForce(new Vector2(0, Jumphigh));
+                rb2d.AddForce(new Vector2(0, Jumphigh));//自動ジャンプを行う
                 IsJump = true;
-                Invoke("JumpReset", 0.5f);
-                Attack = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                CollisionBuilding = false;
+                Invoke("JumpReset", 0.5f);//自動のジャンプは1回行ったら0.5秒内自動ジャンプはしない
+                Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
+                transform.rotation = Quaternion.Euler(0, 0, 0);//鳥のローテーションをリセット
+                CollisionBuilding = false;//跳ね返る状態終了
             }
-            if (gameObject.transform.position.y > 7)
+            if (gameObject.transform.position.y > 7)//ここが高く飛び過ぎないようにの制限  
             {                
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);
-                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-                Invoke("PositionYReset", 0.5f);
-                CollisionBuilding = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);//Y座標が7より高かったら一旦6に戻る
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;//それ以上高く飛ぶことを中止するために一旦Y座標を固定
+                Invoke("PositionYReset", 0.5f);//0.5秒後固定を解除
+                CollisionBuilding = false;//跳ね返る状態終了　ここにもう一回書くのはバグ防止のため　
+                transform.rotation = Quaternion.Euler(0, 0, 0);//鳥のローテーションをリセット　同じバグ防止のため
             }
-            if (CollisionBuilding == true)
+            if (CollisionBuilding == true)//引っ張ってない状態ビルに当たって、跳ね返る処理
             {                
-                transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-                Invoke("PositionYReset", 0.5f);
+                transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);//左側に移動
+                transform.rotation = Quaternion.Euler(0, 180, 0);　//X軸を反転
+                Invoke("PositionYReset", 0.5f);//固定を解除
             }
 
             if(Attack == false && MousePush == false && FirstJumpOver == true)
             {
-                transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);
+                transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);//自動で前に進めるの処理
             }
         }
     }
