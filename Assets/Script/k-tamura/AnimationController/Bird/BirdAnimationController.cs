@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
-
+[DisallowMultipleComponent]
 public class BirdAnimationController : SingletonMonoBehaviour<BirdAnimationController>
 {
     private Animator _anim;

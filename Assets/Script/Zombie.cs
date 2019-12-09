@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    public GameObject Bird;
-    public GameObject Rock;
+    [SerializeField]
+    public GameObject Bird,Rock;
     public bool ZAttack = false;
-    private int _Rockstat=0;
 
     void Awake()
     {
