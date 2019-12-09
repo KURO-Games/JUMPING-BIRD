@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_IOS
 using System.Runtime.InteropServices;
@@ -10,7 +8,9 @@ using System.Runtime.InteropServices;
 using UnityEditor;
 #endif
 
-
+/// <summary>
+/// UnityVersionController InitializeScene実装　現状iOSのみ対応
+/// </summary>
 public class Versions : MonoBehaviour
 {
 #if UNITY_IOS

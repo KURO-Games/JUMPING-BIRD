@@ -8,18 +8,25 @@ public class LoadingScene : MonoBehaviour
 {
     [SerializeField]
     private AsyncOperation async;
-    [SerializeField]GameObject error;
+    [SerializeField]GameObject error;//エラーUIを指定
     //[SerializeField]
     //private GameObject loadUI;
     //[SerializeField]
     //private Slider slider;
-    string nextScene;
-    bool _error;
+    string nextScene;//次のシーン
+    bool _error;//シーン遷移ができるかどうか
+    /// <summary>
+    /// 次のシーンに遷移
+    /// </summary>
     public void NextScene()
     {
         //loadUI.SetActive(true);
-        StartCoroutine("Loaddata");
+        StartCoroutine(Loaddata());
     }
+    /// <summary>
+    /// シーン再生中にSceneManager.LoadSceneAsyncで次のシーンを呼ぶ
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Loaddata()
     {
         Time.timeScale = 1.0f;
@@ -46,11 +53,6 @@ public class LoadingScene : MonoBehaviour
     void Start()
     {
         StartCoroutine(Loaddata());
-    }
-
-    private void OnGUI()
-    {
-
     }
     // Update is called once per frame
     void Update()

@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
+/// <summary>
+/// シーン遷移Manager
+/// </summary>
 public class SceneLoadManager : MonoBehaviour
 {
     #region Singleton
@@ -52,6 +54,7 @@ public class SceneLoadManager : MonoBehaviour
         }
     #endregion
 
+
     static string nextScene = "";
     public static string NextScene { get { return nextScene; } }
 
@@ -63,7 +66,9 @@ public class SceneLoadManager : MonoBehaviour
 
     IEnumerator fadeOut;
     IEnumerator fadeIn;
-
+    /// <summary>
+    /// 画面反転用
+    /// </summary>
     public void OnGUI()
     {
         if (isFading)
@@ -73,7 +78,10 @@ public class SceneLoadManager : MonoBehaviour
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
         }
     }
-
+    /// <summary>
+    /// 次のシーンを呼ぶ
+    /// </summary>
+    /// <param name="sceneName">呼ぶシーンの名前を指定する</param>
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
@@ -84,44 +92,71 @@ public class SceneLoadManager : MonoBehaviour
             )
         );
     }
+    /// <summary>
+    /// FadeOut
+    /// </summary>
+    /// <param name="time"></param>
+    /// <param name="callback"></param>
     public static void FadeOut(float time, System.Action callback = null)
     {
         if (Instance.fadeIn != null) Instance.StopCoroutine(Instance.fadeIn);
         Instance.fadeOut = Instance.FadeOutScene(time, callback);
         Instance.StartCoroutine(Instance.fadeOut);
-    }
+    }/// <summary>
+    /// FadeOut
+    /// </summary>
+    /// <param name="callback"></param>
     public static void FadeOut(System.Action callback)
     {
         FadeOut(Instance.fadeTime, callback);
     }
-
+    /// <summary>
+    /// FadeOut
+    /// </summary>
     public static void FadeOut()
     {
         FadeOut(Instance.fadeTime);
     }
-
+    /// <summary>
+    /// FadeIn
+    /// </summary>
+    /// <param name="time"></param>
+    /// <param name="callback"></param>
     public static void FadeIn(float time, System.Action callback = null)
     {
         if (Instance.fadeOut != null) Instance.StopCoroutine(Instance.fadeOut);
         Instance.fadeIn = Instance.FadeInScene(time, callback);
         Instance.StartCoroutine(Instance.fadeIn);
     }
-
+    /// <summary>
+    /// FadeIn
+    /// </summary>
+    /// <param name="callback"></param>
     public static void FadeIn(System.Action callback)
     {
         FadeIn(Instance.fadeTime, callback);
     }
-
+    /// <summary>
+    /// FadeIn
+    /// </summary>
+    /// <param name="time"></param>
     public static void FadeIn(float time)
     {
         FadeIn(time, null);
     }
-
+    /// <summary>
+    /// FadeIn
+    /// </summary>
     public static void FadeIn()
     {
         FadeIn(Instance.fadeTime);
     }
-
+    /// <summary>
+    /// FadeOut
+    /// </summary>
+    /// <param name="interval"></param>
+    /// <param name="callback"></param>
+    /// <returns></returns>
     IEnumerator FadeOutScene(float interval, System.Action callback)
     {
         isFading = true;
@@ -138,7 +173,12 @@ public class SceneLoadManager : MonoBehaviour
             callback();
         }
     }
-
+    /// <summary>
+    /// FadeIn
+    /// </summary>
+    /// <param name="interval"></param>
+    /// <param name="callback"></param>
+    /// <returns></returns>
     IEnumerator FadeInScene(float interval, System.Action callback)
     {
         isFading = true;
