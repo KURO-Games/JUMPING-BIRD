@@ -24,8 +24,8 @@ public class Bird :SingletonMonoBehaviour<Bird>
     public bool CrashBuilding = false;
     public bool CrashZombie = false;
     public Vector3 BuildingPos;
+    public Vector3 ZombiePos;
 
-   public  Collider[] hitColliders;
 
     void Start()
     {
@@ -75,6 +75,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             {
                 Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
+                ZombiePos = other.transform.position;
                 CrashZombie = true;
             }
         }
@@ -165,9 +166,5 @@ public class Bird :SingletonMonoBehaviour<Bird>
             }
         } 
     }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 1);
-    }
+    
 }
