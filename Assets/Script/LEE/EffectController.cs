@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class EffectController : MonoBehaviour
 {
-    private Bird Bird;
+    //private Bird Bird;
 
-    public GameObject Player;
-    public GameObject StarEffectSub;
-    public GameObject StarEffectMain;
-    public GameObject DestroyEffect_Z;
-    public GameObject DestroyEffect_B;
+    //public GameObject Player;
+    [Header("エフェクト種類"),SerializeField]
+    private GameObject StarEffectSub,StarEffectMain,DestroyEffect_Z,DestroyEffect_B;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Bird = Player.GetComponent<Bird>();
+        //Bird = Player.GetComponent<Bird>();
     }
 
     // Update is called once per frame
@@ -27,18 +25,18 @@ public class EffectController : MonoBehaviour
 
     void EffectSet()
     {
-        if (Bird.CrashBuilding)
+        if (Bird.Instance.CrashBuilding)
         {
-            Instantiate(StarEffectMain, Bird.transform.position, Quaternion.identity);
-            Instantiate(DestroyEffect_B, Bird.BuildingPos, Quaternion.identity);
-            Instantiate(StarEffectSub, Bird.transform.position, Quaternion.identity);
-            Bird.CrashBuilding = false;
+            Instantiate(StarEffectMain, Bird.Instance.bird().transform.position, Quaternion.identity);
+            Instantiate(DestroyEffect_B, Bird.Instance.BuildingPos, Quaternion.identity);
+            Instantiate(StarEffectSub, Bird.Instance.bird().transform.position, Quaternion.identity);
+            Bird.Instance.CrashBuilding = false;
         }
 
-        else if (Bird.CrashZombie)
+        else if (Bird.Instance.CrashZombie)
         {
-            Instantiate(DestroyEffect_Z, Bird.ZombiePos, Quaternion.identity);
-            Bird.CrashZombie = false;
+            Instantiate(DestroyEffect_Z, Bird.Instance.ZombiePos, Quaternion.identity);
+            Bird.Instance.CrashZombie = false;
         }
     }   
 }

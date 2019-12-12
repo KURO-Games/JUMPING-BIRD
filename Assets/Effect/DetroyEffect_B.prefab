@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8842771501781888910}
   - component: {fileID: 8842771501781888911}
   - component: {fileID: 8842771501781888908}
+  - component: {fileID: 7391886760006048413}
   m_Layer: 0
-  m_Name: BulingSmoke
+  m_Name: DetroyEffect_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4698,3 +4699,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7391886760006048413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8842771501781888909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f98aca58b53ab46b1d8dc7b223b6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
