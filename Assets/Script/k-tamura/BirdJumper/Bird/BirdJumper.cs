@@ -6,7 +6,10 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
 {
     private Vector2 thisPosition;
     private Vector2 AddForcePos;
-    [SerializeField]
+    private Vector3 cameraPos;
+    private Vector2 distance;
+
+[SerializeField]
     private float Speed=2;
     [SerializeField]
     private GameObject _Finger;
@@ -18,12 +21,15 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
             {
                 _Finger.SetActive(true);
                 thisPosition = this.transform.position;
-                this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.zero);
+                FingerPositions.Instance.DefaultScale();
+                cameraPos = CameraFollow.Instance.CameraThisPosition();
             }
             if (Input.GetMouseButton(0))
             {
                 this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                CameraFollow.Instance.CameraPos(cameraPos);
                 this.transform.position = thisPosition;
+                FingerPositions.Instance.Scales(Vector2.Distance(FingerPositions.Instance.ThisPosition(),thisPosition));
             }
             else this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
             if (Input.GetMouseButtonUp(0))
@@ -32,6 +38,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
                 this.gameObject.GetComponent<Bird>().Attack = true;
                 AddForcePos = thisPosition - FingerPositions.Instance.ThisPosition();
                 Instance.AddForces(AddForcePos*Speed);
+                this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.zero);
                 FingerPositions.Instance.Actives(false);
             }
         }

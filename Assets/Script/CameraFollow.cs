@@ -2,27 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
 {
     [SerializeField]
-    private GameObject Bird;
+    //private GameObject Bird;
 
 
     Vector3 offset;
     void Start()
     {
-        Bird = GameObject.FindGameObjectWithTag("Bird");
+        //Bird = GameObject.FindGameObjectWithTag("Bird");
 
     }
     void Update()
     {
-        if (Bird.GetComponent<Bird>().Fly == true)
+        if (Bird.Instance.Fly == true)
         {
-            if (Bird.transform.position.y >= 2)
+            if (Bird.Instance.bird().transform.position.y >= 2)
             {
-                transform.position = new Vector3(Bird.transform.position.x + 3f, Bird.transform.position.y - 2, -10);
+                transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, Bird.Instance.bird().transform.position.y - 2, -10);
             }
-            else transform.position = new Vector3(Bird.transform.position.x + 3f, 0, -10);
+            else transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
         }
+    }
+    public Vector3 CameraThisPosition()
+    {
+        return this.gameObject.transform.position;
+    }
+    public void CameraPos(Vector3 position)
+    {
+        this.gameObject.transform.position = position;
     }
 }
