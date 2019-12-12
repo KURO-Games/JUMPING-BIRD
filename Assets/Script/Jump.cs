@@ -20,7 +20,7 @@ public class Jump : MonoBehaviour
             //{
                 if (_birdScript.MouseInBird && Input.GetMouseButtonDown(0))
                 {
-                    Instantiate(Finger, new Vector3(gameObject.transform.position.x,gameObject.transform.position.y,-5f) ,Quaternion.identity);
+                    //Instantiate(Finger, new Vector3(gameObject.transform.position.x,gameObject.transform.position.y,-5f) ,Quaternion.identity);
                     _birdScript.MousePush = true;
                     //this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
                 }

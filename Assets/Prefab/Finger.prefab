@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 1484713239986262530}
   - component: {fileID: 4747004792445167549}
   - component: {fileID: 6130058490247340626}
+  - component: {fileID: 1597395024658028443}
   m_Layer: 0
   m_Name: Finger
   m_TagString: Finger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &201848184157804247
 Transform:
   m_ObjectHideFlags: 0
@@ -91,7 +92,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4374310274697487609}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -111,7 +112,7 @@ SpringJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4374310274697487609}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f856e5544ae6cfb419c6f900683f46a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bird: {fileID: 0}
 --- !u!61 &6130058490247340626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162,3 +164,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14.576552, y: 8.614563}
   m_EdgeRadius: 0
+--- !u!114 &1597395024658028443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374310274697487609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c1d0cec0e6e24d0eb1cd853f2a6f348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

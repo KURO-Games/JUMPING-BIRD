@@ -107,6 +107,11 @@ public class Bird :SingletonMonoBehaviour<Bird>
         yield return new WaitForSeconds(0.5f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
+    IEnumerator SceneFades()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneLoadManager.LoadScene("Title");
+    }
 
     void FixedUpdate()
     {
@@ -117,6 +122,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             {
                 transform.rotation = Quaternion.Euler(180, 0, 0);//gameover鳥のY軸を180度反転
                 Die = true;
+                StartCoroutine(SceneFades());
             }
             if (Fly)　//ここは一回目の飛ぶ処理　一回目のジャンプが終わったらFly = true
             {
@@ -157,7 +163,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             {
                 transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);//自動で前に進めるの処理
             }
-        }
+        } 
     }
     void OnDrawGizmosSelected()
     {

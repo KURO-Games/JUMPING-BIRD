@@ -47,7 +47,7 @@ public class Finger : SingletonMonoBehaviour<Finger>
         {            
             Vector3 birdPos = Bird.transform.position;
             //Debug.Log("MouseDown");
-            GetComponent<SpringJoint2D>().connectedAnchor = Bird.transform.position;
+            //GetComponent<SpringJoint2D>().connectedAnchor = Bird.transform.position;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
             //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
@@ -68,10 +68,12 @@ public class Finger : SingletonMonoBehaviour<Finger>
         }
         if (Input.GetMouseButtonUp(0))
         {
+            /*
             //Debug.Log("MouseUp");
             setBool();
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             Bird.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            */
             Destroy(GetComponent<SpriteRenderer>());
             StartCoroutine(PositionFix());
             StartCoroutine(JumpLimitSet());
