@@ -156,7 +156,7 @@ PlayerSettings:
     Standalone: com.Company.ProductName
     iOS: jp.ac.tech.game-project.jumpingbird
   buildNumber:
-    iOS: 7
+    iOS: 8
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
@@ -273,17 +273,20 @@ PlayerSettings:
       m_Height: 120
       m_Kind: 0
       m_SubKind: iPhone
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 4d89254759d374ddfba69e914fdd93a9, type: 3}
       m_Width: 167
       m_Height: 167
       m_Kind: 0
       m_SubKind: iPad
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 152
       m_Height: 152
       m_Kind: 0
       m_SubKind: iPad
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 76
       m_Height: 76
       m_Kind: 0
@@ -298,12 +301,14 @@ PlayerSettings:
       m_Height: 80
       m_Kind: 3
       m_SubKind: iPhone
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 4d89254759d374ddfba69e914fdd93a9, type: 3}
       m_Width: 80
       m_Height: 80
       m_Kind: 3
       m_SubKind: iPad
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 40
       m_Height: 40
       m_Kind: 3
@@ -323,12 +328,14 @@ PlayerSettings:
       m_Height: 29
       m_Kind: 1
       m_SubKind: iPhone
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 4d89254759d374ddfba69e914fdd93a9, type: 3}
       m_Width: 58
       m_Height: 58
       m_Kind: 1
       m_SubKind: iPad
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 29
       m_Height: 29
       m_Kind: 1
@@ -343,17 +350,20 @@ PlayerSettings:
       m_Height: 40
       m_Kind: 2
       m_SubKind: iPhone
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 4d89254759d374ddfba69e914fdd93a9, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 2
       m_SubKind: iPad
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 20
       m_Height: 20
       m_Kind: 2
       m_SubKind: iPad
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 4d89254759d374ddfba69e914fdd93a9, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 4

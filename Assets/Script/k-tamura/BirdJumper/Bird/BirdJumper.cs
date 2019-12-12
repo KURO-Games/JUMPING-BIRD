@@ -18,13 +18,17 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
             {
                 _Finger.SetActive(true);
                 thisPosition = this.transform.position;
+                this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.zero);
             }
             if (Input.GetMouseButton(0))
             {
+                this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
                 this.transform.position = thisPosition;
             }
+            else this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
             if (Input.GetMouseButtonUp(0))
             {
+                
                 this.gameObject.GetComponent<Bird>().Attack = true;
                 AddForcePos = thisPosition - FingerPositions.Instance.ThisPosition();
                 Instance.AddForces(AddForcePos*Speed);
