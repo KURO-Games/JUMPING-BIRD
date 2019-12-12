@@ -95,13 +95,16 @@ public class Bird :SingletonMonoBehaviour<Bird>
         }
     }
 
-    void JumpReset()
+
+   IEnumerator　JumpReset()
     {
-       IsJump = false;
+        yield return new WaitForSeconds(0.5f);
+        IsJump = false;
     }
 
-    void PositionYReset()
+    IEnumerator PositionYReset()
     {
+        yield return new WaitForSeconds(0.5f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
@@ -115,13 +118,12 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 transform.rotation = Quaternion.Euler(180, 0, 0);//gameover鳥のY軸を180度反転
                 Die = true;
             }
-
-            if (Fly == true)　//ここは一回目の飛ぶ処理　一回目のジャンプが終わったらFly = true
+            if (Fly)　//ここは一回目の飛ぶ処理　一回目のジャンプが終わったらFly = true
             {
                 Destroy(GetComponent<SpringJoint2D>());
                 if (FirstJumpLimit == false)
                 {
-                    Invoke("JumpReset", 0.5f);
+                    StartCoroutine(JumpReset());
                     FirstJumpLimit = true;
                 }
             }
@@ -131,7 +133,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 rb2d.velocity = Vector2.zero;
                 rb2d.AddForce(new Vector2(0, Jumphigh));//自動ジャンプを行う
                 IsJump = true;
-                Invoke("JumpReset", 0.5f);//自動のジャンプは1回行ったら0.5秒内自動ジャンプはしない
+                StartCoroutine(JumpReset());//自動のジャンプは1回行ったら0.5秒内自動ジャンプはしない
                 Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
                 transform.rotation = Quaternion.Euler(0, 0, 0);//鳥のローテーションをリセット
                 CollisionBuilding = false;//跳ね返る状態終了
@@ -140,7 +142,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             {                
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);//Y座標が7より高かったら一旦6に戻る
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;//それ以上高く飛ぶことを中止するために一旦Y座標を固定
-                Invoke("PositionYReset", 0.5f);//0.5秒後固定を解除
+                StartCoroutine(PositionYReset());//0.5秒後固定を解除
                 CollisionBuilding = false;//跳ね返る状態終了　ここにもう一回書くのはバグ防止のため　
                 transform.rotation = Quaternion.Euler(0, 0, 0);//鳥のローテーションをリセット　同じバグ防止のため
             }
@@ -148,7 +150,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             {                
                 transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);//左側に移動
                 transform.rotation = Quaternion.Euler(0, 180, 0);　//X軸を反転
-                Invoke("PositionYReset", 0.5f);//固定を解除
+                StartCoroutine(PositionYReset());//固定を解除
             }
 
             if(Attack == false && MousePush == false && FirstJumpOver == true)
