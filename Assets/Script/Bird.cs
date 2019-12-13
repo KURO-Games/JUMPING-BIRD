@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bird :SingletonMonoBehaviour<Bird>
 {
@@ -27,6 +28,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
     public Vector3 ZombiePos;
     private bool GameEnd;
 
+    public bool isEffect;
     //public Collider[] hitColliders;
 
     void Start()
@@ -34,6 +36,10 @@ public class Bird :SingletonMonoBehaviour<Bird>
         Life = 3f;
         rb2d = GetComponent<Rigidbody2D>();
         Make = GameObject.Find("Make");
+    }
+    private void Update()
+    {
+        
     }
     private void OnMouseEnter()
     {
@@ -64,6 +70,8 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 Debug.Log(BuildingPos);
                 Destroy(other.gameObject);
                 CrashBuilding = true;
+                //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+                SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
             }
             
         }
@@ -84,7 +92,8 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
                 ZombiePos = other.transform.position;
-
+                //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+                SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
                 CrashZombie = true;
             }
         }
@@ -126,7 +135,6 @@ public class Bird :SingletonMonoBehaviour<Bird>
 
     void FixedUpdate()
     {
-
         if (Die == false)　//もし死んでいなかったら
         {
             if (Life <= 0)　//ライフが0になったら
@@ -159,7 +167,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             if (gameObject.transform.position.y > 7)//ここが高く飛び過ぎないようにの制限  
             {                
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);//Y座標が7より高かったら一旦6に戻る
-                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;//それ以上高く飛ぶことを中止するために一旦Y座標を固定
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY|RigidbodyConstraints2D.FreezeRotation;//それ以上高く飛ぶことを中止するために一旦Y座標を固定
                 StartCoroutine(PositionYReset());//0.5秒後固定を解除
                 CollisionBuilding = false;//跳ね返る状態終了　ここにもう一回書くのはバグ防止のため　
                 transform.rotation = Quaternion.Euler(0, 0, 0);//鳥のローテーションをリセット　同じバグ防止のため
@@ -171,7 +179,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 StartCoroutine(PositionYReset());//固定を解除
             }
 
-            if(Attack == false && MousePush == false && FirstJumpOver == true)
+            if(Attack == false && MousePush == false && FirstJumpOver == true&&!SPGimick.Instance.SPGimickStart)
             {
                 transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);//自動で前に進めるの処理
             }
@@ -184,4 +192,5 @@ public class Bird :SingletonMonoBehaviour<Bird>
         Gizmos.DrawWireSphere(transform.position, 1);
     }
     */
+    
 }

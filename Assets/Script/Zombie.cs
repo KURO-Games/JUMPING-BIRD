@@ -6,7 +6,8 @@ public class Zombie : MonoBehaviour
 {
     [SerializeField]
     public GameObject Bird,Rock;
-    public bool ZAttack = false;
+    public static bool ZAttack = false;
+    public static int speed = 1;
 
     void Awake()
     {
@@ -34,9 +35,10 @@ public class Zombie : MonoBehaviour
 
     void Update()
     {
+        float step = speed * Time.deltaTime;
         if (Bird.GetComponent<Bird>().Die == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.transform.position.x, -2.8f), Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.transform.position.x, -2.8f), step);
             if (gameObject.transform.position.x + 5 > Bird.transform.position.x && gameObject.transform.position.x - 5 < Bird.transform.position.x)
             {
                 RockAttack();

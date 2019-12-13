@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e82614987f8d40c5baa4a8a65929b1d, type: 3}
   m_Name: OriginalWorkflowSettings
   m_EditorClassIdentifier: 
-  ShouldImportAsOriginalWorkflow: 1
-  ShouldClearAnimationCurves: 1
+  ShouldImportAsOriginalWorkflow: 0
+  ShouldClearAnimationCurves: 0

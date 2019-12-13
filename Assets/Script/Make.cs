@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Make : SingletonMonoBehaviour<Make>
 {
-    public GameObject Bird;
+   
     public GameObject Zombie;
     public GameObject Building;
     [Header("子オブジェクト追加")]
@@ -20,16 +20,16 @@ public class Make : SingletonMonoBehaviour<Make>
     private int _makeZombies=0, _makeBuildings=0;
     private void Start()
     {
-        Bird = GameObject.FindGameObjectWithTag("Bird");
+       
         Invoke("MakeZombie", 10f);
     }
 
     void MakeZombie()
     {
-        if (Bird.GetComponent<Bird>().Die == false)
+        if (Bird.Instance.Die == false)
         {
             
-            GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.transform.position.x + Random1, -3f, 1f), Quaternion.identity);
+            GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + Random1, -3f, 1f), Quaternion.identity);
             _zombie.name = Zombie.name+_makeZombies.ToString();
             _makeZombies++;
             _zombie.transform.parent = Zombies.transform;
@@ -41,7 +41,7 @@ public class Make : SingletonMonoBehaviour<Make>
     {
         if (CanMakeBuilding == true)
         {
-            GameObject _building = Instantiate(Building, new Vector3(Bird.transform.position.x + Random1, 0f, 2f), Quaternion.identity);
+            GameObject _building = Instantiate(Building, new Vector3(Bird.Instance.bird().transform.position.x + Random1, 0f, 2f), Quaternion.identity);
             _building.name = Building.name+_makeBuildings.ToString();
             _makeBuildings++;
             _building.transform.parent = Buildings.transform;
