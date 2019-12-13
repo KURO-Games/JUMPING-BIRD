@@ -13,12 +13,8 @@ public class Back_No : MonoBehaviour
 
     public void OnClick()
     {
-        GoTitle.gameObject.transform.position = new Vector2(424, -636);
+        GoTitle.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 
-    void Update()
-    {
-        
-    }
 }
