@@ -9,11 +9,12 @@ public class Back : MonoBehaviour
     void Start()
     {
         GoTitle = GameObject.Find("GoTitle");
+        GoTitle.gameObject.SetActive(false);
     }
 
     public void OnClick()
     {
-        GoTitle.gameObject.transform.position = new Vector2(424, 318);
+        GoTitle.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
 
