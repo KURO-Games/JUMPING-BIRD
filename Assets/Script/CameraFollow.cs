@@ -6,29 +6,45 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
 {
     [SerializeField]
     //private GameObject Bird;
-    private float _set;
+    private float _set=5f;
+    [SerializeField]
     bool NearGoal;
+    [SerializeField]
     float offset;
+    Vector3 after;
     void Start()
     {
         //Bird = GameObject.FindGameObjectWithTag("Bird");
-
+        after.z = this.transform.position.z;
     }
     void Update()
     {
         offset = GoleFlags.Instance.ThisPosition().x - this.gameObject.transform.position.x;
-        if (offset >= _set)
+        
+        if (offset <= _set)
         {
-            NearGoal = true;
+            Instance.NearGoal = true;
+
         }
-        if (Bird.Instance.Fly == true)
+        if (!NearGoal)
         {
-            if (Bird.Instance.bird().transform.position.y >= 2)
+            if (Bird.Instance.Fly)
             {
-                transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, Bird.Instance.bird().transform.position.y - 2, -10);
+                if (Bird.Instance.bird().transform.position.y >= 2)
+                {
+                    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, Bird.Instance.bird().transform.position.y - 2, -10);
+                }
+                else transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
             }
-            else transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
+            after.y = this.transform.position.y;
         }
+        else
+        {
+            
+            after.x = this.transform.position.x;
+            this.transform.position = after;
+        }
+
     }
     public Vector3 CameraThisPosition()
     {
@@ -37,5 +53,9 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
     public void CameraPos(Vector3 position)
     {
         this.gameObject.transform.position = position;
+    }
+    public GameObject gameObjects()
+    {
+        return this.gameObject;
     }
 }
