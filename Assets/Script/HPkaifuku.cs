@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class HPkaifuku : MonoBehaviour
 {
-    public GameObject Bird;
+    
     float timer_f = 0f;
     int timer_i = 0;
 
-    void Start()
-    {
-        Bird = GameObject.Find("Bird");
-    }
-
     void Kaifuku()
     {
-        if (Bird.GetComponent<Bird>().Life < 3 && Bird.GetComponent<Bird>().Life > 0)
+        if (Bird.Instance.Life < 3 && Bird.Instance.Life > 0)
         {
             if (timer_i == 8)
             {
                 timer_f = 0;
-                Bird.GetComponent<Bird>().Life += 1;
+                Bird.Instance.Life += 1;
                 Debug.Log("+1");
             }
         }
-        if (Bird.GetComponent<Bird>().Life == 3)
+        if (Bird.Instance.Life == 3)
         {
             if (timer_i == 8)
             {
@@ -37,7 +32,7 @@ public class HPkaifuku : MonoBehaviour
     {
         if (other.gameObject.tag == "Rock")
         {
-            if (Bird.GetComponent<Bird>().Attack == false)
+            if (Bird.Instance.Attack == false)
             {
                 timer_f = 0;
             }

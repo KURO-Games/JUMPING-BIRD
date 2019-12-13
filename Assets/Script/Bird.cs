@@ -25,6 +25,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
     public bool CrashZombie = false;
     public Vector3 BuildingPos;
     public Vector3 ZombiePos;
+    private bool GameEnd;
 
     //public Collider[] hitColliders;
 
@@ -66,6 +67,12 @@ public class Bird :SingletonMonoBehaviour<Bird>
             }
             
         }
+        if (other.gameObject.name == "Goal")
+        {
+            DisplayManager.Instance.DispMgr(true);
+            GameEnd = true;
+            StartCoroutine(SceneFades(5f));
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -96,6 +103,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 Destroy(other.gameObject);
             }
         }
+        
     }
 
 
@@ -110,9 +118,9 @@ public class Bird :SingletonMonoBehaviour<Bird>
         yield return new WaitForSeconds(0.5f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
-    IEnumerator SceneFades()
+    IEnumerator SceneFades(float fadeTime)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(fadeTime);
         SceneLoadManager.LoadScene("Title");
     }
 
@@ -125,7 +133,8 @@ public class Bird :SingletonMonoBehaviour<Bird>
             {
                 transform.rotation = Quaternion.Euler(180, 0, 0);//gameover鳥のY軸を180度反転
                 Die = true;
-                StartCoroutine(SceneFades());
+                StartCoroutine(SceneFades(3f));
+                DisplayManager.Instance.DispMgr(false);
             }
             if (Fly)　//ここは一回目の飛ぶ処理　一回目のジャンプが終わったらFly = true
             {
