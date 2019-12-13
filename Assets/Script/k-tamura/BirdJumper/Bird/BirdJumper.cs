@@ -15,8 +15,9 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private GameObject _Finger;
     private void Update()
     {
-        if (this.GetComponent<Bird>().Fly)
+        if (this.GetComponent<Bird>().FirstJumpLimit)
         {
+            Debug.LogWarning(Bird.Instance.FirstJumpLimit);
             if (Input.GetMouseButtonDown(0))
             {
                 _Finger.SetActive(true);
