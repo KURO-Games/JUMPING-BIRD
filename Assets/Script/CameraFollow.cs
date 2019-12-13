@@ -6,9 +6,9 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
 {
     [SerializeField]
     //private GameObject Bird;
-
-
-    Vector3 offset;
+    private float _set;
+    bool NearGoal;
+    float offset;
     void Start()
     {
         //Bird = GameObject.FindGameObjectWithTag("Bird");
@@ -16,6 +16,11 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
     }
     void Update()
     {
+        offset = GoleFlags.Instance.ThisPosition().x - this.gameObject.transform.position.x;
+        if (offset >= _set)
+        {
+            NearGoal = true;
+        }
         if (Bird.Instance.Fly == true)
         {
             if (Bird.Instance.bird().transform.position.y >= 2)
