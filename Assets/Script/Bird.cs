@@ -29,6 +29,14 @@ public class Bird :SingletonMonoBehaviour<Bird>
     private bool GameEnd;
 
     public bool isEffect;
+
+    enum BirdState
+    {
+        Jump,
+        Attack,
+
+        Die,
+    }
     //public Collider[] hitColliders;
 
     void Start()
