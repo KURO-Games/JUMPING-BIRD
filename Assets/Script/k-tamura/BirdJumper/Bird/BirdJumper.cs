@@ -27,10 +27,10 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
                 if (hit.collider)
                 {
 
-                    if (hit.collider.gameObject.name == this.gameObject.name)
+                    if (hit.collider.gameObject.name == this.gameObject.name && !SPGimick.Instance.SPGimickStart)
                     {
                         Debug.LogWarning(hit.collider.gameObject.name+ this.gameObject.name+ hit.collider.gameObject.name == this.gameObject.name);
-                        MouseButtonDown(true,false,0,0,0);
+                        MouseButtonDown(true,false,0,0,0); RayFlag = true;
                     }
                 }
             }
@@ -69,7 +69,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
             FingerPositions.Instance.Scales(defaultAddScales,new Vector2(x,y),AddScales);
         }
         cameraPos = CameraFollow.Instance.CameraThisPosition();
-        RayFlag = true;
+        
     }
     public void MouseButton()
     {

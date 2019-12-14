@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Back : MonoBehaviour
 {
-    public GameObject GoTitle;
+    [SerializeField]
+    private GameObject GoTitle;
 
     void Start()
-    {
-        GoTitle = GameObject.Find("GoTitle");
-        GoTitle.gameObject.SetActive(false);
+    {        
+        //GoTitle.gameObject.SetActive(false);
     }
 
     public void OnClick()

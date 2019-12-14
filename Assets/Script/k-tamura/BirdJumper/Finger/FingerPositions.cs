@@ -8,7 +8,8 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
     private Vector2 tapPosition;
     private Vector2 _DefaultScale;
     private Vector2 _scale;
-    private float mouseDownTime = 0;    
+    [HideInInspector]
+    public float mouseDownTime = 0;    
     public Sprite[] allowSprite;
     [HideInInspector]
     public bool HissatsuFlag;
@@ -34,7 +35,7 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
     /// </summary>
     /// <param name="defaults">addScaleのデフォルト数値を利用するか</param>
     /// <param name="scale">Scale</param>
-    /// <param name="addScales">defaultがfalseの時有効</param>
+    /// <param name="addScales">defaultsがfalseの時有効</param>
     public void Scales(bool defaults, Vector2 scale, float addScales)
     {
         if (defaults)
@@ -64,16 +65,16 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
         if (mouseDownTime > 4 && 6 >= mouseDownTime)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[2];
-            this.gameObject.transform.rotation = new Quaternion(0, 0, 90, 0);
-            this.gameObject.transform.position = SPGimick.Instance.SPPos.transform.position;
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
+            this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);
             HissatsuFlag = true;
         }
 
         if (mouseDownTime > 2 && 4 >= mouseDownTime)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[1];
-            this.gameObject.transform.rotation = new Quaternion(0, 0, 90, 0);
-            this.gameObject.transform.position = SPGimick.Instance.SPPos.transform.position;
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
+            this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);            
         }
 
     }

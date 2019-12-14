@@ -41,6 +41,7 @@ public class Finger : SingletonMonoBehaviour<Finger>
 
     private void Update()
     {
+        if (SPGimick.Instance.SPGimickStart) return;
         rotat.z = AngleCal(this.transform.position,Bird.transform.position);
         this.transform.rotation=Quaternion.Euler(rotat);
         if (!Over)
