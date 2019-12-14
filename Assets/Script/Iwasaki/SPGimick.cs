@@ -56,25 +56,14 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         Debug.Log("click");
         if (SPBool)
         {
-            SPGimickStart = true;
-            buttonPushFlag = true;
-            HissatsuWazaBool = true;
-            Bird.Instance.IsJump = true;
-            Bird.Instance.Fly = false;
-            Bird.Instance.Attack = false;
-            Bird.Instance.CollisionBuilding = false;
+            BeforeSPBool();
 
-            //Bird.Instance.bird().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            //rb2d.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-            //ゲージを0にする
+            //必殺技ゲージを0にする
             Gauge.fillAmount = 0;
-            SPBool = false;
-            //Debug.Log("inSP");
 
             //SPアイコンのa値を半分にする
             iconColor.a = 0.5f;
             birdIcon.color = iconColor;
-            doOnceSP = true;
 
             //鳥が画面の真上に来る処理
             Bird.Instance.bird().transform.position = SPPos.transform.position;
@@ -82,7 +71,6 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
             //ゾンビの動きを止める
             Zombie.speed = 0;
-            Zombie.ZAttack = true;
 
             //飛んでいる岩を消す
             Destroy(GameObject.FindWithTag("Rock"));
@@ -121,7 +109,9 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 if (FingerPositions.Instance.HissatsuFlag)
                 {
                     Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
-                    SPGimickStart = false;
+                    AfterSPBool();
+                    Zombie.speed = 1;
+                    FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
                 }
                 else
                 {
@@ -130,5 +120,30 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             }
             buttonPushFlag = false;
         }
+    }
+
+    private void AfterSPBool()
+    {
+        SPGimickStart = false;
+        buttonPushFlag = false;
+        HissatsuWazaBool = false;
+        Bird.Instance.IsJump = false;
+        Bird.Instance.Fly = true;
+        Bird.Instance.Attack = true;
+        Bird.Instance.CollisionBuilding = true;
+        SPGimickStart = false;        
+    }
+
+    private void BeforeSPBool()
+    {
+        SPGimickStart = true;
+        buttonPushFlag = true;
+        HissatsuWazaBool = true;
+        Bird.Instance.IsJump = true;
+        Bird.Instance.Fly = false;
+        Bird.Instance.Attack = false;
+        Bird.Instance.CollisionBuilding = false;
+        SPBool = false;
+        doOnceSP = true;
     }
 }
