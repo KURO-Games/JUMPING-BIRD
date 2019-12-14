@@ -7,7 +7,7 @@ public class Back_Yes : MonoBehaviour
 {
     public void OnClick()
     {
-        SceneManager.LoadScene("Title");
+        SceneLoadManager.LoadScene("Title");
         Time.timeScale = 1;
     }
 }
