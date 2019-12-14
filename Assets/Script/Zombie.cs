@@ -6,33 +6,22 @@ public class Zombie : MonoBehaviour
 {
     [SerializeField]
     public GameObject Bird,Rock;
-    public static bool ZAttack = false;
     public static int speed = 1;
-
+    ZonbieState _zonbieState;
+    enum ZonbieState
+    {
+        Wait,
+        Attack,
+        Die,
+    }
     void Awake()
     {
         Bird = GameObject.FindGameObjectWithTag("Bird");
     }
-
-    void AttackReset()
+    private void Start()
     {
-        ZAttack = false;
+        _zonbieState = ZonbieState.Wait;
     }
-
-    void RockAttack()
-    {
-        if (ZAttack == false)
-        {
-            Vector2 InstantiateRock;
-            InstantiateRock.x = this.gameObject.transform.position.x-1;
-            InstantiateRock.y = this.gameObject.transform.position.y - 1;
-            GameObject _Rockinstance = Instantiate(Rock, InstantiateRock, Quaternion.identity);
-            _Rockinstance.name = Rock.name+this.gameObject.name;
-            ZAttack = true;
-            Invoke("AttackReset", 3f);
-        }
-    }
-
     void Update()
     {
         float step = speed * Time.deltaTime;
@@ -43,6 +32,25 @@ public class Zombie : MonoBehaviour
             {
                 RockAttack();
             }
+        }
+    }
+    void AttackReset()
+    {
+        _zonbieState = ZonbieState.Wait;
+    }
+
+    void RockAttack()
+    {        
+        Debug.Log("RockAttack");
+        if (_zonbieState==ZonbieState.Wait && !SPGimick.Instance.SPGimickStart)
+        {
+            Vector2 InstantiateRock;
+            InstantiateRock.x = this.gameObject.transform.position.x - 1;
+            InstantiateRock.y = this.gameObject.transform.position.y - 1;
+            GameObject _Rockinstance = Instantiate(Rock, InstantiateRock, Quaternion.identity);
+            _Rockinstance.name = Rock.name + this.gameObject.name;
+            _zonbieState = ZonbieState.Attack;
+            Invoke("AttackReset", 3f);
         }
     }
 }

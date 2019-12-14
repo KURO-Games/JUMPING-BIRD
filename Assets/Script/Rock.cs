@@ -36,7 +36,7 @@ public class Rock : MonoBehaviour
     {
         //transform.position = Vector3.MoveTowards(transform.position, BirdTransform, Time.deltaTime * 5);
         BirdTransform = Bird.transform.position;
-        if (/*transform.position.x == BirdTransform.x||*/this.transform.position.x-BirdTransform.x<=-4)
+        if (this.transform.position.x-BirdTransform.x<=-4 || SPGimick.Instance.SPGimickStart)
         {
             Destroy(this.gameObject);
         }

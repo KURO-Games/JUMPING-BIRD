@@ -62,6 +62,12 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
     {
         mouseDownTime += Time.deltaTime;
 
+        if (mouseDownTime > 6)
+        {
+            mouseDownTime = 0;
+            HissatsuFlag = false;
+        }
+
         if (mouseDownTime > 4 && 6 >= mouseDownTime)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[2];
@@ -75,6 +81,13 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[1];
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
             this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);            
+        }
+
+        if (mouseDownTime > 0 && 2 >= mouseDownTime)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[0];
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
+            this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);
         }
 
     }

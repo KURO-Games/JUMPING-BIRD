@@ -19,14 +19,13 @@ public class Make : SingletonMonoBehaviour<Make>
     public bool CanMakeBuilding = false;
     private int _makeZombies=0, _makeBuildings=0;
     private void Start()
-    {
-       
-        Invoke("MakeZombie", 10f);
+    {       
+        Invoke("MakeZombie", 5f);
     }
 
     void MakeZombie()
     {
-        if (Bird.Instance.Die == false)
+        if (Bird.Instance.Die == false && !SPGimick.Instance.SPGimickStart)
         {
             
             GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + Random1, -3f, 1f), Quaternion.identity);
@@ -39,7 +38,7 @@ public class Make : SingletonMonoBehaviour<Make>
 
     void MakeBuilding()
     {
-        if (CanMakeBuilding == true)
+        if (CanMakeBuilding == true && !SPGimick.Instance.SPGimickStart)
         {
             GameObject _building = Instantiate(Building, new Vector3(Bird.Instance.bird().transform.position.x + Random1, 0f, 2f), Quaternion.identity);
             _building.name = Building.name+_makeBuildings.ToString();
