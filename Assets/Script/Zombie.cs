@@ -5,7 +5,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     [SerializeField]
-    public GameObject Bird,Rock;
+    public GameObject Rock;
     public static int speed = 1;
     ZonbieState _zonbieState;
     enum ZonbieState
@@ -16,7 +16,7 @@ public class Zombie : MonoBehaviour
     }
     void Awake()
     {
-        Bird = GameObject.FindGameObjectWithTag("Bird");
+        
     }
     private void Start()
     {
@@ -25,10 +25,10 @@ public class Zombie : MonoBehaviour
     void Update()
     {
         float step = speed * Time.deltaTime;
-        if (Bird.GetComponent<Bird>().Die == false)
+        if (Bird.Instance.Die == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.transform.position.x, -2.8f), step);
-            if (gameObject.transform.position.x + 5 > Bird.transform.position.x && gameObject.transform.position.x - 5 < Bird.transform.position.x)
+            transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.Instance.bird().transform.position.x, -2.8f), step);
+            if (gameObject.transform.position.x + 5 > Bird.Instance.bird().transform.position.x && gameObject.transform.position.x - 5 < Bird.Instance.bird().transform.position.x)
             {
                 RockAttack();
             }
