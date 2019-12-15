@@ -38,6 +38,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         //else this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         if (Input.GetMouseButtonUp(0) && RayFlag)
         {
+            Bird.Instance.Attack = true;
             MouseButtonUp(false);
         }
 

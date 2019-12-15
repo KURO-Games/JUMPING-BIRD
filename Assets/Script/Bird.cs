@@ -53,20 +53,14 @@ public class Bird :SingletonMonoBehaviour<Bird>
     {
         if (other.gameObject.tag == "Building")
         {
-            if (Attack == false)　//引っ張てない状態(自動ジャンプ)てビルに当たると攻撃状態はfalse
-            {
-                CollisionBuilding = true;　
-            }
-            else
-            {
-                BuildingPos = other.gameObject.transform.position;
-                Debug.Log(BuildingPos);
-                Destroy(other.gameObject);
-                CrashBuilding = true;
-                //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-                SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
-            }
-            
+            BuildingPos = other.gameObject.transform.position;
+            Debug.Log(BuildingPos);
+            Destroy(other.gameObject);
+            CrashBuilding = true;
+            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
+
+
         }
         if (other.gameObject.name == "Goal")
         {
@@ -78,17 +72,14 @@ public class Bird :SingletonMonoBehaviour<Bird>
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Zombie")
+        if (other.gameObject.tag == "Zombie"&&Attack)
         {
-            if (Attack == true)
-            {
                 Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
                 ZombiePos = other.transform.position;
                 //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
                 SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
                 CrashZombie = true;
-            }
         }
 
         if (other.gameObject.tag == "Rock")
