@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
-{
+{/*
     private Bird _birdScript;
     [SerializeField]
     private GameObject Finger;
@@ -27,4 +27,5 @@ public class Jump : MonoBehaviour
             //}
         }
     }
+    */
 }

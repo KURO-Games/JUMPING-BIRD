@@ -127,7 +127,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         SPGimickStart = false;
         buttonPushFlag = false;
         HissatsuWazaBool = false;
-        Bird.Instance.IsJump = false;
+        //Bird.Instance.IsJump = false;
         Bird.Instance.Fly = true;
         Bird.Instance.Attack = true;
         Bird.Instance.CollisionBuilding = true;
@@ -139,7 +139,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         SPGimickStart = true;
         buttonPushFlag = true;
         HissatsuWazaBool = true;
-        Bird.Instance.IsJump = true;
+        //Bird.Instance.IsJump = true;
         Bird.Instance.Fly = false;
         Bird.Instance.Attack = false;
         Bird.Instance.CollisionBuilding = false;

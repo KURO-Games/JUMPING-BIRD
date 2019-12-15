@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FirstJump : MonoBehaviour
-{
+{/*
     private Bird _birdScript;
     [SerializeField]
     private GameObject Make;
@@ -35,4 +35,5 @@ public class FirstJump : MonoBehaviour
         }
 
     }
+    */
 }

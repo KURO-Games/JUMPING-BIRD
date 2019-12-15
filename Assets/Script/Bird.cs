@@ -5,25 +5,21 @@ using UnityEngine.UI;
 
 public class Bird :SingletonMonoBehaviour<Bird>
 {
-    public float Life;//鳥のHP
-    public GameObject Catapult;//最初の飛行判定
-    public Sprite Bird1;//飛んでいる鳥のImage
-    public Sprite Bird0;//飛んでいない鳥のImage
-    public bool MouseInBird = false;
-    public bool MousePush = false;//マウスが押しているか
+    public int Life;//鳥のHP
+    //public bool MouseInBird = false;
+    //public bool MousePush = false;//マウスが押しているか
     public bool Fly = false;//鳥が飛んでいるか
     public bool Attack = false;//攻撃状態
-    public bool FirstJumpOver = false;
+    //public bool FirstJumpOver = false;
     Rigidbody2D rb2d;
     public float Jumphigh = 350f;
-    public bool IsJump = true; //連続のジャンプを防ぐためのもの
-    public bool FirstJumpLimit = false;
-    public bool Die = false;//死んだのか
-    public bool CollisionBuilding = false;//ビルに当たったのか、trueにすると跳ね返る
+    //public bool IsJump; //連続のジャンプを防ぐためのもの
+    //public bool FirstJumpLimit;
+    public bool Die;//死んだのか
+    public bool CollisionBuilding;//ビルに当たったのか、trueにすると跳ね返る
     public GameObject Make;
-
-    public bool CrashBuilding = false;
-    public bool CrashZombie = false;
+    public bool CrashBuilding;
+    public bool CrashZombie;
     public Vector3 BuildingPos;
     public Vector3 ZombiePos;
     private bool GameEnd;
@@ -41,23 +37,12 @@ public class Bird :SingletonMonoBehaviour<Bird>
 
     void Start()
     {
-        Life = 3f;
-        rb2d = GetComponent<Rigidbody2D>();
-        Make = GameObject.Find("Make");
+        Life = 3;
+        rb2d = this.gameObject.GetComponent<Rigidbody2D>();
+        Fly= true;
+        Attack = true;
+        CollisionBuilding = true;
     }
-    private void Update()
-    {
-        
-    }
-    private void OnMouseEnter()
-    {
-        MouseInBird = true;
-    }
-    private void OnMouseExit()
-    {
-        MouseInBird = false;
-    }
-
     public GameObject bird()
     {
         
@@ -124,12 +109,6 @@ public class Bird :SingletonMonoBehaviour<Bird>
     }
 
 
-   IEnumerator　JumpReset()
-    {
-        yield return new WaitForSeconds(0.5f);
-        IsJump = false;
-    }
-
     IEnumerator PositionYReset()
     {
         yield return new WaitForSeconds(0.5f);
@@ -152,33 +131,21 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 StartCoroutine(SceneFades(3f));
                 DisplayManager.Instance.DispMgr(false);
             }
-            if (Fly)　//ここは一回目の飛ぶ処理　一回目のジャンプが終わったらFly = true
-            {
-                Destroy(GetComponent<SpringJoint2D>());
-                if (FirstJumpLimit == false)
-                {
-                    StartCoroutine(JumpReset());
-                    FirstJumpLimit = true;
-                }
-            }
-            if (gameObject.transform.position.y < -3&& IsJump == false)
+            
+            if (gameObject.transform.position.y <= -3)
             {
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);//Y座標が-3より低かったら一旦-3に戻る
                 rb2d.velocity = Vector2.zero;
-                rb2d.AddForce(new Vector2(0, Jumphigh));//自動ジャンプを行う
-                IsJump = true;
-                StartCoroutine(JumpReset());//自動のジャンプは1回行ったら0.5秒内自動ジャンプはしない
                 Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
-                transform.rotation = Quaternion.Euler(0, 0, 0);//鳥のローテーションをリセット
                 CollisionBuilding = false;//跳ね返る状態終了
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            if (gameObject.transform.position.y > 7)//ここが高く飛び過ぎないようにの制限  
+            if (gameObject.transform.position.y >= 7)//ここが高く飛び過ぎないようにの制限  
             {                
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);//Y座標が7より高かったら一旦6に戻る
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY|RigidbodyConstraints2D.FreezeRotation;//それ以上高く飛ぶことを中止するために一旦Y座標を固定
                 StartCoroutine(PositionYReset());//0.5秒後固定を解除
                 CollisionBuilding = false;//跳ね返る状態終了　ここにもう一回書くのはバグ防止のため　
-                transform.rotation = Quaternion.Euler(0, 0, 0);//鳥のローテーションをリセット　同じバグ防止のため
             }
             if (CollisionBuilding == true)//引っ張ってない状態ビルに当たって、跳ね返る処理
             {                
@@ -186,19 +153,8 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 transform.rotation = Quaternion.Euler(0, 180, 0);　//X軸を反転
                 StartCoroutine(PositionYReset());//固定を解除
             }
-
-            if(Attack == false && MousePush == false && FirstJumpOver == true&&!SPGimick.Instance.SPGimickStart)
-            {
-                transform.position = new Vector2(transform.position.x + 0.02f, transform.position.y);//自動で前に進めるの処理
-            }
         } 
     }
-    /*
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 1);
-    }
-    */
+    
     
 }

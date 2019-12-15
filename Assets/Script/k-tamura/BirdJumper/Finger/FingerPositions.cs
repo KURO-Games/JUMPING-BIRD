@@ -13,19 +13,7 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
     public Sprite[] allowSprite;
     [HideInInspector]
     public bool HissatsuFlag;
-    private void Update()
-    {
-        tapPosition = this.gameObject.transform.position;
-    }
 
-    public Vector2 ThisPosition()
-    {
-        return Instance.tapPosition;
-    }
-    public void Actives(bool active)
-    {
-        this.gameObject.SetActive(active);
-    }
     public GameObject getGameObj()
     {
         return this.gameObject;
@@ -50,14 +38,17 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
         }
         this.transform.localScale = _scale;
     }
+
     public void DefaultScale()
     {
         _DefaultScale.x = 0.04f;
         _DefaultScale.y = 0.04f;
-        this.transform.position = _DefaultScale;
+        this.transform.localScale = _DefaultScale;
 
     }
-
+    /// <summary>
+    /// Attack時のsprite変更
+    /// </summary>
     public void AllowColorChange()
     {
         mouseDownTime += Time.deltaTime;

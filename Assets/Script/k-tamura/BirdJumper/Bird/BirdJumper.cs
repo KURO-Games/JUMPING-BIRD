@@ -7,7 +7,6 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private Vector2 thisPosition;
     private Vector2 AddForcePos;
     private Vector3 cameraPos;
-    private Vector2 distance;
     private float rayDistance = 1000f;
     private bool RayFlag;
 
@@ -17,33 +16,31 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private GameObject _Finger;
     private void Update()
     {
-        if (this.GetComponent<Bird>().FirstJumpLimit)
+        if (Input.GetMouseButtonDown(0) && !RayFlag)
         {
-            Debug.LogWarning(Bird.Instance.FirstJumpLimit);
-            if (Input.GetMouseButtonDown(0)&&!RayFlag)
+            Ray ray = CameraFollow.Instance.gameObjects().GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction, rayDistance);
+            if (hit.collider)
             {
-                Ray ray = CameraFollow.Instance.gameObjects().GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction, rayDistance);
-                if (hit.collider)
+                if (hit.collider.gameObject.name == this.gameObject.name && !SPGimick.Instance.SPGimickStart)
                 {
-
-                    if (hit.collider.gameObject.name == this.gameObject.name && !SPGimick.Instance.SPGimickStart)
-                    {
-                        Debug.LogWarning(hit.collider.gameObject.name+ this.gameObject.name+ hit.collider.gameObject.name == this.gameObject.name);
-                        MouseButtonDown(true,false,0,0,0); RayFlag = true;
-                    }
+                    Bird.Instance.Fly = true;
+                    Debug.LogWarning(hit.collider.gameObject.name+ this.gameObject.name+ hit.collider.gameObject.name == this.gameObject.name);
+                    MouseButtonDown(true, false, 0, 0, 0); RayFlag = true;
                 }
             }
-            if (Input.GetMouseButton(0)&&RayFlag)
-            {
-                MouseButton();
-            }
-            //else this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            if (Input.GetMouseButtonUp(0)&&RayFlag)
-            {
-                MouseButtonUp(false);   
-            }
+
         }
+        if (Input.GetMouseButton(0) && RayFlag)
+        {
+            MouseButton();
+        }
+        //else this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        if (Input.GetMouseButtonUp(0) && RayFlag)
+        {
+            MouseButtonUp(false);
+        }
+
 
     }
     public void AddForces(Vector2 addforcePos)
@@ -76,7 +73,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         //this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         CameraFollow.Instance.CameraPos(cameraPos);
         this.transform.position = thisPosition;
-        FingerPositions.Instance.Scales(true,new Vector2( Vector2.Distance(FingerPositions.Instance.ThisPosition(), thisPosition), Vector2.Distance(FingerPositions.Instance.ThisPosition(), thisPosition)),0);
+        FingerPositions.Instance.Scales(true,new Vector2( Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), thisPosition), Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), thisPosition)),0);
     }
     /// <summary>
     /// 
@@ -92,12 +89,11 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
             AddForcePos.x = 0;
         }
         Instance.AddForces(AddForcePos * Speed);
-        //this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.zero);
-        FingerPositions.Instance.Actives(false);
+        _Finger.SetActive(false);
         RayFlag = false;
     }
     public Vector2 BirdFingerDistance()
     {
-        return thisPosition - FingerPositions.Instance.ThisPosition();
+        return thisPosition - (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }
