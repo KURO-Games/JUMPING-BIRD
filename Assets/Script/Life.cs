@@ -7,25 +7,26 @@ public class Life : SingletonMonoBehaviour<Life>
 {
     
     [SerializeField]
-    private GameObject _Life1, _Life2, _Life3;
-    public int LifeNum;
-    public Sprite Life1;
-    public Sprite Life0;
+    private GameObject Life1, Life2, Life3;
+    [SerializeField]
+    private Sprite pureHeart;
+    [SerializeField]
+    private Sprite DamageHeart;
 
     void Update()
     {
         if (Bird.Instance.Life >= 1)
-            _Life1.GetComponent<Image>().sprite = Life1;
+            Life1.GetComponent<Image>().sprite = pureHeart;
         else
-            _Life1.GetComponent<Image>().sprite = Life0;
+            Life1.GetComponent<Image>().sprite = DamageHeart;
         if (Bird.Instance.Life >= 2)
-            _Life2.GetComponent<Image>().sprite = Life1;
+            Life2.GetComponent<Image>().sprite = pureHeart;
         else
-            _Life2.GetComponent<Image>().sprite = Life0;
+            Life2.GetComponent<Image>().sprite = DamageHeart;
         if (Bird.Instance.Life >= 3)
-            _Life3.GetComponent<Image>().sprite = Life1;
+            Life3.GetComponent<Image>().sprite = pureHeart;
         else
-            _Life3.GetComponent<Image>().sprite = Life0;
+            Life3.GetComponent<Image>().sprite = DamageHeart;
 
     }
 }

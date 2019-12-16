@@ -5,8 +5,6 @@ using System;
 
 public class Finger : SingletonMonoBehaviour<Finger>
 {
-    [SerializeField]
-    private GameObject _Bird;
     private bool Over = false;
     private bool Limit = true;
     Vector3 rotat;

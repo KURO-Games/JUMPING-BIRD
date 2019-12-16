@@ -30,17 +30,18 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
         {
             if (Bird.Instance.Fly)
             {
-                if (Bird.Instance.bird().transform.position.y >= 2)
-                {
-                    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, Bird.Instance.bird().transform.position.y - 2, -10);
-                }
-                else transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
+                //if (Bird.Instance.bird().transform.position.y >= 2)
+                //{
+                //    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, Bird.Instance.bird().transform.position.y - 2, -10);
+                //}
+                //else transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
+                if(Bird.Instance.bird().transform.position.y >= 5.7f)
+                transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
             }
             after.y = this.transform.position.y;
         }
         else
         {
-            
             after.x = this.transform.position.x;
             this.transform.position = after;
         }

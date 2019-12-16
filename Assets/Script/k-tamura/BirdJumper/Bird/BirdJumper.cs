@@ -10,7 +10,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private float rayDistance = 1000f;
     private bool RayFlag;
 
-[SerializeField]
+    [SerializeField]
     private float Speed=2;
     [SerializeField]
     private GameObject _Finger;
@@ -26,7 +26,8 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
                 {
                     Bird.Instance.Fly = true;
                     Debug.LogWarning(hit.collider.gameObject.name+ this.gameObject.name+ hit.collider.gameObject.name == this.gameObject.name);
-                    MouseButtonDown(true, false, 0, 0, 0); RayFlag = true;
+                    MouseButtonDown(true, false, 0, 0, 0);
+                    RayFlag = true;
                 }
             }
 

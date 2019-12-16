@@ -4,28 +4,52 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SPGimick : SingletonMonoBehaviour<SPGimick>
-{ 
-    private bool HissatsuWazaBool = false;    
-    
-    public Image Gauge;
-
+{         
     [SerializeField]
     private Image birdIcon;
-    private Color iconColor;    
+    private Color iconColor;
 
-    public bool SPBool = false;
+    //必殺技のゲージ
+    public Image Gauge;
+
+    //必殺技が使える状態か
+    private bool SPBool = false;
+
+    //必殺技が終わるまでボタンを連打出来ないようにする
     private bool doOnceSP = true;    
+
+    //必殺技の時に鳥と矢印を固定する場所
     public GameObject SPPos;
+
+    //強く引っ張れのUI
     //[SerializeField]
     //private Image hippareUI;
     [SerializeField]
     private Text hippareText;
+
+    //必殺技で下に飛ばす時の速さ
     [SerializeField]
     private float SPSpeed;
+    
     private bool buttonPushFlag;
+
+    //必殺技中か
+    [HideInInspector]
     public bool SPGimickStart;
+
+    //ゾンビの親オブジェクトの定義
+    [SerializeField]
+    private Transform zombieParent;
+
+    //鳥の位置
     private Vector2 birdPos;
-    // Start is called before the first frame update
+
+    //必殺技を出していいか
+    [HideInInspector]
+    public bool HissatsuFlag;
+  
+    //Go!!のUI
+    public Text goText;
     void Start()
     {
         iconColor = birdIcon.color;
@@ -38,7 +62,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         if (Gauge.fillAmount == 1 && doOnceSP)
         {
             doOnceSP = false;
-            Debug.Log("GaugeMax");
+            //Debug.Log("GaugeMax");
+            //アイコンの明るさをMAXにする
             iconColor.a = 1;
             birdIcon.color = iconColor;
             SPBool = true;
@@ -47,7 +72,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         if (SPGimickStart)
         {
             Bird.Instance.bird().transform.position = birdPos;
-            //SP技の関数を実行
+
+            //必殺技の関数を実行
             SPmain();
         }
     }
@@ -89,45 +115,42 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     {        
         if (Input.GetMouseButtonDown(0))
         {
-            hippareText.gameObject.SetActive(false);
-            BirdJumper.Instance.MouseButtonDown(false, true, 1.7f, 1.7f, 0);
+            hippareText.gameObject.SetActive(false);            
+            BirdJumper.Instance.MouseButtonDown(false, true, 0.8f, 1.2f, 0);
             FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[0];
             FingerPositions.Instance.getGameObj().transform.localRotation = Quaternion.Euler(0, 0, -90);
-            //Debug.Log(finger.transform.rotation);
+            //矢印の位置
             FingerPositions.Instance.getGameObj().transform.position = new Vector2(SPPos.transform.position.x, SPPos.transform.position.y + 1);
         }
         if (Input.GetMouseButton(0))
         {
+            //矢印の色を秒数によって変更する
             FingerPositions.Instance.AllowColorChange();
         }
         if (Input.GetMouseButtonUp(0))
         {
+            //Debug.Log("Release");            
             FingerPositions.Instance.getGameObj().SetActive(false);
-            if (!buttonPushFlag)
+            goText.gameObject.SetActive(false);
+            FingerPositions.Instance.mouseDownTime = 0;
+            if (HissatsuFlag)
             {
-                FingerPositions.Instance.mouseDownTime = 0;
-                if (FingerPositions.Instance.HissatsuFlag)
-                {
-                    Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
-                    AfterSPBool();
-                    Zombie.speed = 1;
-                    FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
-                }
-                else
-                {
-                    
-                }
+                //真下に鳥を飛ばす
+                Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
+                
+                //フィールド上のゾンビを一掃する
+                DestroyChildObject(zombieParent);
+                AfterSPBool();
+                Zombie.speed = 1;
+                FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
             }
-            buttonPushFlag = false;
+
         }
     }
 
     private void AfterSPBool()
     {
         SPGimickStart = false;
-        buttonPushFlag = false;
-        HissatsuWazaBool = false;
-        //Bird.Instance.IsJump = false;
         Bird.Instance.Fly = true;
         Bird.Instance.Attack = true;
         Bird.Instance.CollisionBuilding = true;
@@ -137,13 +160,18 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private void BeforeSPBool()
     {
         SPGimickStart = true;
-        buttonPushFlag = true;
-        HissatsuWazaBool = true;
-        //Bird.Instance.IsJump = true;
         Bird.Instance.Fly = false;
         Bird.Instance.Attack = false;
         Bird.Instance.CollisionBuilding = false;
         SPBool = false;
         doOnceSP = true;
     }
+    private void DestroyChildObject(Transform parent_trans)
+    {
+        for (int i = 0; i < parent_trans.childCount; ++i)
+        {
+            GameObject.Destroy(parent_trans.GetChild(i).gameObject);
+        }
+    }
+
 }

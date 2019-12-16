@@ -10,9 +10,7 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
     private Vector2 _scale;
     [HideInInspector]
     public float mouseDownTime = 0;    
-    public Sprite[] allowSprite;
-    [HideInInspector]
-    public bool HissatsuFlag;
+    public Sprite[] allowSprite;    
 
     public GameObject getGameObj()
     {
@@ -56,15 +54,18 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
         if (mouseDownTime > 6)
         {
             mouseDownTime = 0;
-            HissatsuFlag = false;
+            SPGimick.Instance.HissatsuFlag = false;
+            SPGimick.Instance.goText.gameObject.SetActive(false);
         }
 
         if (mouseDownTime > 4 && 6 >= mouseDownTime)
         {
+            //Debug.Log(SPGimick.Instance.HissatsuFlag);
+            SPGimick.Instance.goText.gameObject.SetActive(true);
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[2];
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
             this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);
-            HissatsuFlag = true;
+            SPGimick.Instance.HissatsuFlag = true;
         }
 
         if (mouseDownTime > 2 && 4 >= mouseDownTime)
