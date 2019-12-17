@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8842771501781888910}
   - component: {fileID: 8842771501781888911}
   - component: {fileID: 8842771501781888908}
-  - component: {fileID: 7391886760006048413}
+  - component: {fileID: 5302146391718808991}
   m_Layer: 0
   m_Name: DetroyEffect_B
   m_TagString: Untagged
@@ -4699,7 +4699,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7391886760006048413
+--- !u!114 &5302146391718808991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
