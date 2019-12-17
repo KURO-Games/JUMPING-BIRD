@@ -23,11 +23,12 @@ public class Make : SingletonMonoBehaviour<Make>
         Invoke("MakeZombie", 5f);
     }
 
-    void MakeZombie()
+    public void MakeZombie()
     {
+        Debug.Log("SPGimick.Instance.SPGimickStart" + SPGimick.Instance.SPGimickStart);
+        Debug.Log("Bird.Instance.Die" + Bird.Instance.Die);
         if (Bird.Instance.Die == false && !SPGimick.Instance.SPGimickStart)
         {
-            
             GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + Random1, -3f, 1f), Quaternion.identity);
             _zombie.name = Zombie.name+_makeZombies.ToString();
             _makeZombies++;

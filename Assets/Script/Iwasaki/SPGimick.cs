@@ -50,6 +50,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
   
     //Go!!のUI
     public Text goText;
+    [SerializeField]
+    private GameObject SPEffect;
     void Start()
     {
         iconColor = birdIcon.color;
@@ -61,6 +63,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     {
         if (Gauge.fillAmount == 1 && doOnceSP)
         {
+            SPEffect.SetActive(true);
             doOnceSP = false;
             //Debug.Log("GaugeMax");
             //アイコンの明るさをMAXにする
@@ -86,6 +89,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
             //必殺技ゲージを0にする
             Gauge.fillAmount = 0;
+            SPEffect.SetActive(false);
 
             //SPアイコンのa値を半分にする
             iconColor.a = 0.5f;
@@ -143,8 +147,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 AfterSPBool();
                 Zombie.speed = 1;
                 FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
+                Make.Instance.MakeZombie();
             }
-
         }
     }
 
