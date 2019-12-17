@@ -48,15 +48,26 @@ public class UILine : MonoBehaviour
         m_lineRenderer.loop = true;
         m_lineRenderer.useWorldSpace = false;
 
-        var points = new Vector3[segments];
+        var points = new Vector3[segments * 2];
+        var points2 = new Vector3[segments * 2];
 
-        for(int i = 0; i < segments; i++)
+        for (int i = 0; i < segments; i++)
         {
             var rad = Mathf.Deg2Rad * (i * 360f / segments);
             var x = Mathf.Sin(rad) * m_radius;
             var y = Mathf.Cos(rad) * m_radius;
             points[i] = new Vector3(x, y, 0);
         }
+
+        for (int i = 0; i < segments; i++)
+        {
+
+            var rad = Mathf.Deg2Rad * (i * 360f / segments);
+            var x = Mathf.Sin(rad) * m_radius / 2;
+            var y = Mathf.Cos(rad) * m_radius / 2;
+            points2[i] = new Vector3(x, y, 0);
+        }
+        m_lineRenderer.SetPositions(points);
         m_lineRenderer.SetPositions(points);
     }
 }
