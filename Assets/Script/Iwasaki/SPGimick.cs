@@ -22,10 +22,10 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     public GameObject SPPos;
 
     //強く引っ張れのUI
-    //[SerializeField]
-    //private Image hippareUI;
     [SerializeField]
-    private Text hippareText;
+    private Image hippareUI;
+    //Go!!のUI
+    public Image goUI;
 
     //必殺技で下に飛ばす時の速さ
     [SerializeField]
@@ -47,15 +47,13 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     //必殺技を出していいか
     [HideInInspector]
     public bool HissatsuFlag;
-  
-    //Go!!のUI
-    public Text goText;
+
     [SerializeField]
     private GameObject SPEffect;
     void Start()
     {
         iconColor = birdIcon.color;
-        //Gauge.fillAmount = 1;        
+        Gauge.fillAmount = 1;        
     }
 
     // Update is called once per frame
@@ -106,7 +104,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             Destroy(GameObject.FindWithTag("Rock"));
 
             //強く引っ張れ！という画像を表示        
-            hippareText.gameObject.SetActive(true);
+            hippareUI.gameObject.SetActive(true);
             //hippareUI.gameObject.SetActive(true);
         }
         else
@@ -119,7 +117,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     {        
         if (Input.GetMouseButtonDown(0))
         {
-            hippareText.gameObject.SetActive(false);            
+            hippareUI.gameObject.SetActive(false);            
             BirdJumper.Instance.MouseButtonDown(false, true, 0.8f, 1.2f, 0);
             FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[0];
             FingerPositions.Instance.getGameObj().transform.localRotation = Quaternion.Euler(0, 0, -90);
@@ -135,7 +133,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         {
             //Debug.Log("Release");            
             FingerPositions.Instance.getGameObj().SetActive(false);
-            goText.gameObject.SetActive(false);
+            goUI.gameObject.SetActive(false);
             FingerPositions.Instance.mouseDownTime = 0;
             if (HissatsuFlag)
             {

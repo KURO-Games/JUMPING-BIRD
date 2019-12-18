@@ -55,13 +55,13 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
         {
             mouseDownTime = 0;
             SPGimick.Instance.HissatsuFlag = false;
-            SPGimick.Instance.goText.gameObject.SetActive(false);
+            SPGimick.Instance.goUI.gameObject.SetActive(false);
         }
 
         if (mouseDownTime > 4 && 6 >= mouseDownTime)
         {
             //Debug.Log(SPGimick.Instance.HissatsuFlag);
-            SPGimick.Instance.goText.gameObject.SetActive(true);
+            SPGimick.Instance.goUI.gameObject.SetActive(true);
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[2];
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
             this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);
