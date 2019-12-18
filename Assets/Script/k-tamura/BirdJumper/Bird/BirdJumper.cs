@@ -40,6 +40,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         {
             Bird.Instance.Attack = true;
             MouseButtonUp(false);
+            BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.FlyUp);
         }
 
 
@@ -89,7 +90,9 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
             if (AddForcePos.y >= 0) return;
             AddForcePos.x = 0;
         }
+        
         Instance.AddForces(AddForcePos * Speed);
+
         _Finger.SetActive(false);
         RayFlag = false;
     }
