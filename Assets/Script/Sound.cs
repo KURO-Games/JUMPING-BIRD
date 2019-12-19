@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Sound : MonoBehaviour
+public class SoundDetail : MonoBehaviour
 {
     public AudioClip BGM;
     public AudioClip sound1;

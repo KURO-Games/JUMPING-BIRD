@@ -5,10 +5,15 @@
 public class TitleMgr : MonoBehaviour
 {
     bool Tap;
-    void Update()
+    private void Start()
+    {
+        SoundManager.Instance.PlayBgm(BGM.Title);
+    }
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !Tap)
         {
+            SoundManager.Instance.FadeOutBgm(2);
             Tap = true;
             SceneLoadManager.LoadScene("Game");
         }

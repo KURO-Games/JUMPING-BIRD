@@ -53,6 +53,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
     {
         if (other.gameObject.tag == "Building")
         {
+            SoundManager.Instance.PlaySe(SE.AttackBuilding);
             BuildingPos = other.gameObject.transform.position;
             Debug.Log(BuildingPos);
             Destroy(other.gameObject);
@@ -64,6 +65,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
         }
         if (other.gameObject.name == "Goal")
         {
+            SoundManager.Instance.PlayBgm(BGM.Clear);
             DisplayManager.Instance.DispMgr(true);
             GameEnd = true;
             StartCoroutine(SceneFades(5f));
@@ -74,6 +76,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
     {
         if (other.gameObject.tag == "Zombie"&&Attack)
         {
+                SoundManager.Instance.PlaySe(SE.AttackZombie);
                 Make.GetComponent<Make>().CanMakeBuilding = true;
                 Destroy(other.gameObject);
                 ZombiePos = other.transform.position;
@@ -88,6 +91,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             if (Attack == false)
             {
                 Life -= 1;
+                SoundManager.Instance.PlaySe(SE.Damage);
                 Destroy(other.gameObject);
             }
             else
@@ -116,7 +120,8 @@ public class Bird :SingletonMonoBehaviour<Bird>
         if (Die == false)　//もし死んでいなかったら
         {
             if (Life <= 0)　//ライフが0になったら
-            {
+            {                
+                SoundManager.Instance.PlayBgm(BGM.GameOver);
                 transform.rotation = Quaternion.Euler(180, 0, 0);//gameover鳥のY軸を180度反転
                 Die = true;
                 StartCoroutine(SceneFades(3f));
@@ -131,9 +136,9 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 CollisionBuilding = false;//跳ね返る状態終了
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            if (gameObject.transform.position.y >= 7)//ここが高く飛び過ぎないようにの制限 //高さ制限がなくなったが、αまでに変更が難しいため残しておく。 
+            if (gameObject.transform.position.y >= 9)//ここが高く飛び過ぎないようにの制限 //高さ制限がなくなったが、αまでに変更が難しいため残しておく。 
             {                
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x, 6);//Y座標が7より高かったら一旦6に戻る
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, 8);//Y座標が7より高かったら一旦6に戻る
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY|RigidbodyConstraints2D.FreezeRotation;//それ以上高く飛ぶことを中止するために一旦Y座標を固定
                 StartCoroutine(PositionYReset());//0.5秒後固定を解除
                 CollisionBuilding = false;//跳ね返る状態終了　ここにもう一回書くのはバグ防止のため　

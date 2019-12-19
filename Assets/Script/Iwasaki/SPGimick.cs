@@ -47,13 +47,18 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     //必殺技を出していいか
     [HideInInspector]
     public bool HissatsuFlag;
+    private bool rePosBool;
 
     [SerializeField]
-    private GameObject SPEffect;
+    private GameObject SPEffect_Star;
+    [SerializeField]
+    private GameObject SPEffect_OutLine;
+    [SerializeField]
+    private GameObject SPEffect_InLine;
     void Start()
     {
         iconColor = birdIcon.color;
-        Gauge.fillAmount = 1;        
+        //Gauge.fillAmount = 0.8f;
     }
 
     // Update is called once per frame
@@ -61,7 +66,10 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     {
         if (Gauge.fillAmount == 1 && doOnceSP)
         {
-            SPEffect.SetActive(true);
+            SoundManager.Instance.PlaySe(SE.SPReady);
+            SPEffect_Star.SetActive(true);
+            SPEffect_OutLine.SetActive(true);
+            SPEffect_InLine.SetActive(true);
             doOnceSP = false;
             //Debug.Log("GaugeMax");
             //アイコンの明るさをMAXにする
@@ -70,7 +78,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             SPBool = true;
         }
 
-        if (SPGimickStart)
+        if (SPGimickStart && !rePosBool)
         {
             Bird.Instance.bird().transform.position = birdPos;
 
@@ -87,7 +95,9 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
             //必殺技ゲージを0にする
             Gauge.fillAmount = 0;
-            SPEffect.SetActive(false);
+            SPEffect_Star.SetActive(false);
+            SPEffect_OutLine.SetActive(false);
+            SPEffect_InLine.SetActive(false);
 
             //SPアイコンのa値を半分にする
             iconColor.a = 0.5f;
@@ -105,7 +115,6 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
             //強く引っ張れ！という画像を表示        
             hippareUI.gameObject.SetActive(true);
-            //hippareUI.gameObject.SetActive(true);
         }
         else
         {
@@ -137,31 +146,32 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             FingerPositions.Instance.mouseDownTime = 0;
             if (HissatsuFlag)
             {
-                //真下に鳥を飛ばす
-                Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
-                
                 //フィールド上のゾンビを一掃する
                 DestroyChildObject(zombieParent);
-                AfterSPBool();
+                
                 Zombie.speed = 1;
                 FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
                 Make.Instance.MakeZombie();
+                AfterSPBool();
+                //真下に鳥を飛ばす
+                Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
+                StartCoroutine(SPBeforePos());
             }
         }
     }
 
     private void AfterSPBool()
     {
-        SPGimickStart = false;
         Bird.Instance.Fly = true;
         Bird.Instance.Attack = true;
         Bird.Instance.CollisionBuilding = true;
-        SPGimickStart = false;        
+        rePosBool = true;
     }
 
     private void BeforeSPBool()
     {
         SPGimickStart = true;
+        rePosBool = false;
         Bird.Instance.Fly = false;
         Bird.Instance.Attack = false;
         Bird.Instance.CollisionBuilding = false;
@@ -176,4 +186,10 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         }
     }
 
+    private IEnumerator SPBeforePos()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SPGimickStart = false;
+        yield return null;
+    }
 }

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Bird;
-
     public Vector2 BirdTransform;
     [SerializeField]
     private float speed=1;
@@ -17,13 +14,13 @@ public class Rock : MonoBehaviour
 
     private void Awake()
     {
-        Bird = GameObject.FindGameObjectWithTag("Bird");
+
     }
 
     void Start()
     {
         //Bird = GameObject.Find("Bird");
-        BirdTransform = Bird.transform.position;
+        BirdTransform = Bird.Instance.bird().transform.position;
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         Bird_RockTransform.x = BirdTransform.x-this.transform.position.x + positionAdjustX;
         Bird_RockTransform.y = BirdTransform.y - this.transform.position.y + positionAdjustY;
@@ -35,7 +32,7 @@ public class Rock : MonoBehaviour
     void Update()
     {
         //transform.position = Vector3.MoveTowards(transform.position, BirdTransform, Time.deltaTime * 5);
-        BirdTransform = Bird.transform.position;
+        BirdTransform = Bird.Instance.bird().transform.position;
         if (this.transform.position.x-BirdTransform.x<=-4 || SPGimick.Instance.SPGimickStart)
         {
             Destroy(this.gameObject);

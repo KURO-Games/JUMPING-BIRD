@@ -13,6 +13,7 @@ public class Back_No : MonoBehaviour
 
     public void OnClick()
     {
+        SoundManager.Instance.FadeOutBgm(1);
         GoTitle.gameObject.SetActive(false);
         Time.timeScale = 1;
     }

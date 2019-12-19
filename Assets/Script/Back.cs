@@ -8,12 +8,13 @@ public class Back : MonoBehaviour
     private GameObject GoTitle;
 
     void Start()
-    {        
-        //GoTitle.gameObject.SetActive(false);
+    {
+        //GoTitle.gameObject.SetActive(false);        
     }
 
     public void OnClick()
-    {
+    {        
+        SoundManager.Instance.PlayBgm(BGM.Settings);
         GoTitle.gameObject.SetActive(true);
         Time.timeScale = 0;
     }

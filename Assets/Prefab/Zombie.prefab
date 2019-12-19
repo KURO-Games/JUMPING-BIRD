@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281954812b20f704e9306d125dc7d30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bird: {fileID: 0}
   Rock: {fileID: 5297147740563826184, guid: 9013731b286818747b257ef24ec16b9c, type: 3}
 --- !u!114 &2543525505155256518
 MonoBehaviour:
@@ -119,7 +118,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.0934901, y: 0.48599958}

@@ -19,10 +19,12 @@ public class Life : SingletonMonoBehaviour<Life>
             Life1.GetComponent<Image>().sprite = pureHeart;
         else
             Life1.GetComponent<Image>().sprite = DamageHeart;
+
         if (Bird.Instance.Life >= 2)
             Life2.GetComponent<Image>().sprite = pureHeart;
         else
             Life2.GetComponent<Image>().sprite = DamageHeart;
+
         if (Bird.Instance.Life >= 3)
             Life3.GetComponent<Image>().sprite = pureHeart;
         else
