@@ -1,0 +1,7 @@
+SPRingCancas -> Render ModeにUiCamera設定
+SPRingCancas -> LayerはUI設定
+SPRingCancas ->(GaugeEffect,Line,Line1)のLayerはUI設定
+UiCamera -> LayerはUIの設定
+
+LineのScript -> from,end 円のStart pos, end pos 調整可能(実行前に調整、
+実行中には反映されない)
