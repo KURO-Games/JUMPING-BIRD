@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UILine : MonoBehaviour
 {
-    [SerializeField]
     private LineRenderer m_lineRenderer;
     [SerializeField]
     private float m_radius = 0;
