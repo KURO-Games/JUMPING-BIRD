@@ -1,0 +1,150 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 2.167,
+		"Fps": 30.0,
+		"Loop": true,
+		"AreBeziersRestricted": true,
+		"CurveCount": 9,
+		"TotalSegmentCount": 14,
+		"TotalPointCount": 33,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "Param2",
+			"Segments": [
+				0,
+				1,
+				0,
+				2.167,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Param4",
+			"Segments": [
+				0,
+				-8,
+				0,
+				2.167,
+				-8
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Param",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.167,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "habatakizyouge",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.167,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "eye",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.244,
+				0,
+				0.489,
+				0,
+				0.733,
+				0,
+				1,
+				0.822,
+				0,
+				0.911,
+				-1,
+				1,
+				-1,
+				1,
+				1.078,
+				-1,
+				1.156,
+				0,
+				1.233,
+				0,
+				0,
+				2.167,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "karadazyuge",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.167,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Param3",
+			"Segments": [
+				0,
+				1,
+				0,
+				2.167,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "kokyuu",
+			"Segments": [
+				0,
+				5,
+				0,
+				0.667,
+				5,
+				1,
+				1,
+				5,
+				1.333,
+				-5,
+				1.667,
+				-5,
+				1,
+				1.833,
+				-5,
+				2,
+				0,
+				2.167,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Param5",
+			"Segments": [
+				0,
+				19,
+				0,
+				2.167,
+				19
+			]
+		}
+	]
+}

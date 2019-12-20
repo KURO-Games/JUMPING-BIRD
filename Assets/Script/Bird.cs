@@ -22,21 +22,27 @@ public class Bird :SingletonMonoBehaviour<Bird>
     public bool CrashZombie;
     public Vector3 BuildingPos;
     public Vector3 ZombiePos;
-    private bool GameEnd;
+    private Vector2 oldPosition;
+    private BirdAnimationController _BirdAnimationController;
+    
 
     public bool isEffect;
 
     enum BirdState
     {
+        wait,
         Jump,
         Attack,
-
+        fall,
         Die,
     }
+    BirdState _birdState;
     //public Collider[] hitColliders;
 
     void Start()
     {
+        _birdState = BirdState.wait;
+        _BirdAnimationController = BirdAnimationController.Instance;
         Life = 3;
         rb2d = this.gameObject.GetComponent<Rigidbody2D>();
         Fly= true;
@@ -67,7 +73,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
         {
             SoundManager.Instance.PlayBgm(BGM.Clear);
             DisplayManager.Instance.DispMgr(true);
-            GameEnd = true;
+            
             StartCoroutine(SceneFades(5f));
         }
     }
@@ -115,7 +121,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
         SceneLoadManager.LoadScene("Title");
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (Die == false)　//もし死んでいなかったら
         {
@@ -130,6 +136,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
             
             if (gameObject.transform.position.y <= -3)//地面停止スクリプト。残しておく。
             {
+                //BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);//Y座標が-3より低かったら一旦-3に戻る
                 rb2d.velocity = Vector2.zero;
                 Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
@@ -149,8 +156,21 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 transform.rotation = Quaternion.Euler(0, 180, 0);　//X軸を反転
                 StartCoroutine(PositionYReset());//固定を解除
             }
+            if (AngleCal(oldPosition, transform.position) < 0&&Attack)
+            {
+                BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Ricochet);
+            }
+
+            oldPosition = transform.position;
         } 
     }
-    
-    
+    private float AngleCal(Vector2 startpos, Vector2 targetpos)
+    {
+        Vector2 dt = targetpos - startpos;
+        float rad = Mathf.Atan2(dt.y, dt.x);
+        float degree = rad * Mathf.Rad2Deg;
+        return degree;
+    }
+
+
 }

@@ -1494,11 +1494,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Finger
       objectReference: {fileID: 0}
-    - target: {fileID: 4374310274697487609, guid: 0e815518da0c00b459839d6ecb4ed169,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 201848184157804247, guid: 0e815518da0c00b459839d6ecb4ed169,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1554,8 +1549,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1484713239986262530, guid: 0e815518da0c00b459839d6ecb4ed169, type: 3}
+    - target: {fileID: 4747004792445167549, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: _Bird
+      value: 
+      objectReference: {fileID: 651434489145041793}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e815518da0c00b459839d6ecb4ed169, type: 3}
 --- !u!1 &748549702464652404 stripped
 GameObject:
