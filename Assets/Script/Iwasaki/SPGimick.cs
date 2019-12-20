@@ -58,7 +58,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     void Start()
     {
         iconColor = birdIcon.color;
-        //Gauge.fillAmount = 0.8f;
+        Gauge.fillAmount = 0.8f;
     }
 
     // Update is called once per frame
@@ -151,7 +151,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 
                 Zombie.speed = 1;
                 FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
-                Make.Instance.MakeZombie();
+                
                 AfterSPBool();
                 //真下に鳥を飛ばす
                 Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
@@ -190,6 +190,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     {
         yield return new WaitForSeconds(1.5f);
         SPGimickStart = false;
+        Make.Instance.MakeZombie();
         yield return null;
     }
 }

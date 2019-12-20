@@ -74,7 +74,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
         {
             SoundManager.Instance.PlayBgm(BGM.Clear);
             DisplayManager.Instance.DispMgr(true);
-            
+            SPGimick.Instance.Gauge.fillAmount = 0;
             StartCoroutine(SceneFades(5f));
             clear = true;
         }
