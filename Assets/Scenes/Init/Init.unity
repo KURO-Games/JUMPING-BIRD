@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: {fileID: 1250506975}
-  verstr: Alfa
+  verstr: Alfa-Wide
 --- !u!1 &179316815
 GameObject:
   m_ObjectHideFlags: 0
