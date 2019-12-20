@@ -55,6 +55,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private GameObject SPEffect_OutLine;
     [SerializeField]
     private GameObject SPEffect_InLine;
+    private bool pushes;
     void Start()
     {
         iconColor = birdIcon.color;
@@ -64,7 +65,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     // Update is called once per frame
     void Update()
     {
-        if (Gauge.fillAmount == 1 && doOnceSP)
+        if (Gauge.fillAmount == 1f && doOnceSP)
         {
             SoundManager.Instance.PlaySe(SE.SPReady);
             SPEffect_Star.SetActive(true);
@@ -124,7 +125,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
     private void SPmain()
     {        
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&!pushes)
         {
             hippareUI.gameObject.SetActive(false);            
             BirdJumper.Instance.MouseButtonDown(false, true, 0.8f, 1.2f, 0);
@@ -132,18 +133,20 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             FingerPositions.Instance.getGameObj().transform.localRotation = Quaternion.Euler(0, 0, -90);
             //矢印の位置
             FingerPositions.Instance.getGameObj().transform.position = new Vector2(SPPos.transform.position.x, SPPos.transform.position.y + 1);
+            pushes = true;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&&pushes)
         {
             //矢印の色を秒数によって変更する
             FingerPositions.Instance.AllowColorChange();
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)&&pushes)
         {
             //Debug.Log("Release");            
             FingerPositions.Instance.getGameObj().SetActive(false);
             goUI.gameObject.SetActive(false);
             FingerPositions.Instance.mouseDownTime = 0;
+            pushes = false;
             if (HissatsuFlag)
             {
                 //フィールド上のゾンビを一掃する
