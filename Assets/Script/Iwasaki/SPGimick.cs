@@ -190,6 +190,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     {
         yield return new WaitForSeconds(1.5f);
         SPGimickStart = false;
+        Make.Instance.MakeZombie();
         yield return null;
     }
 }
