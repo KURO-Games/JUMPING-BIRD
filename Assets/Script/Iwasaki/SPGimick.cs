@@ -55,16 +55,28 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private GameObject SPEffect_OutLine;
     [SerializeField]
     private GameObject SPEffect_InLine;
+    private bool pushes;
     void Start()
     {
         iconColor = birdIcon.color;
-        Gauge.fillAmount = 0.8f;
+        Gauge.fillAmount = 1f;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (Gauge.fillAmount == 1 && doOnceSP)
+    {   if (SPGimickStart && !rePosBool)
+        {
+            Bird.Instance.bird().transform.position = birdPos;
+            Debug.Log("rePosBool" + rePosBool);
+            Debug.Log("SPGimickStart"+SPGimickStart);
+            //必殺技の関数を実行
+            SPmain();
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Gauge.fillAmount = 1f;
+        }
+        if (Gauge.fillAmount == 1f && doOnceSP)
         {
             SoundManager.Instance.PlaySe(SE.SPReady);
             SPEffect_Star.SetActive(true);
@@ -78,20 +90,16 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             SPBool = true;
         }
 
-        if (SPGimickStart && !rePosBool)
-        {
-            Bird.Instance.bird().transform.position = birdPos;
-
-            //必殺技の関数を実行
-            SPmain();
-        }
+       
     }
     public void HissatsuWaza()
     {
-        Debug.Log("click");
+        //Debug.Log("click");
         if (SPBool)
         {
+            //Debug.Log("inMain");
             BeforeSPBool();
+            
 
             //必殺技ゲージを0にする
             Gauge.fillAmount = 0;
@@ -124,7 +132,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
     private void SPmain()
     {        
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&!pushes)
         {
             hippareUI.gameObject.SetActive(false);            
             BirdJumper.Instance.MouseButtonDown(false, true, 0.8f, 1.2f, 0);
@@ -132,18 +140,20 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             FingerPositions.Instance.getGameObj().transform.localRotation = Quaternion.Euler(0, 0, -90);
             //矢印の位置
             FingerPositions.Instance.getGameObj().transform.position = new Vector2(SPPos.transform.position.x, SPPos.transform.position.y + 1);
+            pushes = true;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&&pushes)
         {
             //矢印の色を秒数によって変更する
             FingerPositions.Instance.AllowColorChange();
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)&&pushes)
         {
             //Debug.Log("Release");            
             FingerPositions.Instance.getGameObj().SetActive(false);
             goUI.gameObject.SetActive(false);
             FingerPositions.Instance.mouseDownTime = 0;
+            pushes = false;
             if (HissatsuFlag)
             {
                 //フィールド上のゾンビを一掃する
@@ -154,6 +164,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 
                 AfterSPBool();
                 //真下に鳥を飛ばす
+                
                 Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
                 StartCoroutine(SPBeforePos());
             }
@@ -162,9 +173,9 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
     private void AfterSPBool()
     {
-        Bird.Instance.Fly = true;
+        //Bird.Instance.Fly = true;
         Bird.Instance.Attack = true;
-        Bird.Instance.CollisionBuilding = true;
+        //Bird.Instance.CollisionBuilding = true;
         rePosBool = true;
     }
 
@@ -174,9 +185,10 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         rePosBool = false;
         Bird.Instance.Fly = false;
         Bird.Instance.Attack = false;
-        Bird.Instance.CollisionBuilding = false;
+        //Bird.Instance.CollisionBuilding = false;
         SPBool = false;
         doOnceSP = true;
+        
     }
     private void DestroyChildObject(Transform parent_trans)
     {
@@ -191,6 +203,6 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         yield return new WaitForSeconds(1.5f);
         SPGimickStart = false;
         Make.Instance.MakeZombie();
-        yield return null;
+        //yield return null;
     }
 }
