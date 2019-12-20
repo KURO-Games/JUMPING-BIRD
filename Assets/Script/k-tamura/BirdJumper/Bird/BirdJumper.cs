@@ -61,6 +61,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     public void MouseButtonDown(bool Scale,bool defaultAddScales,float x,float y,float AddScales)
     {
         _Finger.SetActive(true);
+        FingerPositions.Instance.transform.localPosition=new Vector3(0, 0, 0);
         thisPosition = this.transform.position;
         if (Scale)
             FingerPositions.Instance.DefaultScale();
