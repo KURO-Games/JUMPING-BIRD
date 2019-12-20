@@ -25,9 +25,9 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
         //Bird = GameObject.FindGameObjectWithTag("Bird");
         after.z = this.transform.position.z;
         //新しく広くしたカメラの大きさ
-        this.gameObject.GetComponent<Camera>().orthographicSize = 7;
+        //this.gameObject.GetComponent<Camera>().orthographicSize = 7;
         //今までのカメラの大きさ        
-        //this.gameObject.GetComponent<Camera>().orthographicSize = 5;
+        this.gameObject.GetComponent<Camera>().orthographicSize = 5;
     }
     void Update()
     {
@@ -47,20 +47,20 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
                 //    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, Bird.Instance.bird().transform.position.y - 2, -10);
                 //}
                 //else transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
-                transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 5, 2.5f, -10);                
+                //transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 5, 2.5f, -10);                
 
                 //マリオっぽく画面外に言ったら矢印を出すようにした
-                //if(Bird.Instance.bird().transform.position.y >= 5.7f)
-                //{
-                //    birdHereUI.gameObject.SetActive(true);
-                //    birdHereUI.transform.position = new Vector2(Bird.Instance.bird().transform.position.x, 4.3f);
-                //    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
-                //}
-                //else
-                //{
-                //    birdHereUI.gameObject.SetActive(false);
-                //    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
-                //}
+                if(Bird.Instance.bird().transform.position.y >= 5.7f)
+                {
+                    birdHereUI.gameObject.SetActive(true);
+                    birdHereUI.transform.position = new Vector2(Bird.Instance.bird().transform.position.x, 4.3f);
+                    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
+                }
+                else
+                {
+                    birdHereUI.gameObject.SetActive(false);
+                    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
+                }
             }
             after.y = this.transform.position.y;
         }

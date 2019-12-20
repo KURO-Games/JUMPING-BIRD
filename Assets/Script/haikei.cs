@@ -17,23 +17,23 @@ public class haikei : MonoBehaviour
     void Update()
     {
         ////カメラサイズ5の場合
-        //if (gameObject.transform.position.x < bird.transform.position.x - Size)
-        //{
-        //    gameObject.transform.position = new Vector3(gameObject.transform.position.x + Size * 2, gameObject.transform.position.y, 9);
-        //}
-        //else if (gameObject.transform.position.x > bird.transform.position.x + Size)
-        //{
-        //    gameObject.transform.position = new Vector3(gameObject.transform.position.x - Size * 2, gameObject.transform.position.y, 9);
-        //}
-
-        //カメラサイズ7の場合
         if (gameObject.transform.position.x < bird.transform.position.x - Size)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + Size * 3, gameObject.transform.position.y, 9);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x + Size * 2, gameObject.transform.position.y, 9);
         }
-        else if (gameObject.transform.position.x > bird.transform.position.x + _Size)
+        else if (gameObject.transform.position.x > bird.transform.position.x + Size)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x - Size * 3, gameObject.transform.position.y, 9);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x - Size * 2, gameObject.transform.position.y, 9);
         }
+
+        //カメラサイズ7の場合
+        //if (gameObject.transform.position.x < bird.transform.position.x - Size)
+        //{
+        //    gameObject.transform.position = new Vector3(gameObject.transform.position.x + Size * 3, gameObject.transform.position.y, 9);
+        //}
+        //else if (gameObject.transform.position.x > bird.transform.position.x + _Size)
+        //{
+        //    gameObject.transform.position = new Vector3(gameObject.transform.position.x - Size * 3, gameObject.transform.position.y, 9);
+        //}
     }
 }
