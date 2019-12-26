@@ -56,6 +56,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     [SerializeField]
     private GameObject SPEffect_InLine;
     private bool pushes;
+
+    public bool SpectrumEffect; //鳥の残像発生 
     void Start()
     {
         iconColor = birdIcon.color;
@@ -157,6 +159,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 Make.Instance.MakeZombie();
                 AfterSPBool();
                 //真下に鳥を飛ばす
+                SpectrumEffect = true; // 追加者　イゴンヒ
                 Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
                 StartCoroutine(SPBeforePos());
             }

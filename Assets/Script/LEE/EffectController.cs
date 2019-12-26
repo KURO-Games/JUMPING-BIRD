@@ -9,18 +9,22 @@ public class EffectController : MonoBehaviour
     //public GameObject Player;
     [Header("エフェクト種類"),SerializeField]
     private GameObject StarEffectSub,StarEffectMain,DestroyEffect_Z,DestroyEffect_B;
+    [Header("必殺技の時出る鳥の残像"), SerializeField]
+    private GameObject SpectrumEffect;
 
 
     // Start is called before the first frame update
     void Start()
     {
         //Bird = Player.GetComponent<Bird>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         EffectSet();
+            //Debug.Log(Bird.Instance.transform.position);
     }
 
     void EffectSet()
@@ -37,6 +41,11 @@ public class EffectController : MonoBehaviour
         {
             Instantiate(DestroyEffect_Z, Bird.Instance.ZombiePos, Quaternion.identity);
             Bird.Instance.CrashZombie = false;
+        }
+
+        else if (SPGimick.Instance.SpectrumEffect) //追加 イゴンヒ
+        {
+            //Instantiate();
         }
     }   
 }
