@@ -11,7 +11,8 @@ public class EffectController : MonoBehaviour
     private GameObject StarEffectSub,StarEffectMain,DestroyEffect_Z,DestroyEffect_B;
     [Header("必殺技の時出る鳥の残像"), SerializeField]
     private GameObject SpectrumEffect;
-
+    [Header("必殺技の攻撃Effect(円)"), SerializeField]
+    private GameObject SkillEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,14 @@ public class EffectController : MonoBehaviour
 
         else if (SPGimick.Instance.SpectrumEffect) //追加 イゴンヒ
         {
-            //Instantiate();
+            Instantiate(SpectrumEffect);
+            SPGimick.Instance.SpectrumEffect = false;
+        }
+
+        else if(SPGimick.Instance.SpecuakSkill && Bird.Instance.transform.position.y <= -3)//追加 イゴンヒ
+        {
+            Instantiate(SkillEffect);
+            SPGimick.Instance.SpecuakSkill = false;
         }
     }   
 }

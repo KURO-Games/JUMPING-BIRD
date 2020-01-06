@@ -139,7 +139,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 //BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);//Y座標が-3より低かったら一旦-3に戻る
                 rb2d.velocity = Vector2.zero;
-                Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
+                Attack = false; //地面(YY座標<-3)になったら攻撃状態をfalseにする
                 CollisionBuilding = false;//跳ね返る状態終了
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
