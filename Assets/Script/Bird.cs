@@ -134,18 +134,18 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 DisplayManager.Instance.DispMgr(false);
             }
             
-            if (gameObject.transform.position.y <= -3)//地面停止スクリプト。残しておく。
+            if (gameObject.transform.position.y <= -5.5f)//地面停止スクリプト。残しておく。
             {
                 //BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -3);//Y座標が-3より低かったら一旦-3に戻る
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -5.5f);//Y座標が-3より低かったら一旦-3に戻る
                 rb2d.velocity = Vector2.zero;
                 Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
                 CollisionBuilding = false;//跳ね返る状態終了
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            if (gameObject.transform.position.y >= 9)//ここが高く飛び過ぎないようにの制限 //高さ制限がなくなったが、αまでに変更が難しいため残しておく。 
+            if (gameObject.transform.position.y >= 6)//ここが高く飛び過ぎないようにの制限 //高さ制限がなくなったが、αまでに変更が難しいため残しておく。 
             {                
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x, 8);//Y座標が7より高かったら一旦6に戻る
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, 5f);//Y座標が7より高かったら一旦6に戻る
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY|RigidbodyConstraints2D.FreezeRotation;//それ以上高く飛ぶことを中止するために一旦Y座標を固定
                 StartCoroutine(PositionYReset());//0.5秒後固定を解除
                 CollisionBuilding = false;//跳ね返る状態終了　ここにもう一回書くのはバグ防止のため　

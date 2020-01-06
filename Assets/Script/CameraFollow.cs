@@ -47,7 +47,7 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
                 //    transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, Bird.Instance.bird().transform.position.y - 2, -10);
                 //}
                 //else transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 3f, 0, -10);
-                transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 5, 2.5f, -10);                
+                transform.position = new Vector3(Bird.Instance.bird().transform.position.x + 5,0, -10);                
 
                 //マリオっぽく画面外に言ったら矢印を出すようにした
                 //if(Bird.Instance.bird().transform.position.y >= 5.7f)

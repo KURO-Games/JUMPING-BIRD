@@ -5,15 +5,11 @@ using UnityEngine;
 public class haikei : MonoBehaviour
 {
     [SerializeField]
-    private GameObject bird;    
+    private GameObject bird;
+    [SerializeField]
     private int Size = 20;
+    [SerializeField]
     private float _Size = 25;
-    void Start()
-    {
-        
-    }
-
-    
     void Update()
     {
         ////カメラサイズ5の場合
