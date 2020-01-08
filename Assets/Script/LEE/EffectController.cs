@@ -52,7 +52,7 @@ public class EffectController : MonoBehaviour
 
         else if(SPGimick.Instance.SpecuakSkill && Bird.Instance.transform.position.y <= -3)//追加 イゴンヒ
         {
-            Instantiate(SkillEffect);
+            Instantiate(SkillEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
             SPGimick.Instance.SpecuakSkill = false;
         }
     }   
