@@ -27,7 +27,7 @@ public class Zombie : MonoBehaviour
         float step = speed * Time.deltaTime;
         if (Bird.Instance.Die == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.Instance.bird().transform.position.x, -2.8f), step);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.Instance.bird().transform.position.x, this.transform.position.y), step);
             if (gameObject.transform.position.x + 5 > Bird.Instance.bird().transform.position.x && gameObject.transform.position.x - 5 < Bird.Instance.bird().transform.position.x)
             {
                 RockAttack();
