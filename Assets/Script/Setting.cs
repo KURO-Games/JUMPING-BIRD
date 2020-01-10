@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Back : MonoBehaviour
+public class Setting : MonoBehaviour
 {
     [SerializeField]
     private GameObject GoTitle;
