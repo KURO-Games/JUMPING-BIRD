@@ -27,12 +27,12 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
         if (defaults)
         {
             _scale.x = scale.x * addScale;
-            _scale.y = scale.y * addScale;
+            _scale.y = this.transform.localScale.y;
         }
         else
         {
             _scale.x = scale.x * addScales;
-            _scale.y = scale.y * addScales;
+            _scale.y = this.transform.localScale.y;
         }
         this.transform.localScale = _scale;
     }
@@ -40,7 +40,7 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
     public void DefaultScale()
     {
         _DefaultScale.x = 0.04f;
-        _DefaultScale.y = 0.04f;
+        _DefaultScale.y = this.transform.localScale.y;
         this.transform.localScale = _DefaultScale;
 
     }

@@ -7,7 +7,7 @@ public class TitleMgr : MonoBehaviour
     bool Tap;
     private void Start()
     {
-        SoundManager.Instance.PlayBgm(BGM.Title);
+        SoundManager.PlayBgm(BGM.Title);
     }
     private void Update()
     {
