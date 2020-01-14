@@ -134,15 +134,15 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 DisplayManager.Instance.DispMgr(false);
             }
             
-            if (gameObject.transform.position.y <= -5.5f)//地面停止スクリプト。残しておく。
-            {
-                //BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -5.5f);//Y座標が-3より低かったら一旦-3に戻る
-                rb2d.velocity = Vector2.zero;
-                Attack = false; //地面(YY座標<-3)になったら攻撃状態をfalseにする
-                CollisionBuilding = false;//跳ね返る状態終了
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
+            //if (gameObject.transform.position.y <= -5.5f)//地面停止スクリプト。残しておく。
+            //{
+            //    //BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
+            //    gameObject.transform.position = new Vector2(gameObject.transform.position.x, -5.5f);//Y座標が-3より低かったら一旦-3に戻る
+            //    rb2d.velocity = Vector2.zero;
+            //    Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
+            //    CollisionBuilding = false;//跳ね返る状態終了
+            //    transform.rotation = Quaternion.Euler(0, 0, 0);
+            //}
             if (gameObject.transform.position.y >= 6)//ここが高く飛び過ぎないようにの制限 //高さ制限がなくなったが、αまでに変更が難しいため残しておく。 
             {                
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 5f);//Y座標が7より高かったら一旦6に戻る
@@ -172,5 +172,15 @@ public class Bird :SingletonMonoBehaviour<Bird>
         return degree;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            rb2d.velocity = Vector2.zero;
+            Attack = false;
+            CollisionBuilding = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
 
 }
