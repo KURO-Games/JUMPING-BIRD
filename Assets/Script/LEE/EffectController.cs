@@ -13,6 +13,8 @@ public class EffectController : MonoBehaviour
     private GameObject SpectrumEffect;
     [Header("必殺技の攻撃Effect(円)"), SerializeField]
     private GameObject SkillEffect;
+    [Header("必殺技の攻撃Effect地面"), SerializeField]
+    private GameObject SkillEffect2;
 
     // Start is called before the first frame update
     void Start()
@@ -38,21 +40,22 @@ public class EffectController : MonoBehaviour
             Bird.Instance.CrashBuilding = false;
         }
 
-        else if (Bird.Instance.CrashZombie)
+        if (Bird.Instance.CrashZombie)
         {
             Instantiate(DestroyEffect_Z, Bird.Instance.ZombiePos, Quaternion.identity);
             Bird.Instance.CrashZombie = false;
         }
 
-        else if (SPGimick.Instance.SpectrumEffect) //追加 イゴンヒ
+        if (SPGimick.Instance.SpectrumEffect) //追加 イゴンヒ
         {
             Instantiate(SpectrumEffect);
             SPGimick.Instance.SpectrumEffect = false;
         }
 
-        else if(SPGimick.Instance.SpecuakSkill && Bird.Instance.transform.position.y <= -3)//追加 イゴンヒ
+        if(SPGimick.Instance.SpecuakSkill && Bird.Instance.transform.position.y <= -3)//追加 イゴンヒ
         {
             Instantiate(SkillEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
+            Instantiate(SkillEffect2, Bird.Instance.bird().transform.position, Quaternion.identity);
             SPGimick.Instance.SpecuakSkill = false;
         }
     }   
