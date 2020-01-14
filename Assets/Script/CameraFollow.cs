@@ -69,7 +69,7 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
             if (backDoOnce)
             {
                 backDoOnce = false;
-                SoundManager.Instance.PlayBgm(BGM.ClearField);
+                SoundManager.PlayBgm(BGM.ClearField);
                 Goal_BackCol.isTrigger = false;
             }
             after.x = this.transform.position.x;

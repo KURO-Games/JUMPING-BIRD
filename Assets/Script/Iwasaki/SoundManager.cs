@@ -68,15 +68,15 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         }
     }
 
-    public void PlayBgm(BGM key)
+    public static void PlayBgm(BGM key)
     {
-        Sound sound = bgmdic[key];
+        Sound sound = Instance.bgmdic[key];
         AudioClip clip = sound.clip;
         float volume = sound.volume;
         //Debug.Log("<color=blue>" + clip.name + ":" + volume + "</color>");
-        audioSource_BGM.clip = clip;
-        audioSource_BGM.volume = volume;
-        audioSource_BGM.Play();
+        Instance.audioSource_BGM.clip = clip;
+        Instance.audioSource_BGM.volume = volume;
+        Instance.audioSource_BGM.Play();
     }
 
     public void PlaySe(SE key)

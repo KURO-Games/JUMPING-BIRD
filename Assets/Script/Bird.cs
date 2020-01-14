@@ -71,7 +71,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
         }
         if (other.gameObject.name == "Goal")
         {
-            SoundManager.Instance.PlayBgm(BGM.Clear);
+            SoundManager.PlayBgm(BGM.Clear);
             DisplayManager.Instance.DispMgr(true);
             
             StartCoroutine(SceneFades(5f));
@@ -127,7 +127,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
         {
             if (Life <= 0)　//ライフが0になったら
             {                
-                SoundManager.Instance.PlayBgm(BGM.GameOver);
+                SoundManager.PlayBgm(BGM.GameOver);
                 transform.rotation = Quaternion.Euler(180, 0, 0);//gameover鳥のY軸を180度反転
                 Die = true;
                 StartCoroutine(SceneFades(3f));
