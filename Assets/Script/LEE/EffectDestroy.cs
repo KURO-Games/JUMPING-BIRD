@@ -8,7 +8,6 @@ public class EffectDestroy : MonoBehaviour
     private ParticleSystem Particle;
     private float D_Time; 
     
-    public GameObject Target;
     // Start is called before the first frame update
     void Start()
     {

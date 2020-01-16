@@ -11,7 +11,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
     public bool Fly = false;//鳥が飛んでいるか
     public bool Attack = false;//攻撃状態
     //public bool FirstJumpOver = false;
-    Rigidbody2D rb2d;
+     public Rigidbody2D rb2d;
     public float Jumphigh = 350f;
     //public bool IsJump; //連続のジャンプを防ぐためのもの
     //public bool FirstJumpLimit;

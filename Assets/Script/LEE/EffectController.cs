@@ -14,7 +14,9 @@ public class EffectController : MonoBehaviour
     [Header("必殺技の攻撃Effect(円)"), SerializeField]
     private GameObject SkillEffect;
     [Header("必殺技の攻撃Effect地面"), SerializeField]
-    private GameObject SkillEffect2;
+    private GameObject firEffect;
+    [Header("必殺技の攻撃Effect地面"), SerializeField]
+    private GameObject GroundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -52,10 +54,12 @@ public class EffectController : MonoBehaviour
             SPGimick.Instance.SpectrumEffect = false;
         }
 
-        if(SPGimick.Instance.SpecuakSkill && Bird.Instance.transform.position.y <= -5)//追加 イゴンヒ
+        if(SPGimick.Instance.SpecuakSkill && Bird.Instance.rb2d.velocity == Vector2.zero)//追加 イゴンヒ
         {
             Instantiate(SkillEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
-            Instantiate(SkillEffect2, Bird.Instance.bird().transform.position, Quaternion.identity);
+            Instantiate(firEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
+            Instantiate(GroundEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
+           
             SPGimick.Instance.SpecuakSkill = false;
         }
     }   
