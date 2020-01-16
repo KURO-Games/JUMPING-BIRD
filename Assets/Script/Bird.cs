@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Bird :SingletonMonoBehaviour<Bird>
+public class Bird : SingletonMonoBehaviour<Bird>
 {
+    public int Wave = 1;//今のステージレベル
+    public int ZombieKill = 40;//必要なゾンビを倒す数
+
+    [SerializeField]
+    private int Wave1ZombieKill = 40;
+    [SerializeField]
+    private int Wave2ZombieKill = 60;
+    [SerializeField]
+    private int Wave3ZombieKill = 80;
+    [SerializeField]
+    private GameObject CounterText;
+
     public int Life;//鳥のHP
     //public bool MouseInBird = false;
     //public bool MousePush = false;//マウスが押しているか
@@ -89,6 +101,7 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
                 SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
                 CrashZombie = true;
+            CounterText.GetComponent<Counter>().Kill += 1;
         }
 
         if (other.gameObject.tag == "Rock")
@@ -123,7 +136,24 @@ public class Bird :SingletonMonoBehaviour<Bird>
 
     void Update()
     {
-        if (Die == false)　//もし死んでいなかったら
+        if(Wave == 1)
+        {
+            ZombieKill = Wave1ZombieKill;
+        }
+        else if(Wave == 2)
+        {
+            ZombieKill = Wave2ZombieKill;
+        }
+        else if (Wave == 3)
+        {
+            ZombieKill = Wave3ZombieKill;
+        }
+
+
+
+
+
+            if (Die == false)　//もし死んでいなかったら
         {
             if (Life <= 0)　//ライフが0になったら
             {                
