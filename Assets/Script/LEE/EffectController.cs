@@ -13,11 +13,11 @@ public class EffectController : MonoBehaviour
     private GameObject SpectrumEffect;
     [Header("必殺技の攻撃Effect(円)"), SerializeField]
     private GameObject SkillEffect;
-    [Header("必殺技の攻撃Effect地面"), SerializeField]
+    [Header("必殺技の攻撃する時出る爆発"), SerializeField]
     private GameObject firEffect;
-    [Header("必殺技の攻撃Effect地面"), SerializeField]
+    [Header("地面が破るEffect"), SerializeField]
     private GameObject GroundEffect;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +32,7 @@ public class EffectController : MonoBehaviour
             //Debug.Log(Bird.Instance.transform.position);
     }
 
-    void EffectSet()
+    private void EffectSet()
     {
         if (Bird.Instance.CrashBuilding)
         {
@@ -62,5 +62,7 @@ public class EffectController : MonoBehaviour
            
             SPGimick.Instance.SpecuakSkill = false;
         }
-    }   
+
+      
+    }
 }
