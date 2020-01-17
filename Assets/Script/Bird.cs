@@ -96,7 +96,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
         {
                 SoundManager.Instance.PlaySe(SE.AttackZombie);
                 Make.GetComponent<Make>().CanMakeBuilding = true;
-                Destroy(other.gameObject);
+            Make.GetComponent<Make>().ZombieQTY -= 1;
+            Destroy(other.gameObject);
                 ZombiePos = other.transform.position;
                 //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
                 SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;

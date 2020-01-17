@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 40863783282742436}
   - component: {fileID: 40863783282742437}
   - component: {fileID: 8341887747845450660}
-  - component: {fileID: 2543525505155256518}
   - component: {fileID: 3769628208892205348}
   m_Layer: 0
   m_Name: Zombie
@@ -95,19 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rock: {fileID: 5297147740563826184, guid: 9013731b286818747b257ef24ec16b9c, type: 3}
---- !u!114 &2543525505155256518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40863783282742619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5870cd0970f2840a6a3f98b1d4f7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bird: {fileID: 0}
 --- !u!70 &3769628208892205348
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
