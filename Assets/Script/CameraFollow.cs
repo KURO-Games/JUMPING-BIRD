@@ -19,6 +19,9 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
     private GameObject Goal_Back;
     private BoxCollider2D Goal_BackCol;
     private bool backDoOnce = true;
+    [SerializeField]
+    private GameObject rightEnd;
+    private bool doOnce;
     void Start()
     {
         Goal_BackCol = Goal_Back.GetComponent<BoxCollider2D>();
@@ -27,16 +30,20 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
         //新しく広くしたカメラの大きさ
         this.gameObject.GetComponent<Camera>().orthographicSize = 7;
         //今までのカメラの大きさ        
-        //this.gameObject.GetComponent<Camera>().orthographicSize = 5;
+        //this.gameObject.GetComponent<Camera>().orthographicSize = 5;        
     }
     void Update()
     {
-        offset = GoleFlags.Instance.ThisPosition().x - this.gameObject.transform.position.x;
+        offset = rightEnd.transform.position.x - this.gameObject.transform.position.x + 5.5f;
         
         if (offset <= _set)
         {
-            Instance.NearGoal = true;
-            
+            //if (doOnce)
+            //{
+            //    doOnce = false;
+            //    NearGoal = true;
+            //}  
+            NearGoal = true;
         }
         if (!NearGoal)
         {
@@ -66,6 +73,12 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
         }
         else
         {
+            //if (Bird.Instance.bird().transform.position.x <= this.transform.position.x )
+            //{
+            //    Debug.Log("aaa");
+            //    NearGoal = false;
+            //    doOnce = true;
+            //}
             if (backDoOnce)
             {
                 backDoOnce = false;

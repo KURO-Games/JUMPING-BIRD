@@ -53,4 +53,12 @@ public class Zombie : MonoBehaviour
             Invoke("AttackReset", 3f);
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Zombie" && )
+        {
+
+        }
+    }
 }
