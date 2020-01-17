@@ -32,7 +32,16 @@ public class Zombie : MonoBehaviour
             {
                 RockAttack();
             }
+            if (this.transform.position.x < Bird.Instance.bird().transform.position.x)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
         }
+
     }
     void AttackReset()
     {
