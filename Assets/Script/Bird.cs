@@ -11,20 +11,24 @@ public class Bird :SingletonMonoBehaviour<Bird>
     public bool Fly = false;//鳥が飛んでいるか
     public bool Attack = false;//攻撃状態
     //public bool FirstJumpOver = false;
-     public Rigidbody2D rb2d;
+    [HideInInspector]
+     public Rigidbody2D rb2d; //Publicで変更
     public float Jumphigh = 350f;
     //public bool IsJump; //連続のジャンプを防ぐためのもの
     //public bool FirstJumpLimit;
     public bool Die;//死んだのか
     public bool CollisionBuilding;//ビルに当たったのか、trueにすると跳ね返る
     public GameObject Make;
-    public bool CrashBuilding;
-    public bool CrashZombie;
+
+    public bool CrashBuilding;//イゴンヒ
+    public bool CrashZombie;//イゴンヒ
+    public bool DamageEffect; //イゴンヒ
+
     public Vector3 BuildingPos;
     public Vector3 ZombiePos;
     private Vector2 oldPosition;
     private BirdAnimationController _BirdAnimationController;
-    
+        
 
     public bool isEffect;
 
@@ -99,6 +103,8 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 Life -= 1;
                 SoundManager.Instance.PlaySe(SE.Damage);
                 Destroy(other.gameObject);
+
+                DamageEffect = true; // イゴンヒ
             }
             else
             {
