@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8341887747845450660}
   - component: {fileID: 2543525505155256518}
   - component: {fileID: 3769628208892205348}
+  - component: {fileID: 7665680476921370265}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -95,6 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rock: {fileID: 5297147740563826184, guid: 9013731b286818747b257ef24ec16b9c, type: 3}
+  leftTargetObject: {fileID: 691361438564864075, guid: 3c21c71e5ff7ed643af1c19b5f2d7323,
+    type: 3}
+  rightTargetObject: {fileID: 6068398089558592994, guid: 4a53d2ea80e2cb34ea7faf0382b28e62,
+    type: 3}
+  ThrowingAngle: 32.6
 --- !u!114 &2543525505155256518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40863783282742619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf5870cd0970f2840a6a3f98b1d4f7e2, type: 3}
   m_Name: 
@@ -124,3 +130,24 @@ CapsuleCollider2D:
   m_Offset: {x: -1.0934901, y: 0.48599958}
   m_Size: {x: 9.079251, y: 20.500143}
   m_Direction: 0
+--- !u!50 &7665680476921370265
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40863783282742619}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6

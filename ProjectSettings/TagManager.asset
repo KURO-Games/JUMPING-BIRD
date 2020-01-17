@@ -11,6 +11,8 @@ TagManager:
   - Catapult
   - Finger
   - Rock
+  - RightCol
+  - LeftCol
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,19 @@ public class Zombie : MonoBehaviour
     public GameObject Rock;
     public static int speed = 1;
     ZonbieState _zonbieState;
+    //飛ばすオブジェクト
+    private GameObject ThrowingObject;
+    
+    /// 標的のオブジェクト
+    [SerializeField, Tooltip("左の標的のオブジェクトをここに割り当てる")]
+    private GameObject leftTargetObject;
+    [SerializeField, Tooltip("右の標的のオブジェクトをここに割り当てる")]
+    private GameObject rightTargetObject;
+
+    /// 射出角度
+    [SerializeField, Range(0F, 90F), Tooltip("射出する角度")]
+    private float ThrowingAngle;
+    private Rigidbody2D rid2D;
     enum ZonbieState
     {
         Wait,
@@ -21,9 +34,11 @@ public class Zombie : MonoBehaviour
     private void Start()
     {
         _zonbieState = ZonbieState.Wait;
+        ThrowingObject = GameObject.FindWithTag("Zombie");
+        rid2D = this.gameObject.GetComponent<Rigidbody2D>();
     }
     void Update()
-    {
+    {        
         float step = speed * Time.deltaTime;
         if (Bird.Instance.Die == false)
         {
@@ -41,7 +56,6 @@ public class Zombie : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
-
     }
     void AttackReset()
     {
@@ -63,11 +77,77 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Zombie" && )
+        //左向き
+        if (collision.gameObject.tag == "RightCol" && this.transform.localRotation == Quaternion.Euler(0,0,0))
         {
+            //this.rid2D.simulated = true;
+            this.rid2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            Vector3 targetPosition = leftTargetObject.transform.position;
+            ThrowingZombie();
+        }
+        
+        //右向き
+        if (collision.gameObject.tag == "LeftCol" && this.transform.localRotation == Quaternion.Euler(0, 180, 0))
+        {                        
+            //this.rid2D.simulated = true;
+            this.rid2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            Vector3 targetPosition = rightTargetObject.transform.position;
+            ThrowingZombie();
+        }
 
+        if (collision.gameObject.tag == "Ground" && this.transform.localRotation == Quaternion.Euler(0, 0, 0))
+        {
+            //this.rid2D.simulated = false;
+            this.rid2D.velocity = Vector2.zero;
+            this.rid2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
+
+        if (collision.gameObject.tag == "Ground" && this.transform.localRotation == Quaternion.Euler(0, 180, 0))
+        {
+            //this.rid2D.simulated = false;
+            this.rid2D.velocity = Vector2.zero;
+            this.rid2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
+    private void ThrowingZombie()
+    {
+        Vector3 targetPosition = leftTargetObject.transform.position;
+
+        // 射出角度
+        float angle = ThrowingAngle;
+
+        // 射出速度を算出
+        Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
+
+        // 射出        
+        this.rid2D.AddForce(velocity * rid2D.mass, ForceMode2D.Impulse);
+    }
+
+    private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle)
+    {
+        // 射出角をラジアンに変換
+        float rad = angle * Mathf.PI / 180;
+
+        // 水平方向の距離x
+        float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
+
+        // 垂直方向の距離y
+        float y = pointA.y - pointB.y;
+
+        // 斜方投射の公式を初速度について解く
+        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
+
+        if (float.IsNaN(speed))
+        {
+            // 条件を満たす初速を算出できなければVector3.zeroを返す
+            return Vector3.zero;
+        }
+        else
+        {
+            return (new Vector3(pointB.x - pointA.x, x * Mathf.Tan(rad), pointB.z - pointA.z).normalized * speed);
         }
     }
 }

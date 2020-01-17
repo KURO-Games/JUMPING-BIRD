@@ -24,7 +24,6 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
     private bool doOnce;
     void Start()
     {
-        Goal_BackCol = Goal_Back.GetComponent<BoxCollider2D>();
         //Bird = GameObject.FindGameObjectWithTag("Bird");
         after.z = this.transform.position.z;
         //新しく広くしたカメラの大きさ
@@ -35,16 +34,12 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
     void Update()
     {
         offset = rightEnd.transform.position.x - this.gameObject.transform.position.x + 5.5f;
-        
+
         if (offset <= _set)
         {
-            //if (doOnce)
-            //{
-            //    doOnce = false;
-            //    NearGoal = true;
-            //}  
             NearGoal = true;
         }
+        else NearGoal = false;
         if (!NearGoal)
         {
             if (Bird.Instance.Fly && !SPGimick.Instance.SPGimickStart)
@@ -83,7 +78,6 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
             {
                 backDoOnce = false;
                 SoundManager.PlayBgm(BGM.ClearField);
-                Goal_BackCol.isTrigger = false;
             }
             after.x = this.transform.position.x;
             this.transform.position = after;
