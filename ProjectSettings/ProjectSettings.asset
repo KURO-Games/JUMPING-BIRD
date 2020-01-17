@@ -154,7 +154,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Standalone: com.Company.ProductName
-    iOS: jp.ac.tech.game-project.jumpingbird
+    iOS: h.game-project.j-bird
   buildNumber:
     iOS: 1
   AndroidBundleVersionCode: 1
