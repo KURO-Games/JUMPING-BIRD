@@ -14,7 +14,7 @@ public class Back_YesNo : MonoBehaviour
     public void OnClickYes()
     {
         SoundManager.Instance.FadeOutBgm(1);
-        SceneLoadManager.LoadScene("Title");
+        SceneLoadManager.LoadScene("Init");
         Time.timeScale = 1;
     }
     public void OnClickNo()

@@ -239,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6236833758722743916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 4180486561890721929}
   - component: {fileID: 7590896514656063483}
   - component: {fileID: 8133157687719247721}
-  - component: {fileID: 8434166328810539098}
+  - component: {fileID: 1908021173}
   m_Layer: 5
   m_Name: No
   m_TagString: Untagged
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8434166328810539098}
+      - m_Target: {fileID: 1908021173}
         m_MethodName: OnClickNo
         m_Mode: 1
         m_Arguments:
@@ -429,7 +429,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &8434166328810539098
+--- !u!114 &1908021173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0026f720ba193054caca81ddc27197bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoTitle: {fileID: 5045019636491110110}
+  GoTitle: {fileID: 0}
 --- !u!1 &8046854656776510635
 GameObject:
   m_ObjectHideFlags: 0
