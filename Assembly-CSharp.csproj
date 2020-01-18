@@ -195,7 +195,6 @@
     <Compile Include="Assets\Script\Bird.cs" />
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Counter.cs" />
-    <Compile Include="Assets\Script\Del.cs" />
     <Compile Include="Assets\Script\Finger.cs" />
     <Compile Include="Assets\Script\FirstJump.cs" />
     <Compile Include="Assets\Script\GameStart.cs" />
@@ -224,6 +223,7 @@
     <Compile Include="Assets\Script\Rock.cs" />
     <Compile Include="Assets\Script\Setting.cs" />
     <Compile Include="Assets\Script\Sound.cs" />
+    <Compile Include="Assets\Script\Tutorial.cs" />
     <Compile Include="Assets\Script\Zombie.cs" />
     <None Include="Assets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Unlit.shader" />
     <None Include="Assets\Script\LEE\Shader\Ripple.shader" />
@@ -233,16 +233,16 @@
     <None Include="Assets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Mask.shader" />
     <None Include="Assets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\CubismCG.cginc" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/student/Documents/GitHub/JUMPING-BIRD/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/student/Desktop/JUMPING-BIRD/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/student/Documents/GitHub/JUMPING-BIRD/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/student/Desktop/JUMPING-BIRD/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/student/Documents/GitHub/JUMPING-BIRD/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/student/Desktop/JUMPING-BIRD/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/student/Documents/GitHub/JUMPING-BIRD/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/student/Desktop/JUMPING-BIRD/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
