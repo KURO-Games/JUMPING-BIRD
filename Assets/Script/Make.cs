@@ -11,6 +11,9 @@ public class Make : SingletonMonoBehaviour<Make>
     [Header("子オブジェクト追加")]
     [SerializeField]
     private GameObject Zombies, Buildings;
+    [SerializeField]
+    private int ZombieMax = 10;
+    public int ZombieQTY = 0;
     [Header("")]
     public float Random1;
     public float MakeTime = 2f;
@@ -29,10 +32,14 @@ public class Make : SingletonMonoBehaviour<Make>
         Debug.Log("Bird.Instance.Die" + Bird.Instance.Die);
         if (Bird.Instance.Die == false && !SPGimick.Instance.SPGimickStart)
         {
-            GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + Random1, -5f, 1f), Quaternion.identity);
-            _zombie.name = Zombie.name+_makeZombies.ToString();
-            _makeZombies++;
-            _zombie.transform.parent = Zombies.transform;
+            if (ZombieQTY < ZombieMax)
+            {
+                GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + Random1, -5f, 1f), Quaternion.identity);
+                ZombieQTY += 1;
+                _zombie.name = Zombie.name + _makeZombies.ToString();
+                _makeZombies++;
+                _zombie.transform.parent = Zombies.transform;
+            }
             Invoke("MakeZombie", MakeTime);
         }
     }

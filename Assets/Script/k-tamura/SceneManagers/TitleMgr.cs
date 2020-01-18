@@ -15,7 +15,7 @@ public class TitleMgr : MonoBehaviour
         {
             SoundManager.Instance.FadeOutBgm(2);
             Tap = true;
-            SceneLoadManager.LoadScene("Game");
+            SceneLoadManager.LoadScene("Tutorial");
         }
     }
 

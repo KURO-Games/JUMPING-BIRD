@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Bird :SingletonMonoBehaviour<Bird>
+public class Bird : SingletonMonoBehaviour<Bird>
 {
+    public int Wave = 1;//今のステージレベル
+    public int ZombieKill = 40;//必要なゾンビを倒す数
+
+    [SerializeField]
+    private int Wave1ZombieKill = 40;
+    [SerializeField]
+    private int Wave2ZombieKill = 60;
+    [SerializeField]
+    private int Wave3ZombieKill = 80;
+    [SerializeField]
+    private GameObject CounterText;
+
     public int Life;//鳥のHP
     //public bool MouseInBird = false;
     //public bool MousePush = false;//マウスが押しているか
@@ -55,44 +67,22 @@ public class Bird :SingletonMonoBehaviour<Bird>
     }
     public GameObject bird()
     {
-        
         return this.gameObject;
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Building")
-        {
-            SoundManager.Instance.PlaySe(SE.AttackBuilding);
-            BuildingPos = other.gameObject.transform.position;
-            Debug.Log(BuildingPos);
-            Destroy(other.gameObject);
-            CrashBuilding = true;
-            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
-
-
-        }
-        if (other.gameObject.name == "Goal")
-        {
-            SoundManager.PlayBgm(BGM.Clear);
-            DisplayManager.Instance.DispMgr(true);
-            
-            StartCoroutine(SceneFades(5f));
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Zombie"&&Attack)
-        {
-                SoundManager.Instance.PlaySe(SE.AttackZombie);
-                Make.GetComponent<Make>().CanMakeBuilding = true;
-                Destroy(other.gameObject);
-                ZombiePos = other.transform.position;
-                //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-                SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
-                CrashZombie = true;
+        {                     
+            SoundManager.Instance.PlaySe(SE.AttackZombie);
+            Make.GetComponent<Make>().CanMakeBuilding = true;
+            Destroy(other.gameObject);
+            Make.GetComponent<Make>().ZombieQTY -= 1;
+            ZombiePos = other.transform.position;
+            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
+            CrashZombie = true;
+            CounterText.GetComponent<Counter>().Kill += 1;
         }
 
         if (other.gameObject.tag == "Rock")
@@ -112,10 +102,31 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 Destroy(other.gameObject);
             }
         }
-        
+
+        //建物に当たったら
+        if (other.gameObject.tag == "Building")
+        {
+            SoundManager.Instance.PlaySe(SE.AttackBuilding);
+            BuildingPos = other.gameObject.transform.position;
+            Debug.Log(BuildingPos);
+            Destroy(other.gameObject);
+            CrashBuilding = true;
+            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
+        }
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //地面に当たったら
+        if (collision.gameObject.tag == "Ground")
+        {
+            rb2d.velocity = Vector2.zero;
+            Attack = false;
+            CollisionBuilding = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
     IEnumerator PositionYReset()
     {
         yield return new WaitForSeconds(0.5f);
@@ -129,6 +140,19 @@ public class Bird :SingletonMonoBehaviour<Bird>
 
     void Update()
     {
+        if(Wave == 1)
+        {
+            ZombieKill = Wave1ZombieKill;
+        }
+        else if(Wave == 2)
+        {
+            ZombieKill = Wave2ZombieKill;
+        }
+        else if (Wave == 3)
+        {
+            ZombieKill = Wave3ZombieKill;
+        }
+        
         if (Die == false)　//もし死んでいなかったら
         {
             if (Life <= 0)　//ライフが0になったら
@@ -140,15 +164,15 @@ public class Bird :SingletonMonoBehaviour<Bird>
                 DisplayManager.Instance.DispMgr(false);
             }
             
-            //if (gameObject.transform.position.y <= -5.5f)//地面停止スクリプト。残しておく。
-            //{
-            //    //BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
-            //    gameObject.transform.position = new Vector2(gameObject.transform.position.x, -5.5f);//Y座標が-3より低かったら一旦-3に戻る
-            //    rb2d.velocity = Vector2.zero;
-            //    Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
-            //    CollisionBuilding = false;//跳ね返る状態終了
-            //    transform.rotation = Quaternion.Euler(0, 0, 0);
-            //}
+            if (gameObject.transform.position.y <= -5.5f)//地面停止スクリプト。残しておく。
+            {
+                //BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -5.5f);//Y座標が-3より低かったら一旦-3に戻る
+                rb2d.velocity = Vector2.zero;
+                Attack = false;　//地面(YY座標<-3)になったら攻撃状態をfalseにする
+                CollisionBuilding = false;//跳ね返る状態終了
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
             if (gameObject.transform.position.y >= 6)//ここが高く飛び過ぎないようにの制限 //高さ制限がなくなったが、αまでに変更が難しいため残しておく。 
             {                
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, 5f);//Y座標が7より高かったら一旦6に戻る
@@ -177,16 +201,4 @@ public class Bird :SingletonMonoBehaviour<Bird>
         float degree = rad * Mathf.Rad2Deg;
         return degree;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            rb2d.velocity = Vector2.zero;
-            Attack = false;
-            CollisionBuilding = false;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
-
 }
