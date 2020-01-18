@@ -21,6 +21,7 @@ public class Zombie : MonoBehaviour
     [SerializeField, Range(0F, 90F), Tooltip("射出する角度")]
     private float ThrowingAngle;
     private Rigidbody2D rid2D;
+    private Vector3 targetPosition;
     enum ZonbieState
     {
         Wait,
@@ -55,7 +56,7 @@ public class Zombie : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-        }
+        }    
     }
     void AttackReset()
     {
@@ -64,7 +65,7 @@ public class Zombie : MonoBehaviour
 
     void RockAttack()
     {        
-        Debug.Log("RockAttack");
+        //Debug.Log("RockAttack");
         if (_zonbieState==ZonbieState.Wait && !SPGimick.Instance.SPGimickStart)
         {
             Vector2 InstantiateRock;
@@ -80,31 +81,31 @@ public class Zombie : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //左向き
-        if (collision.gameObject.tag == "RightCol" && this.transform.localRotation == Quaternion.Euler(0,0,0))
+        if (collision.gameObject.tag == "RightCol" && this.transform.localRotation.y == 0)
         {
             //this.rid2D.simulated = true;
             this.rid2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-            Vector3 targetPosition = leftTargetObject.transform.position;
-            ThrowingZombie();
+            targetPosition = leftTargetObject.transform.position;
+            ThrowingZombie(targetPosition);
         }
         
         //右向き
-        if (collision.gameObject.tag == "LeftCol" && this.transform.localRotation == Quaternion.Euler(0, 180, 0))
-        {                        
+        if (collision.gameObject.tag == "LeftCol" && this.transform.localRotation.y == -1)
+        {
             //this.rid2D.simulated = true;
             this.rid2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-            Vector3 targetPosition = rightTargetObject.transform.position;
-            ThrowingZombie();
+            targetPosition = rightTargetObject.transform.position;
+            ThrowingZombie(targetPosition);
         }
 
-        if (collision.gameObject.tag == "Ground" && this.transform.localRotation == Quaternion.Euler(0, 0, 0))
+        if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == 0)
         {
             //this.rid2D.simulated = false;
             this.rid2D.velocity = Vector2.zero;
             this.rid2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
 
-        if (collision.gameObject.tag == "Ground" && this.transform.localRotation == Quaternion.Euler(0, 180, 0))
+        if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == -1)
         {
             //this.rid2D.simulated = false;
             this.rid2D.velocity = Vector2.zero;
@@ -112,10 +113,8 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    private void ThrowingZombie()
+    private void ThrowingZombie(Vector3 targetPosition)
     {
-        Vector3 targetPosition = leftTargetObject.transform.position;
-
         // 射出角度
         float angle = ThrowingAngle;
 

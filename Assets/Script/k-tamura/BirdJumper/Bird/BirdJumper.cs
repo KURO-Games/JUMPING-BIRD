@@ -25,7 +25,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
                 if (hit.collider.gameObject.name == this.gameObject.name && !SPGimick.Instance.SPGimickStart)
                 {
                     Bird.Instance.Fly = true;
-                    Debug.LogWarning(hit.collider.gameObject.name+ this.gameObject.name+ hit.collider.gameObject.name == this.gameObject.name);
+                    //Debug.LogWarning(hit.collider.gameObject.name+ this.gameObject.name+ hit.collider.gameObject.name == this.gameObject.name);
                     MouseButtonDown(true, false, 0, 0, 0);
                     RayFlag = true;
                 }

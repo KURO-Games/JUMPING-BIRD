@@ -28,7 +28,7 @@ public class Counter : MonoBehaviour
 
             if (DeBug == false)//debug用
             {
-                Debug.Log("ゾンビを倒しました！");
+                //Debug.Log("ゾンビを倒しました！");
                 DeBug = true;
             }
         }

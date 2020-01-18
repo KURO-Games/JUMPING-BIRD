@@ -12,8 +12,7 @@ public class CloudRoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("cloudPos" + transform.position.x);
-        Debug.Log("cameraPos" + (mainCamera.transform.position.x - cloudSize));
+
     }
 
     // Update is called once per frame

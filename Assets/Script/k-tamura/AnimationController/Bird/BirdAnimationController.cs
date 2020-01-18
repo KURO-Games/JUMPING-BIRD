@@ -37,7 +37,7 @@ public class BirdAnimationController : SingletonMonoBehaviour<BirdAnimationContr
     /// <param name="_BirdAnimParam">BirdAnimParam(Enum)</param>
     public static void BirdAnimations(BirdAnimParam _BirdAnimParam)
     {
-        Debug.Log("num:"+(int)_BirdAnimParam +":"+ _BirdAnimParam);
+        //Debug.Log("num:"+(int)_BirdAnimParam +":"+ _BirdAnimParam);
         Instance._anim.SetInteger("BirdParam", (int)_BirdAnimParam);
     }
 }
