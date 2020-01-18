@@ -14,8 +14,6 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
     float offset;
     Vector3 after;
     [SerializeField]
-    private GameObject birdHereUI;
-    [SerializeField]
     private GameObject Goal_Back;
     private BoxCollider2D Goal_BackCol;
     private bool backDoOnce = true;

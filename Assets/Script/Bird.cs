@@ -63,45 +63,21 @@ public class Bird : SingletonMonoBehaviour<Bird>
     }
     public GameObject bird()
     {
-        
         return this.gameObject;
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Building")
-        {
-            SoundManager.Instance.PlaySe(SE.AttackBuilding);
-            BuildingPos = other.gameObject.transform.position;
-            Debug.Log(BuildingPos);
-            Destroy(other.gameObject);
-            CrashBuilding = true;
-            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
-
-
-        }
-        if (other.gameObject.name == "Goal")
-        {
-            SoundManager.PlayBgm(BGM.Clear);
-            DisplayManager.Instance.DispMgr(true);
-            
-            StartCoroutine(SceneFades(5f));
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Zombie"&&Attack)
-        {
-                SoundManager.Instance.PlaySe(SE.AttackZombie);
-                Make.GetComponent<Make>().CanMakeBuilding = true;
-            Make.GetComponent<Make>().ZombieQTY -= 1;
+        {                     
+            SoundManager.Instance.PlaySe(SE.AttackZombie);
+            Make.GetComponent<Make>().CanMakeBuilding = true;
             Destroy(other.gameObject);
-                ZombiePos = other.transform.position;
-                //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-                SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
-                CrashZombie = true;
+            Make.GetComponent<Make>().ZombieQTY -= 1;
+            ZombiePos = other.transform.position;
+            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
+            CrashZombie = true;
             CounterText.GetComponent<Counter>().Kill += 1;
         }
 
@@ -120,10 +96,31 @@ public class Bird : SingletonMonoBehaviour<Bird>
                 Destroy(other.gameObject);
             }
         }
-        
+
+        //建物に当たったら
+        if (other.gameObject.tag == "Building")
+        {
+            SoundManager.Instance.PlaySe(SE.AttackBuilding);
+            BuildingPos = other.gameObject.transform.position;
+            Debug.Log(BuildingPos);
+            Destroy(other.gameObject);
+            CrashBuilding = true;
+            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
+        }
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //地面に当たったら
+        if (collision.gameObject.tag == "Ground")
+        {
+            rb2d.velocity = Vector2.zero;
+            Attack = false;
+            CollisionBuilding = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
     IEnumerator PositionYReset()
     {
         yield return new WaitForSeconds(0.5f);
@@ -149,12 +146,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
         {
             ZombieKill = Wave3ZombieKill;
         }
-
-
-
-
-
-            if (Die == false)　//もし死んでいなかったら
+        
+        if (Die == false)　//もし死んでいなかったら
         {
             if (Life <= 0)　//ライフが0になったら
             {                
@@ -202,6 +195,4 @@ public class Bird : SingletonMonoBehaviour<Bird>
         float degree = rad * Mathf.Rad2Deg;
         return degree;
     }
-
-
 }
