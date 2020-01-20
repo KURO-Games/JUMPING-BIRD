@@ -1,0 +1,72 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "通常"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "歩く"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "ヒット"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "ノックダウン"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "目切り替え"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "星"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "ピヨり"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "目回転"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "投げる"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "石"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "星"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "地面"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "パーツ"
+		}
+	]
+}
