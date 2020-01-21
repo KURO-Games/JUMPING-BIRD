@@ -20,7 +20,7 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = "ゾンビ: " + Kill + " / " + Bird.GetComponent<Bird>().ZombieKill;
+        GetComponent<Text>().text = Kill + " / " + Bird.GetComponent<Bird>().ZombieKill;
 
         if(Kill == Bird.GetComponent<Bird>().ZombieKill)
         {
