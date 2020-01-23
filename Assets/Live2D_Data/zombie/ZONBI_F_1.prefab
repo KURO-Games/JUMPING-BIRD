@@ -2046,7 +2046,7 @@ GameObject:
   - component: {fileID: 1688272740560138757}
   m_Layer: 0
   m_Name: ZONBI_F_1
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
