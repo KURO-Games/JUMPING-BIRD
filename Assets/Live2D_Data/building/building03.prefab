@@ -2546,6 +2546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84820ffe5d3ec4cb098a75cf793a50bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Building: {fileID: 5079340167971080318}
   BoxColiderChoice: 0
 --- !u!1 &3490479961640814481
 GameObject:
@@ -4755,6 +4756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84820ffe5d3ec4cb098a75cf793a50bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Building: {fileID: 5079340167971080318}
   BoxColiderChoice: 1
 --- !u!1 &6439957971927706123
 GameObject:
@@ -6629,6 +6631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84820ffe5d3ec4cb098a75cf793a50bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Building: {fileID: 5079340167971080318}
   BoxColiderChoice: 2
 --- !u!1 &9181988058721153786
 GameObject:

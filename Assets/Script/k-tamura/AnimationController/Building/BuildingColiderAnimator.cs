@@ -10,6 +10,8 @@ public class BuildingColiderAnimator : MonoBehaviour
         BuildingRight,
         BuildingUnder
     }
+    [SerializeField, Header("アニメーション")]
+    GameObject Building;
     [SerializeField, Header("ビルBoxColider設定")]
     BoxColiders BoxColiderChoice;
 
@@ -17,7 +19,8 @@ public class BuildingColiderAnimator : MonoBehaviour
     {
         if (collision.tag == "Bird")
         {
-            transform.root.gameObject.GetComponent<Animator>().SetTrigger(BoxColiderChoice.ToString());
+            SoundManager.Instance.PlaySe(SE.AttackBuilding);
+            Building.GetComponent<Animator>().SetTrigger(BoxColiderChoice.ToString());
         }
     }
 
