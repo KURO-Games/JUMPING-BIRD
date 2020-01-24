@@ -223,6 +223,7 @@
     <Compile Include="Assets\Script\LEE\damageEffect.cs" />
     <Compile Include="Assets\Script\LEE\EffectController.cs" />
     <Compile Include="Assets\Script\LEE\EffectSpecialSkill.cs" />
+    <Compile Include="Assets\Script\LEE\PlayerDamaged.cs" />
     <Compile Include="Assets\Script\LEE\SkillEffect.cs" />
     <Compile Include="Assets\Script\LEE\SpectrumEffect.cs" />
     <Compile Include="Assets\Script\LEE\UILine.cs" />
