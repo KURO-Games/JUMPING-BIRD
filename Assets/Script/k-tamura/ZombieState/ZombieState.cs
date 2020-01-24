@@ -19,7 +19,7 @@ public class ZombieState : MonoBehaviour
         switch (_zombieStatus)
         {
             case ZombieStatus.Big:
-                HitPoint = 2;
+                HitPoint = 3;
                 RockStr = 2;
                 break;
             case ZombieStatus.Red:
