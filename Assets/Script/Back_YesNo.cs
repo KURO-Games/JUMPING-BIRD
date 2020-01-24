@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Back_YesNo : MonoBehaviour
 {
     public GameObject GoTitle;
+    [SerializeField]
+    private GameObject Bird;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class Back_YesNo : MonoBehaviour
     {
         SoundManager.Instance.FadeOutBgm(1);
         GoTitle.gameObject.SetActive(false);
+        Bird.GetComponent<BirdJumper>().enabled = true;
         Time.timeScale = 1;
     }
 
