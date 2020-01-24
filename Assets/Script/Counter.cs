@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
+    [HideInInspector]
     public int Kill = 0;
     [SerializeField]
     private GameObject Bird;
-    [SerializeField]
-    private GameObject Make;
-    bool DeBug = false; //debug用
+    bool DeBug = false; //debug用    
 
     void Start()
     {
@@ -20,17 +19,39 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = Kill + " / " + Bird.GetComponent<Bird>().ZombieKill;
+        GetComponent<Text>().text = Kill + " / " + GameMgr.Instance.wantKills;
 
-        if(Kill == Bird.GetComponent<Bird>().ZombieKill)
+        if(Make.Instance.ZombieCount == GameMgr.Instance.wantKills - 1)
         {
-            Destroy(Make.GetComponent<Make>());
-
+            Make.Instance.makeZonbies = false;
+            //ボスゾンビを出す処理
+            if(Kill == GameMgr.Instance.wantKills)
+            {
+                if (GameMgr.Instance.Wave == 3)
+                {                    
+                    CameraFollow.Instance.AllowBool = true;
+                    CameraFollow.Instance.goalCol.isTrigger = true;
+                    return;
+                }
+                Kill = 0;
+                StartCoroutine(NextWave(2.5f));
+            }
+            
             if (DeBug == false)//debug用
             {
                 //Debug.Log("ゾンビを倒しました！");
                 DeBug = true;
             }
         }
+    }
+
+    private IEnumerator NextWave(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        //「Wave2」みたいなUI表示
+        GameMgr.Instance.Wave++;
+        GameMgr.Instance.WaveChange();
+        Make.Instance.makeZonbies = false;
+        yield return null;
     }
 }
