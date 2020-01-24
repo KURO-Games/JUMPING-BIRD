@@ -156,7 +156,7 @@ PlayerSettings:
     Standalone: com.Company.ProductName
     iOS: h.game-project.jumpingbird
   buildNumber:
-    iOS: 6
+    iOS: 7
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0

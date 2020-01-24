@@ -121,10 +121,10 @@ TextureImporter:
       name: SettingUI(yes)_0
       rect:
         serializedVersion: 2
-        x: 140
-        y: 180
-        width: 215
-        height: 120
+        x: 0
+        y: 0
+        width: 222
+        height: 124
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
