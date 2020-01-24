@@ -14,6 +14,8 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private float Speed=2;
     [SerializeField]
     private GameObject _Finger;
+    [HideInInspector]
+    public bool groundCheck;
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !RayFlag)

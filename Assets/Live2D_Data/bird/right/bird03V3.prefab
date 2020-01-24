@@ -875,6 +875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 160
   _Finger: {fileID: 6636295030565361112}
+  groundCheck: 0
 --- !u!114 &9107494167732669946
 MonoBehaviour:
   m_ObjectHideFlags: 0
