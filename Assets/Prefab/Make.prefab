@@ -76,7 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Zombie: {fileID: 3890016307497074576, guid: 1a42740d47a314e83b0da08bfcdaae5c, type: 3}
-  Building: {fileID: 395435732850101013, guid: 4473b39e2f64a4017837830378107688, type: 3}
+  Building: {fileID: 5079340167971080318, guid: 4473b39e2f64a4017837830378107688,
+    type: 3}
   Zombies: {fileID: 8070112997151214693}
   Buildings: {fileID: 1710174714785249118}
   ZombieMax: 10
