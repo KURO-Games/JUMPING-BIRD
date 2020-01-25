@@ -110,7 +110,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
 
         if(other.tag == "Death")
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             transform.position = new Vector3(DeathPos.transform.position.x, DeathPos.transform.position.y);
             Life -= 1;
             StartCoroutine(DeathTimer(1.5f));

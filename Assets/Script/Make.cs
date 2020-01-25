@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class Make : SingletonMonoBehaviour<Make>
 {
-    public GameObject Zombie;
-    public GameObject Building;
+    [SerializeField]
+    private GameObject Zombie;
+    [SerializeField]
+    private GameObject Building;
     [Header("子オブジェクト追加")]
     [SerializeField]
     private GameObject Zombies, Buildings;
