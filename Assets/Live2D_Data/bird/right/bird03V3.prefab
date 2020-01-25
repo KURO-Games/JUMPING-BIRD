@@ -818,7 +818,7 @@ MonoBehaviour:
   Make: {fileID: 0}
   CrashBuilding: 0
   CrashZombie: 0
-  DamageEffect: 0
+  isDamaged: 0
   BuildingPos: {x: 0, y: 0, z: 0}
   ZombiePos: {x: 0, y: 0, z: 0}
   isEffect: 0

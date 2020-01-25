@@ -151,6 +151,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
                 Die = true;
                 StartCoroutine(SceneFades(3f));
                 DisplayManager.Instance.DispMgr(false);
+                GetComponent<BirdJumper>().enabled = false;
+
             }
             
             if (AngleCal(oldPosition, transform.position) < 0&&Attack)

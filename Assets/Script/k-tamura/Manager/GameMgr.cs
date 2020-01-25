@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// GameManager
+/// </summary>
 public class GameMgr : SingletonMonoBehaviour<GameMgr>
 {
     [Header("BirdParamater")]

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ZombieAnimatorController : MonoBehaviour
 {
-    [SerializeField]
     private Animator animator;
     private void Start()
     {
