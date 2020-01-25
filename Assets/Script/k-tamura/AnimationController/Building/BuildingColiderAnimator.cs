@@ -21,8 +21,8 @@ public class BuildingColiderAnimator : MonoBehaviour
     private bool destroy;
     private void Start()
     {
-        Animator animOne = Building.GetComponent<Animator>();
-        AnimatorStateInfo infAnim = animOne.GetCurrentAnimatorStateInfo(0);
+        Animator _animOne = Building.GetComponent<Animator>();
+        AnimatorStateInfo infAnim = _animOne.GetCurrentAnimatorStateInfo(0);
         mLength = infAnim.length;
         mCur = 0;
     }

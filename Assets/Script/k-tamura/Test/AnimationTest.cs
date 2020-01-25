@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// アニメーション確認用
+/// </summary>
 public class AnimationTest : MonoBehaviour
 {
     [SerializeField]

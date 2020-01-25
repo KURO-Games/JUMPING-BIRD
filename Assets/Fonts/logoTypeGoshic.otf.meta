@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ad3bff8be5aa24c4abe882478e74abbb
+guid: 4a09d7c3c401a48cf82f97844fe2e49a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: ZerozeroNineHr
+  fontName: 07LogoTypeGothic7
   fontNames:
-  - ZerozeroNineHr
+  - 07LogoTypeGothic7
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
