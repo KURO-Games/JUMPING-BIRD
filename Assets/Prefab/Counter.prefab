@@ -94,4 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Kill: 0
   Bird: {fileID: 0}
-  Make: {fileID: 6802278547532519230, guid: 270feae3b2a1c89459ba96a8687f898f, type: 3}
+  zombiePrefabs:
+  - {fileID: 4882165377010039861, guid: 0d067d8aa0e4f8f43ac9691a3dd6ce96, type: 3}
+  - {fileID: 2162734689402058447, guid: c4ffe1ed920d386468b89940476c79f0, type: 3}
+  - {fileID: 3572448232059373973, guid: 19f5fa5d4bfd07c4dbc5f19294b52642, type: 3}
+  Random1: 5

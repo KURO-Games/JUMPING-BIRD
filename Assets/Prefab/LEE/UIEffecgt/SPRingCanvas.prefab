@@ -4968,6 +4968,7 @@ GameObject:
   - component: {fileID: 8920661968054096026}
   - component: {fileID: 1000018762}
   - component: {fileID: 6337647068505432918}
+  - component: {fileID: 3385406478986762659}
   m_Layer: 5
   m_Name: SPIcon
   m_TagString: Untagged
@@ -5048,7 +5049,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6337647068505432918}
+        - m_Target: {fileID: 3385406478986762659}
           m_MethodName: HissatsuWaza
           m_Mode: 1
           m_Arguments:
@@ -5074,6 +5075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9478c11c3668e49bba476d43f8ad86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _zombie: {fileID: 0}
   birdIcon: {fileID: 8920661968054096028}
   Gauge: {fileID: 8920661968687793109}
   SPPos: {fileID: 0}
@@ -5088,6 +5090,7 @@ MonoBehaviour:
   SPEffect_InLine: {fileID: 2787306549229715310}
   SpectrumEffect: 0
   SpecuakSkill: 0
+  zombie: {fileID: 0}
 --- !u!114 &6337647068505432918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5100,6 +5103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9478c11c3668e49bba476d43f8ad86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _zombie: {fileID: 0}
   birdIcon: {fileID: 8920661968054096028}
   Gauge: {fileID: 8920661968687793109}
   SPPos: {fileID: 0}
@@ -5114,6 +5118,35 @@ MonoBehaviour:
   SPEffect_InLine: {fileID: 2787306549229715310}
   SpectrumEffect: 0
   SpecuakSkill: 0
+  zombie: {fileID: 0}
+--- !u!114 &3385406478986762659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920661968054096030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9478c11c3668e49bba476d43f8ad86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zombie: {fileID: 40863783282742619, guid: b38038fb8dc5fa14baed27744d0df635, type: 3}
+  birdIcon: {fileID: 8920661968054096028}
+  Gauge: {fileID: 8920661968687793109}
+  SPPos: {fileID: 0}
+  hippareUI: {fileID: 0}
+  goUI: {fileID: 0}
+  SPSpeed: -5
+  SPGimickStart: 0
+  zombieParent: {fileID: 0}
+  HissatsuFlag: 0
+  SPEffect_Star: {fileID: 7014339631532337555}
+  SPEffect_OutLine: {fileID: 2787306549101510664}
+  SPEffect_InLine: {fileID: 2787306549229715310}
+  SpectrumEffect: 0
+  SpecuakSkill: 0
+  zombie: {fileID: 8034279527375736890, guid: 1a42740d47a314e83b0da08bfcdaae5c, type: 3}
 --- !u!1 &8920661968253941156
 GameObject:
   m_ObjectHideFlags: 0
@@ -5386,23 +5419,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6236833758722743916, guid: 4fcc814f564b87842a38b0d8216d008a,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6236833758722743916, guid: 4fcc814f564b87842a38b0d8216d008a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6236833758722743916, guid: 4fcc814f564b87842a38b0d8216d008a,
-        type: 3}
       propertyPath: m_LocalScale.z
       value: 0.012342884
-      objectReference: {fileID: 0}
-    - target: {fileID: 8434166328810539098, guid: 4fcc814f564b87842a38b0d8216d008a,
-        type: 3}
-      propertyPath: Bird
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fcc814f564b87842a38b0d8216d008a, type: 3}

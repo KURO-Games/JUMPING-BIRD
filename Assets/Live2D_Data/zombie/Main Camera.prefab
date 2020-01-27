@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &646378247932930865
 Transform:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &646378247976374848
 Transform:
   m_ObjectHideFlags: 0
@@ -221,6 +221,7 @@ Transform:
   - {fileID: 646378248743252518}
   - {fileID: 646378247976374848}
   - {fileID: 646378247932930865}
+  - {fileID: 8636594865302218243}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -322,3 +323,88 @@ Transform:
   m_Father: {fileID: 646378248634019314}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1209234348035416774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 646378248634019314}
+    m_Modifications:
+    - target: {fileID: 7427361019797112004, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_Name
+      value: Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.335234
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427361019760454058, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 646378248634019086}
+    - target: {fileID: 7427361019851739355, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 646378248634019086}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f86f7ca4cc67434bb4e41ffa07345ea, type: 3}
+--- !u!4 &8636594865302218243 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7427361019797112005, guid: 9f86f7ca4cc67434bb4e41ffa07345ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1209234348035416774}
+  m_PrefabAsset: {fileID: 0}
