@@ -74,6 +74,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
             ZombiePos = other.transform.position;
             //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
             SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
+            Destroy(other.gameObject);
             CrashZombie = true;
             CounterText.GetComponent<Counter>().Kill += 1;
         }
@@ -107,13 +108,19 @@ public class Bird : SingletonMonoBehaviour<Bird>
             //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
             SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
         }
-
+        //穴に落ちたら
         if(other.tag == "Death")
         {
             //this.gameObject.SetActive(false);
             transform.position = new Vector3(DeathPos.transform.position.x, DeathPos.transform.position.y);
             Life -= 1;
             StartCoroutine(DeathTimer(1.5f));
+        }
+
+        if (other.tag == "Goal")
+        {
+            DisplayManager.Instance.DispMgr(true);
+            StartCoroutine(SceneFades(5f));
         }
     }
 
@@ -173,7 +180,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
 
     private IEnumerator DeathTimer(float waitTime)
     {
-        this.rb2d.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        this.rb2d.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionY  | RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(waitTime);
         this.rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }    

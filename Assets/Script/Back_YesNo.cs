@@ -26,5 +26,4 @@ public class Back_YesNo : MonoBehaviour
         Bird.GetComponent<BirdJumper>().enabled = true;
         Time.timeScale = 1;
     }
-
 }

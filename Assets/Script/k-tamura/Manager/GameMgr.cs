@@ -17,14 +17,14 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [HideInInspector]
     public int Wave = 1;//今のステージレベル
     [HideInInspector]
-    public int wantKills;//必要なゾンビを倒す数
+    public int wantKills = 0;//必要なゾンビを倒す数
 
     [SerializeField]
-    private int Wave1Zombies = 40;
+    private int Wave1Zombies;
     [SerializeField]
-    private int Wave2Zombies = 60;
+    private int Wave2Zombies;
     [SerializeField]
-    private int Wave3Zombies = 80;
+    private int Wave3Zombies;
 
     private void Start()
     {
