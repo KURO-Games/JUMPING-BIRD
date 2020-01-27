@@ -8,12 +8,12 @@ using UnityEditor;
 /// </summary>
 public class GameMgr : SingletonMonoBehaviour<GameMgr>
 {
-    [Header("BirdParamater")]
-    public float BirdJumpPower;
+    [SerializeField]//Header("BirdParamater")]
+    protected float BirdJumpPower { get; set; }
     public float BirdJumpMaxPosition, BirdJumpMinPosition;
     [Header("ZombieParamater")]
     public int ZombieIt;
-
+    
     private void Start()
     {
         SoundManager.PlayBgm(BGM.Settings);

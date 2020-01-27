@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +43,9 @@ public class BuildingColiderAnimator : MonoBehaviour
             destroy = true;
             SoundManager.Instance.PlaySe(SE.AttackBuilding);
             Building.GetComponent<Animator>().SetTrigger(BoxColiderChoice.ToString());
+        }else
+        {
+            return;
         }
     }
 

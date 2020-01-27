@@ -43,13 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32819ea2718fc9418ef6d99c85aaeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StarEffectSub: {fileID: 3571659003399071218, guid: 7b818ec246abeba45ad8ce11ebd2d7cf,
+  StarEffectSub: {fileID: 4637083179421640691, guid: 713f23395d0aa2a4e9edbe64a5b3576c,
     type: 3}
-  StarEffectMain: {fileID: 3571659003399071218, guid: 7b818ec246abeba45ad8ce11ebd2d7cf,
+  StarEffectMain: {fileID: 2389331062151390429, guid: a1c7f9d726186904396b440238f1e87a,
     type: 3}
   DestroyEffect_Z: {fileID: 5955469579272162762, guid: 636592f0e4054664abeca799254b5943,
     type: 3}
-  DestroyEffect_B: {fileID: 8842771501781888909, guid: f1118ad675dd9e748bbd260bc2da99fd,
+  DestroyEffect_B: {fileID: 3571659003399071218, guid: 7b818ec246abeba45ad8ce11ebd2d7cf,
     type: 3}
   SpectrumEffect: {fileID: 5676342595657828726, guid: c856dd90bb904834cad5b121bb3f7970,
     type: 3}

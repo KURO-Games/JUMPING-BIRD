@@ -1635,9 +1635,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7282756140665517249, guid: 0e815518da0c00b459839d6ecb4ed169,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7282756140665517249, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
       propertyPath: m_LocalScale.y
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3661075145221357636, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3661075145221357636, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3661075145221357636, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3661075145221357636, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726493226151955237, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 02bb68f1a93409c4d8420778a186be33,
+        type: 3}
+    - target: {fileID: 6726493226151955237, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726493226151955237, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8212174878188959117, guid: 0e815518da0c00b459839d6ecb4ed169,
+        type: 3}
+      propertyPath: allowSprite.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 02bb68f1a93409c4d8420778a186be33,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e815518da0c00b459839d6ecb4ed169, type: 3}
 --- !u!1 &6636295030565361112 stripped
