@@ -38,6 +38,7 @@ public class BuildingColiderAnimator : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.LogWarning(collision.name+" "+collision.tag);
         if (collision.tag == "Bird")
         {
             destroy = true;

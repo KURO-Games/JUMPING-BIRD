@@ -6,7 +6,7 @@ public class CloudRoop : MonoBehaviour
 {
     [SerializeField]
     private GameObject mainCamera;
-    private float cloudSize = 20.3f;
+    private float cloudSize = 20.5f;
     [SerializeField]
     private float cloudSpeed;
     // Start is called before the first frame update
