@@ -5,21 +5,22 @@ using UnityEngine.UI;
 
 public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
 {
-    [SerializeField]
-    //private GameObject Bird;
     private float _set=5f;
     [SerializeField]
     bool NearGoal;
     [SerializeField]
     float offset;
     Vector3 after;
-    [SerializeField]
-    private GameObject Goal_Back;
-    private BoxCollider2D Goal_BackCol;
     private bool backDoOnce = true;
     [SerializeField]
     private GameObject rightEnd;
-    private bool doOnce;
+    [HideInInspector]
+    public bool AllowBool;
+    [SerializeField]
+    private Image goalAllow;
+    [SerializeField]
+    public BoxCollider2D goalCol;
+
     void Start()
     {
         //Bird = GameObject.FindGameObjectWithTag("Bird");
@@ -31,8 +32,7 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
     }
     void Update()
     {
-        offset = rightEnd.transform.position.x - this.gameObject.transform.position.x + 5.5f;
-
+        offset = rightEnd.transform.position.x - this.gameObject.transform.position.x + 5.5f;        
         if (offset <= _set)
         {
             NearGoal = true;
@@ -72,15 +72,20 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
             //    NearGoal = false;
             //    doOnce = true;
             //}
-            if (backDoOnce)
+            if (backDoOnce && AllowBool)
             {
+                goalCol.isTrigger = false;
+                goalAllow.gameObject.SetActive(false);
                 backDoOnce = false;
                 SoundManager.PlayBgm(BGM.ClearField);
             }
-            after.x = this.transform.position.x;
-            this.transform.position = after;
+            //after.x = this.transform.position.x;
+            //this.transform.position = after;
         }
-
+        if (AllowBool)
+        {
+            goalAllow.gameObject.SetActive(true);
+        }
     }
     public Vector3 CameraThisPosition()
     {
