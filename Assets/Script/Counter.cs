@@ -14,6 +14,7 @@ public class Counter : MonoBehaviour
     private GameObject[] zombiePrefabs;
     [SerializeField]
     private float Random1;
+    private bool doOnce = true;
     void Start()
     {
 
@@ -23,40 +24,50 @@ public class Counter : MonoBehaviour
     void Update()
     {
         GetComponent<Text>().text = Kill + " / " + GameMgr.Instance.wantKills;
-
+        Debug.Log(GameMgr.Instance.Wave + ":" + GameMgr.Instance.wantKills);
+        Debug.Log(Make.Instance.ZombieCount);
         if(Make.Instance.ZombieCount == GameMgr.Instance.wantKills - 1)
         {
-            Make.Instance.makeZonbies = false;            
+            Debug.Log(GameMgr.Instance.Wave + " InBoss");
+            Make.Instance.makeZombies = false;            
             if (Kill == GameMgr.Instance.wantKills - 1)
             {
-                //ボスゾンビを出す処理
-                GameObject _zombie = Instantiate(zombiePrefabs[GameMgr.Instance.Wave], new Vector3(Bird.transform.position.x + Random1, -5f, 1f), Quaternion.identity);
-                switch (GameMgr.Instance.Wave)
+                if (doOnce)
                 {
-                    case 1:
-                        _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Green;
-                        break;
-                    case 2:
-                        _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Red;
-                        break;
-                    case 3:
-                        _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Big;
-                        break;
-                }
-                if (Kill == GameMgr.Instance.wantKills)
-                {
-                    if (GameMgr.Instance.Wave == 3)
+                    doOnce = false;
+                    //ボスゾンビを出す処理
+                    GameObject _zombie = Instantiate(zombiePrefabs[GameMgr.Instance.Wave - 1], new Vector3(Bird.transform.position.x + Random1, -5f, 1f), Quaternion.identity);
+
+                    switch (GameMgr.Instance.Wave)
                     {
-                        CameraFollow.Instance.AllowBool = true;
-                        CameraFollow.Instance.goalCol.isTrigger = true;
-                        return;
+                        case 1:
+                            _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Red;
+                            break;
+                        case 2:
+                            _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Green;
+                            break;
+                        case 3:
+                            _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Big;
+                            break;
                     }
-                    Kill = 0;
-                    StartCoroutine(NextWave(2.5f));
-                }
+                }                                                
             }
-            
-            
+
+            if (Kill == GameMgr.Instance.wantKills)
+            {
+                if (GameMgr.Instance.Wave == 3)
+                {
+                    CameraFollow.Instance.AllowBool = true;
+                    CameraFollow.Instance.goalCol.isTrigger = true;
+                    return;
+                }
+                Kill = 0;
+                Make.Instance.ZombieCount = 0;
+                doOnce = true;
+                StartCoroutine(NextWave(2.5f));
+            }
+
+
             if (DeBug == false)//debug用
             {
                 //Debug.Log("ゾンビを倒しました！");
@@ -71,7 +82,8 @@ public class Counter : MonoBehaviour
         //「Wave2」みたいなUI表示
         GameMgr.Instance.Wave++;
         GameMgr.Instance.WaveChange();
-        Make.Instance.makeZonbies = false;
+        Make.Instance.makeZombies = true;
+        Make.Instance.MakeZombie();
         yield return null;
     }
 }

@@ -26,17 +26,18 @@ public class Make : SingletonMonoBehaviour<Make>
     public bool CanMakeBuilding = false;
     private int _makeZombies=0, _makeBuildings=0;
     [HideInInspector]
-    public bool makeZonbies;
+    public bool makeZombies = true;
+    
     private void Start()
     {       
-        Invoke("MakeZombie", 5f);
+        Invoke("MakeZombie", 5f);        
     }
 
     public void MakeZombie()
     {
         //Debug.Log("SPGimick.Instance.SPGimickStart" + SPGimick.Instance.SPGimickStart);
         //Debug.Log("Bird.Instance.Die" + Bird.Instance.Die);
-        if (Bird.Instance.Die == false && !SPGimick.Instance.SPGimickStart && makeZonbies)
+        if (!Bird.Instance.Die && !SPGimick.Instance.SPGimickStart && makeZombies)
         {
             if (ZombieQTY < ZombieMax)
             {

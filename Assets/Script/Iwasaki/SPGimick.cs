@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SPGimick : SingletonMonoBehaviour<SPGimick>
 {
     [SerializeField]
+    private GameObject _zombie;
+    [SerializeField]
     private Image birdIcon;
     private Color iconColor;
 
@@ -62,7 +64,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     void Start()
     {
         iconColor = birdIcon.color;
-        //Gauge.fillAmount = 0.8f;
+        Gauge.fillAmount = 1f;
     }
 
     // Update is called once per frame
@@ -195,8 +197,10 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         if (SpecuakSkill && Bird.Instance.rb2d.velocity == Vector2.zero) // 追加　イゴンヒ
         {
             for (int i = 0; i < parent_trans.childCount; ++i)
-            {
-                GameObject.Destroy(parent_trans.GetChild(i).gameObject);
+            {                
+                
+                    GameObject.Destroy(parent_trans.GetChild(i).gameObject);
+                              
             }
         }
     }

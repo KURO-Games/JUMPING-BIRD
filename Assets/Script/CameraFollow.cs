@@ -66,22 +66,24 @@ public class CameraFollow : SingletonMonoBehaviour<CameraFollow>
         }
         else
         {
+            AllowBool = false;
             //if (Bird.Instance.bird().transform.position.x <= this.transform.position.x )
             //{
             //    Debug.Log("aaa");
             //    NearGoal = false;
             //    doOnce = true;
             //}
-            if (backDoOnce && AllowBool)
+            if (backDoOnce && !AllowBool)
             {
-                goalCol.isTrigger = false;
-                goalAllow.gameObject.SetActive(false);
                 backDoOnce = false;
-                SoundManager.PlayBgm(BGM.ClearField);
+                goalCol.isTrigger = false;
+                goalAllow.gameObject.SetActive(false);                
+                //SoundManager.PlayBgm(BGM.ClearField);
             }
-            //after.x = this.transform.position.x;
-            //this.transform.position = after;
+            after.x = this.transform.position.x;
+            this.transform.position = after;
         }
+
         if (AllowBool)
         {
             goalAllow.gameObject.SetActive(true);
