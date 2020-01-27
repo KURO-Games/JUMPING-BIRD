@@ -61,6 +61,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
     public bool SpectrumEffect; //鳥の残像発生 
     public bool SpecuakSkill;
+    [SerializeField]
+    private Zombie zombie;
     void Start()
     {
         iconColor = birdIcon.color;
@@ -197,10 +199,11 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         if (SpecuakSkill && Bird.Instance.rb2d.velocity == Vector2.zero) // 追加　イゴンヒ
         {
             for (int i = 0; i < parent_trans.childCount; ++i)
-            {                
-                
+            {
+                if (zombie.inCamera)
+                {
                     GameObject.Destroy(parent_trans.GetChild(i).gameObject);
-                              
+                }        
             }
         }
     }

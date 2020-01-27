@@ -2170,6 +2170,8 @@ MonoBehaviour:
   rightTargetObject: {fileID: 6068398089558592994, guid: 4a53d2ea80e2cb34ea7faf0382b28e62,
     type: 3}
   ThrowingAngle: 32.6
+  inCamera: 0
+  camera: {fileID: 646378248634019085, guid: e7507e8b2764e354699236e71e0e6e7b, type: 3}
 --- !u!70 &90866235572778865
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

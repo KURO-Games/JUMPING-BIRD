@@ -14,6 +14,7 @@ TagManager:
   - RightCol
   - LeftCol
   - Death
+  - Goal
   layers:
   - Default
   - TransparentFX
