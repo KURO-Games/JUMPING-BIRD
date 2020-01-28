@@ -24,8 +24,6 @@ public class Zombie : MonoBehaviour
     private Vector3 targetPosition;
     //[HideInInspector]
     public bool inCamera;
-    [SerializeField]
-    private Camera camera;
     enum ZonbieState
     {
         Wait,
@@ -43,8 +41,10 @@ public class Zombie : MonoBehaviour
         rid2D = this.gameObject.GetComponent<Rigidbody2D>();
     }
     void Update()
-    {        
-        if(this.gameObject.transform.position.x < camera.transform.position.x + 10 && camera.transform.position.x - 10 < this.gameObject.transform.position.x)
+    {
+        //Debug.Log("Birdpos" + Bird.Instance.bird().transform.position.x);
+
+        if (this.gameObject.transform.position.x < Bird.Instance.bird().transform.position.x + 10 && Bird.Instance.bird().transform.position.x - 10 < this.gameObject.transform.position.x)
         {
             inCamera = true;
         }
