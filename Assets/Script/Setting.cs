@@ -8,6 +8,8 @@ public class Setting : MonoBehaviour
     private GameObject GoTitle;
     [SerializeField]
     private GameObject Bird;
+    [SerializeField]
+    private GameObject SPIcon;
 
     void Start()
     {
@@ -20,6 +22,7 @@ public class Setting : MonoBehaviour
         GoTitle.gameObject.SetActive(true);
         Time.timeScale = 0;
         Bird.GetComponent<BirdJumper>().enabled = false;
+        SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
   
 

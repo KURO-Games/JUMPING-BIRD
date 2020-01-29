@@ -8,6 +8,8 @@ public class Back_YesNo : MonoBehaviour
     public GameObject GoTitle;
     [SerializeField]
     private GameObject Bird;
+    [SerializeField]
+    private GameObject SPIcon;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class Back_YesNo : MonoBehaviour
         SoundManager.Instance.FadeOutBgm(1);
         GoTitle.gameObject.SetActive(false);
         Bird.GetComponent<BirdJumper>().enabled = true;
+        SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = true;
         Time.timeScale = 1;
     }
 }
