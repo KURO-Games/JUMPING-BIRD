@@ -24,8 +24,6 @@ public class Zombie : MonoBehaviour
     private Vector3 targetPosition;
     //[HideInInspector]
     public bool inCamera;
-    [SerializeField]
-    private Camera camera;
     enum ZonbieState
     {
         Wait,
@@ -44,8 +42,9 @@ public class Zombie : MonoBehaviour
     }
     void Update()
     {
-        /*
-        if(this.gameObject.transform.position.x < camera.transform.position.x + 10 && camera.transform.position.x - 10 < this.gameObject.transform.position.x)
+        //Debug.Log("Birdpos" + Bird.Instance.bird().transform.position.x);
+
+        if (this.gameObject.transform.position.x < Bird.Instance.bird().transform.position.x + 10 && Bird.Instance.bird().transform.position.x - 10 < this.gameObject.transform.position.x)
         {
             inCamera = true;
         }
@@ -53,7 +52,7 @@ public class Zombie : MonoBehaviour
         {
             inCamera = false;
         }
-        */
+
         float step = speed * Time.deltaTime;
         if (Bird.Instance.Die == false)
         {

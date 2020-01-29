@@ -63,6 +63,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     public bool SpecuakSkill;
     [SerializeField]
     private Zombie zombie;
+    [SerializeField]
+    private Counter counter;
     void Start()
     {
         iconColor = birdIcon.color;
@@ -196,13 +198,14 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private void DestroyChildObject(Transform parent_trans)
     {
         //必殺の技が発動し鳥がの速度が地面に当たったらゾンビが消える
-        if (SpecuakSkill && Bird.Instance.rb2d.velocity == Vector2.zero) // 追加　イゴンヒ
+        if (SpecuakSkill /*&& Bird.Instance.rb2d.velocity == Vector2.zero*/) // 追加　イゴンヒ
         {
             for (int i = 0; i < parent_trans.childCount; ++i)
             {
-                if (zombie.inCamera)
+                if (parent_trans.GetChild(i).GetComponent<Zombie>().inCamera == true)
                 {
                     GameObject.Destroy(parent_trans.GetChild(i).gameObject);
+                    counter.Kill++;
                 }        
             }
         }
