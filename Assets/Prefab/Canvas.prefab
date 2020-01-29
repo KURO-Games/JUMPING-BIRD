@@ -1109,11 +1109,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7441408022495174386, guid: 9993135bd25458340b6e9f748e6ec997,
-        type: 3}
-      propertyPath: Bird
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9993135bd25458340b6e9f748e6ec997, type: 3}
 --- !u!224 &4825847798108349723 stripped
@@ -1246,15 +1241,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fcc814f564b87842a38b0d8216d008a, type: 3}
---- !u!1 &7187297005619039897 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5045019636491110110, guid: 4fcc814f564b87842a38b0d8216d008a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2719587219446335559}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8300210428925957675 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6236833758722743916, guid: 4fcc814f564b87842a38b0d8216d008a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2719587219446335559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7187297005619039897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5045019636491110110, guid: 4fcc814f564b87842a38b0d8216d008a,
     type: 3}
   m_PrefabInstance: {fileID: 2719587219446335559}
   m_PrefabAsset: {fileID: 0}
@@ -1265,11 +1260,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2719587218728102923}
     m_Modifications:
-    - target: {fileID: 206399422917399940, guid: 9d6d5c059a38965478868e61975cb57c,
-        type: 3}
-      propertyPath: m_Name
-      value: Back
-      objectReference: {fileID: 0}
     - target: {fileID: 315163118795403460, guid: 9d6d5c059a38965478868e61975cb57c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1375,16 +1365,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 206399422917399940, guid: 9d6d5c059a38965478868e61975cb57c,
+        type: 3}
+      propertyPath: m_Name
+      value: Back
+      objectReference: {fileID: 0}
     - target: {fileID: 206399422917399943, guid: 9d6d5c059a38965478868e61975cb57c,
         type: 3}
       propertyPath: GoTitle
       value: 
       objectReference: {fileID: 7187297005619039897}
-    - target: {fileID: 206399422917399943, guid: 9d6d5c059a38965478868e61975cb57c,
-        type: 3}
-      propertyPath: Bird
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d6d5c059a38965478868e61975cb57c, type: 3}
 --- !u!224 &2441589836595266005 stripped
