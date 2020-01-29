@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Back_YesNo : MonoBehaviour
 {
-    public GameObject GoTitle;
     [SerializeField]
-    private GameObject Bird;
+    private GameObject GoTitle;
+    [SerializeField]
+    private GameObject Button;
 
     void Start()
     {
@@ -16,14 +17,17 @@ public class Back_YesNo : MonoBehaviour
     public void OnClickYes()
     {
         SoundManager.Instance.FadeOutBgm(1);
-        SceneLoadManager.LoadScene("Init");
+        SceneLoadManager.LoadScene("Title");
+        GoTitle.gameObject.SetActive(false);
+        Button.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
     public void OnClickNo()
     {
         SoundManager.Instance.FadeOutBgm(1);
         GoTitle.gameObject.SetActive(false);
-        Bird.GetComponent<BirdJumper>().enabled = true;
+        Button.gameObject.SetActive(true);
         Time.timeScale = 1;
     }
+
 }

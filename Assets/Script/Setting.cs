@@ -7,7 +7,7 @@ public class Setting : MonoBehaviour
     [SerializeField]
     private GameObject GoTitle;
     [SerializeField]
-    private GameObject Bird;
+    private GameObject Button;
 
     void Start()
     {
@@ -18,10 +18,8 @@ public class Setting : MonoBehaviour
     {        
         SoundManager.PlayBgm(BGM.Settings);
         GoTitle.gameObject.SetActive(true);
+        Button.gameObject.SetActive(false);
         Time.timeScale = 0;
-        Bird.GetComponent<BirdJumper>().enabled = false;
     }
-  
-
 
 }
