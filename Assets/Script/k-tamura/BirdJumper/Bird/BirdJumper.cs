@@ -67,7 +67,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     {
        
         CameraFollow.Instance.CameraPos(cameraPos);
-        FingerPositions.Instance.Scales(true,new Vector2( Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), thisPosition), Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), thisPosition)),0);
+        FingerPositions.Instance.Scales(true,new Vector2( Vector2.Distance(Input.mousePosition, thisPosition), Vector2.Distance(Input.mousePosition, thisPosition)),0);
     }
     /// <summary>
     /// Mouseボタン離した時
