@@ -16,30 +16,21 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private GameObject _Finger;
     [HideInInspector]
     public bool groundCheck;
+    
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !RayFlag)//RayでBirdがタップされているか処理
-        {
-            Ray ray = CameraFollow.Instance.gameObjects().GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction, rayDistance);
-            if (hit.collider)
-            {
-                if (hit.collider.gameObject.name == this.gameObject.name && !SPGimick.Instance.SPGimickStart)
-                {
-                    Bird.Instance.Fly = true;
-                    //Debug.LogWarning(hit.collider.gameObject.name+ this.gameObject.name+ hit.collider.gameObject.name == this.gameObject.name);
-                    MouseButtonDown(true, false, 0, 0, 0);
-                    RayFlag = true;
-                }
-            }
 
+        if (Input.GetMouseButtonDown(0))//RayでBirdがタップされているか処理
+        {
+            Bird.Instance.Fly = true;
+            MouseButtonDown();
         }
-        if (Input.GetMouseButton(0) && RayFlag)
+        if (Input.GetMouseButton(0))
         {
             MouseButton();
         }
         //else this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-        if (Input.GetMouseButtonUp(0) && RayFlag)
+        if (Input.GetMouseButtonUp(0))
         {
             Bird.Instance.Attack = true;
             MouseButtonUp(false);
@@ -48,6 +39,8 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
 
 
     }
+    
+
     /// <summary>
     /// Addforce
     /// </summary>
@@ -59,22 +52,12 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     /// <summary>
     /// Mouseボタン押した時
     /// </summary>
-    /// <param name="Scale">初期数値を使用するか</param>
-    /// <param name="defaultAddScales">スケール調整時のデフォルト数値を利用するか</param>
-    /// <param name="x">大きさ指定</param>
-    /// <param name="y">大きさ指定</param>
-    /// <param name="AddScales">defaultがfalseの時有効</param>
-    public void MouseButtonDown(bool Scale,bool defaultAddScales,float x,float y,float AddScales)
+    public void MouseButtonDown()
     {
         _Finger.SetActive(true);
         FingerPositions.Instance.transform.localPosition=new Vector3(0, 0, 0);
-        thisPosition = this.transform.position;
-        if (Scale)
-            FingerPositions.Instance.DefaultScale();
-        else
-        {
-            FingerPositions.Instance.Scales(defaultAddScales,new Vector2(x,y),AddScales);
-        }
+        thisPosition = Input.mousePosition;
+        FingerPositions.Instance.DefaultScale();
         cameraPos = CameraFollow.Instance.CameraThisPosition();
         
     }/// <summary>
@@ -82,9 +65,8 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     /// </summary>
     public void MouseButton()
     {
-        //this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+       
         CameraFollow.Instance.CameraPos(cameraPos);
-        this.transform.position = thisPosition;
         FingerPositions.Instance.Scales(true,new Vector2( Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), thisPosition), Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), thisPosition)),0);
     }
     /// <summary>
@@ -104,10 +86,9 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         Instance.AddForces(AddForcePos * Speed);
 
         _Finger.SetActive(false);
-        RayFlag = false;
     }
     public Vector2 BirdFingerDistance()
     {
-        return thisPosition - (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return thisPosition - (Vector2)Input.mousePosition;
     }
 }
