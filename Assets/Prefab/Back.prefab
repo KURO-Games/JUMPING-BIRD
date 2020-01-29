@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5742611998171599222}
   - component: {fileID: 2184322246579081098}
   - component: {fileID: 4321383783334336331}
+  - component: {fileID: 3292301241476412846}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -142,5 +143,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoTitle: {fileID: 5045019636491110110, guid: 4fcc814f564b87842a38b0d8216d008a, type: 3}
-  Bird: {fileID: 6078091545271997775, guid: c13f6370b026249b69ee51052c60d097, type: 3}
   SPIcon: {fileID: 5130020912177130979, guid: 5ffc00c398364ef4cbd439753ec32745, type: 3}
+--- !u!225 &3292301241476412846
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321383783334336328}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
