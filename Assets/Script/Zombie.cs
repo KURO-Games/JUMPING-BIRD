@@ -43,7 +43,8 @@ public class Zombie : MonoBehaviour
         rid2D = this.gameObject.GetComponent<Rigidbody2D>();
     }
     void Update()
-    {        
+    {
+        /*
         if(this.gameObject.transform.position.x < camera.transform.position.x + 10 && camera.transform.position.x - 10 < this.gameObject.transform.position.x)
         {
             inCamera = true;
@@ -52,7 +53,7 @@ public class Zombie : MonoBehaviour
         {
             inCamera = false;
         }
-
+        */
         float step = speed * Time.deltaTime;
         if (Bird.Instance.Die == false)
         {
