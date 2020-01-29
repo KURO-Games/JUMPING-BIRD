@@ -1,0 +1,69 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 2.667,
+		"Fps": 30.0,
+		"Loop": true,
+		"AreBeziersRestricted": true,
+		"CurveCount": 2,
+		"TotalSegmentCount": 7,
+		"TotalPointCount": 17,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "collapse_right",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.089,
+				0,
+				0.178,
+				3.421,
+				0.267,
+				6,
+				1,
+				0.511,
+				13.093,
+				0.756,
+				18.389,
+				1,
+				25,
+				1,
+				1.111,
+				28.005,
+				1.222,
+				30,
+				1.333,
+				30,
+				0,
+				2.667,
+				30
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "smoke_right",
+			"Segments": [
+				0,
+				0,
+				0,
+				0.567,
+				0,
+				1,
+				1.211,
+				0,
+				1.856,
+				30,
+				2.5,
+				30,
+				0,
+				2.667,
+				30
+			]
+		}
+	]
+}

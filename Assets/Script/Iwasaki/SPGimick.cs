@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SPGimick : SingletonMonoBehaviour<SPGimick>
-{         
+{
+    [SerializeField]
+    private GameObject _zombie;
     [SerializeField]
     private Image birdIcon;
     private Color iconColor;
@@ -16,7 +18,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private bool SPBool = false;
 
     //必殺技が終わるまでボタンを連打出来ないようにする
-    private bool doOnceSP = true;    
+    private bool doOnceSP = true;
 
     //必殺技の時に鳥と矢印を固定する場所
     public GameObject SPPos;
@@ -30,7 +32,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     //必殺技で下に飛ばす時の速さ
     [SerializeField]
     private float SPSpeed;
-    
+
     private bool buttonPushFlag;
 
     //必殺技中か
@@ -56,15 +58,23 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     [SerializeField]
     private GameObject SPEffect_InLine;
     private bool pushes;
+
+    public bool SpectrumEffect; //鳥の残像発生 
+    public bool SpecuakSkill;
+    [SerializeField]
+    private Zombie zombie;
     void Start()
     {
         iconColor = birdIcon.color;
-        //Gauge.fillAmount = 0.8f;
+        Gauge.fillAmount = 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //必殺の技が発動し鳥がの速度が地面に当たったらゾンビが消える
+        DestroyChildObject(zombieParent);　//イゴンヒ
+
         if (Gauge.fillAmount == 1f && doOnceSP)
         {
             SoundManager.Instance.PlaySe(SE.SPReady);
@@ -121,13 +131,13 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         {
             return;
         }
-    }    
+    }
 
     private void SPmain()
-    {        
-        if (Input.GetMouseButtonDown(0)&&!pushes)
+    {
+        if (Input.GetMouseButtonDown(0) && !pushes)
         {
-            hippareUI.gameObject.SetActive(false);            
+            hippareUI.gameObject.SetActive(false);
             BirdJumper.Instance.MouseButtonDown(false, true, 0.8f, 1.2f, 0);
             FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[0];
             FingerPositions.Instance.getGameObj().transform.localRotation = Quaternion.Euler(0, 0, -90);
@@ -135,12 +145,12 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             FingerPositions.Instance.getGameObj().transform.position = new Vector2(SPPos.transform.position.x, SPPos.transform.position.y + 1);
             pushes = true;
         }
-        if (Input.GetMouseButton(0)&&pushes)
+        if (Input.GetMouseButton(0) && pushes)
         {
             //矢印の色を秒数によって変更する
             FingerPositions.Instance.AllowColorChange();
         }
-        if (Input.GetMouseButtonUp(0)&&pushes)
+        if (Input.GetMouseButtonUp(0) && pushes)
         {
             //Debug.Log("Release");            
             FingerPositions.Instance.getGameObj().SetActive(false);
@@ -149,15 +159,17 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
             pushes = false;
             if (HissatsuFlag)
             {
-                //フィールド上のゾンビを一掃する
-                DestroyChildObject(zombieParent);
-                
+                         //フィールド上のゾンビを一掃する
+                //DestroyChildObject(zombieParent);
+
                 Zombie.speed = 1;
                 FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
                 Make.Instance.MakeZombie();
                 AfterSPBool();
                 //真下に鳥を飛ばす
                 Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
+                SpectrumEffect = true; // 追加者　イゴンヒ
+                SpecuakSkill = true;// 追加者　イゴンヒ
                 StartCoroutine(SPBeforePos());
             }
         }
@@ -183,11 +195,19 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     }
     private void DestroyChildObject(Transform parent_trans)
     {
-        for (int i = 0; i < parent_trans.childCount; ++i)
+        //必殺の技が発動し鳥がの速度が地面に当たったらゾンビが消える
+        if (SpecuakSkill && Bird.Instance.rb2d.velocity == Vector2.zero) // 追加　イゴンヒ
         {
-            GameObject.Destroy(parent_trans.GetChild(i).gameObject);
+            for (int i = 0; i < parent_trans.childCount; ++i)
+            {
+                if (zombie.inCamera)
+                {
+                    GameObject.Destroy(parent_trans.GetChild(i).gameObject);
+                }        
+            }
         }
     }
+
 
     private IEnumerator SPBeforePos()
     {

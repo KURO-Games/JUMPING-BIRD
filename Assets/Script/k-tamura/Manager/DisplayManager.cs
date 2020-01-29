@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/// <summary>
+/// クリア表示させるスクリプト
+/// </summary>
 public class DisplayManager : SingletonMonoBehaviour<DisplayManager>
 {
     [SerializeField]

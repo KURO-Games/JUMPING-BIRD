@@ -11,6 +11,10 @@ TagManager:
   - Catapult
   - Finger
   - Rock
+  - RightCol
+  - LeftCol
+  - Death
+  - Goal
   layers:
   - Default
   - TransparentFX

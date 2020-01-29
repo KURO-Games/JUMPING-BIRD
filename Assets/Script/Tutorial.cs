@@ -24,7 +24,7 @@ public class Tutorial : MonoBehaviour
                 TutorialImage = 2;
             } else if(TutorialImage == 2)
             {
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("MainGame");
             }
         }
     }

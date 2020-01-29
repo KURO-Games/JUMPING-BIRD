@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5955469579272162761}
   - component: {fileID: 5955469579272162774}
   m_Layer: 0
-  m_Name: ZombieCrash (1)
+  m_Name: DetroyEffect_Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 6
   lengthInSec: 0.5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4711,4 +4711,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f98aca58b53ab46b1d8dc7b223b6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}

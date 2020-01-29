@@ -32,5 +32,17 @@ public class Finger : SingletonMonoBehaviour<Finger>
         float degree = rad * Mathf.Rad2Deg;
         return degree;
     }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            BirdJumper.Instance.groundCheck = false;
+        }
+        else
+        {
+            BirdJumper.Instance.groundCheck = true;
+        }
+    }
 }
 
