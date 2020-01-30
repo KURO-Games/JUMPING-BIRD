@@ -667,6 +667,7 @@ GameObject:
   - component: {fileID: 5530772758575868190}
   - component: {fileID: 5693648554668059456}
   - component: {fileID: 9107494167732669946}
+  - component: {fileID: 7285919329619063715}
   m_Layer: 0
   m_Name: bird03V3
   m_TagString: Bird
@@ -802,11 +803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d68a0f8476da54390af92c0a3ecbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wave: 1
-  ZombieKill: 40
-  Wave1ZombieKill: 40
-  Wave2ZombieKill: 60
-  Wave3ZombieKill: 80
   CounterText: {fileID: 0}
   Life: 0
   Fly: 1
@@ -821,6 +817,7 @@ MonoBehaviour:
   isDamaged: 0
   BuildingPos: {x: 0, y: 0, z: 0}
   ZombiePos: {x: 0, y: 0, z: 0}
+  DeathPos: {fileID: 0}
   isEffect: 0
 --- !u!61 &7520432435149094423
 BoxCollider2D:
@@ -886,6 +883,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e339ca8e0422344bcda7e4e3e35448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7285919329619063715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6078091545271997775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8f76059a4f048568508db3d1326214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6530085229644272272

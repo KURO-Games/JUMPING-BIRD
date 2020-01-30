@@ -13,7 +13,7 @@ public class Back_YesNo : MonoBehaviour
 
     void Start()
     {
-        GoTitle = GameObject.Find("GoTitle");
+
     }
     public void OnClickYes()
     {

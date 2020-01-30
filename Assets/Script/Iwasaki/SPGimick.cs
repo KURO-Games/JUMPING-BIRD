@@ -140,7 +140,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         if (Input.GetMouseButtonDown(0) && !pushes)
         {
             hippareUI.gameObject.SetActive(false);
-            BirdJumper.Instance.MouseButtonDown(false, true, 0.8f, 1.2f, 0);
+            BirdJumper.Instance.MouseButtonDown();
             FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[0];
             FingerPositions.Instance.getGameObj().transform.localRotation = Quaternion.Euler(0, 0, -90);
             //矢印の位置

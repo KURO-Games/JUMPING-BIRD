@@ -17,7 +17,7 @@ public class Finger : SingletonMonoBehaviour<Finger>
     private void Update()
     {
         if (SPGimick.Instance.SPGimickStart) return;
-        rotat.z = AngleCal(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition))+180;
+        rotat.z = AngleCal(TapMgr.Instance.FirstTapPoint,TapMgr.Instance.EndTapPoint)+180;
         this.transform.rotation=Quaternion.Euler(rotat);
         if (Input.GetMouseButtonUp(0))
         {
