@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
 {
+    Vector2 ThisTransformPos;
     private Vector2 thisPosition;
     private Vector2 AddForcePos;
     private Vector3 cameraPos;
-    private float rayDistance = 1000f;
-    private bool RayFlag;
-
     [SerializeField]
     private float Speed=2;
     [SerializeField]
@@ -23,10 +21,13 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         if (Input.GetMouseButtonDown(0))//RayでBirdがタップされているか処理
         {
             Bird.Instance.Fly = true;
+            ThisTransformPos = gameObject.transform.position;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.zero);
             MouseButtonDown();
         }
         if (Input.GetMouseButton(0))
         {
+            gameObject.transform.position = ThisTransformPos;
             MouseButton();
         }
         //else this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
@@ -67,7 +68,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     {
        
         CameraFollow.Instance.CameraPos(cameraPos);
-        FingerPositions.Instance.Scales(true,new Vector2( Vector2.Distance(Input.mousePosition, thisPosition), Vector2.Distance(Input.mousePosition, thisPosition)),0);
+        FingerPositions.Instance.Scales(false,new Vector2( Vector2.Distance(Input.mousePosition, thisPosition), Vector2.Distance(Input.mousePosition, thisPosition)),0.001f);
     }
     /// <summary>
     /// Mouseボタン離した時
