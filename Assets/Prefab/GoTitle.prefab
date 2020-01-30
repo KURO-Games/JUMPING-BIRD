@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoTitle: {fileID: 5045019636491110110}
+  Bird: {fileID: 0}
+  SPIcon: {fileID: 0}
 --- !u!1 &5045019636491110110
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,3 +362,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoTitle: {fileID: 5045019636491110110}
+  Bird: {fileID: 6078091545271997775, guid: c13f6370b026249b69ee51052c60d097, type: 3}
+  SPIcon: {fileID: 5130020912177130979, guid: 5ffc00c398364ef4cbd439753ec32745, type: 3}

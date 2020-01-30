@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Back_YesNo : MonoBehaviour
 {
+    public GameObject GoTitle;
     [SerializeField]
-    private GameObject GoTitle;
+    private GameObject Bird;
     [SerializeField]
-    private GameObject Button;
+    private GameObject SPIcon;
 
     void Start()
     {
@@ -17,17 +18,15 @@ public class Back_YesNo : MonoBehaviour
     public void OnClickYes()
     {
         SoundManager.Instance.FadeOutBgm(1);
-        SceneLoadManager.LoadScene("Title");
-        GoTitle.gameObject.SetActive(false);
-        Button.gameObject.SetActive(false);
+        SceneLoadManager.LoadScene("Init");
         Time.timeScale = 1;
     }
     public void OnClickNo()
     {
         SoundManager.Instance.FadeOutBgm(1);
         GoTitle.gameObject.SetActive(false);
-        Button.gameObject.SetActive(true);
+        Bird.GetComponent<BirdJumper>().enabled = true;
+        SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = true;
         Time.timeScale = 1;
     }
-
 }

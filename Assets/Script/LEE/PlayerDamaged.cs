@@ -16,6 +16,7 @@ public class PlayerDamaged : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
         StartCoroutine("blink");
 
     }
