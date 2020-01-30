@@ -52,6 +52,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         DontDestroyOnLoad(gameObject);
     }
 
+   
     private void BgmRegister()
     {
         for (int i = 0; i < bgmSound.Length; i++)
@@ -112,6 +113,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this);
         BgmRegister();
         SeRegister();
 
