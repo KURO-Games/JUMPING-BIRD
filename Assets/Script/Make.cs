@@ -42,6 +42,7 @@ public class Make : SingletonMonoBehaviour<Make>
             if (ZombieQTY < ZombieMax)
             {
                 GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + Random1, -5f, 1f), Quaternion.identity);
+                _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Default;
                 ZombieQTY += 1;
                 ZombieCount++;
                 _zombie.name = Zombie.name + _makeZombies.ToString();

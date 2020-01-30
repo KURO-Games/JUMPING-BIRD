@@ -15,6 +15,7 @@ TagManager:
   - LeftCol
   - Death
   - Goal
+  - CantSP
   layers:
   - Default
   - TransparentFX

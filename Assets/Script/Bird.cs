@@ -33,7 +33,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
     private BirdAnimationController _BirdAnimationController;
     [SerializeField]
     private GameObject DeathPos;
-        
+    [HideInInspector]
+    public bool cantSPBool;
 
     public bool isEffect;
 
@@ -133,6 +134,24 @@ public class Bird : SingletonMonoBehaviour<Bird>
             Attack = false;
             CollisionBuilding = false;
             transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "CantSP")
+        {
+            cantSPBool = true;
+            Debug.Log("inCantsp");
+        }
+        //cantSPBool = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "CantSP")
+        {
+            cantSPBool = false;            
         }
     }
     IEnumerator PositionYReset()

@@ -101,8 +101,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     }
     public void HissatsuWaza()
     {
-        Debug.Log("click");
-        if (SPBool)
+        if (SPBool && !Bird.Instance.cantSPBool)
         {
             BeforeSPBool();
 

@@ -5091,6 +5091,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.012342884
       objectReference: {fileID: 0}
+    - target: {fileID: 8434166328810539098, guid: 4fcc814f564b87842a38b0d8216d008a,
+        type: 3}
+      propertyPath: Bird
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434166328810539098, guid: 4fcc814f564b87842a38b0d8216d008a,
+        type: 3}
+      propertyPath: SPIcon
+      value: 
+      objectReference: {fileID: 2949551338056609494}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fcc814f564b87842a38b0d8216d008a, type: 3}
 --- !u!224 &6236833757318201164 stripped
@@ -5556,6 +5566,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 208495022362445351, guid: 5ffc00c398364ef4cbd439753ec32745,
         type: 3}
+      propertyPath: _zombie
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 208495022362445351, guid: 5ffc00c398364ef4cbd439753ec32745,
+        type: 3}
+      propertyPath: Gauge
+      value: 
+      objectReference: {fileID: 8920661968687793109}
+    - target: {fileID: 208495022362445351, guid: 5ffc00c398364ef4cbd439753ec32745,
+        type: 3}
+      propertyPath: SPEffect_Star
+      value: 
+      objectReference: {fileID: 7014339631532337555}
+    - target: {fileID: 208495022362445351, guid: 5ffc00c398364ef4cbd439753ec32745,
+        type: 3}
       propertyPath: SPEffect_OutLine
       value: 
       objectReference: {fileID: 2787306549101510664}
@@ -5566,6 +5591,12 @@ PrefabInstance:
       objectReference: {fileID: 2787306549229715310}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ffc00c398364ef4cbd439753ec32745, type: 3}
+--- !u!1 &2949551338056609494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5130020912177130979, guid: 5ffc00c398364ef4cbd439753ec32745,
+    type: 3}
+  m_PrefabInstance: {fileID: 8061328461794427701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7116705413214461355 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 944641396973739678, guid: 5ffc00c398364ef4cbd439753ec32745,

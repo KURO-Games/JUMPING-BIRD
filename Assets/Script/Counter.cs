@@ -24,11 +24,11 @@ public class Counter : MonoBehaviour
     void Update()
     {
         GetComponent<Text>().text = Kill + " / " + GameMgr.Instance.wantKills;
-        Debug.Log(GameMgr.Instance.Wave + ":" + GameMgr.Instance.wantKills);
-        Debug.Log(Make.Instance.ZombieCount);
+        //Debug.Log(GameMgr.Instance.Wave + ":" + GameMgr.Instance.wantKills);
+        //Debug.Log(Make.Instance.ZombieCount);
         if(Make.Instance.ZombieCount == GameMgr.Instance.wantKills - 1)
         {
-            Debug.Log(GameMgr.Instance.Wave + " InBoss");
+            //Debug.Log(GameMgr.Instance.Wave + " InBoss");
             Make.Instance.makeZombies = false;            
             if (Kill == GameMgr.Instance.wantKills - 1)
             {
