@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929a2e0c0d8394a0c820ad5afbc45122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 160
+  Speed: 1
   _Finger: {fileID: 6636295030565361112}
   groundCheck: 0
 --- !u!114 &9107494167732669946
@@ -897,6 +897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8f76059a4f048568508db3d1326214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstTapPoint: {x: 0, y: 0}
+  EndTapPoint: {x: 0, y: 0}
 --- !u!1 &6530085229644272272
 GameObject:
   m_ObjectHideFlags: 0
