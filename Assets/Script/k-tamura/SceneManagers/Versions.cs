@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_IOS
-using System.Runtime.InteropServices;
+    using System.Runtime.InteropServices;
 #endif
 
 #if UNITY_EDITOR
-using UnityEditor;
+    using UnityEditor;
 #endif
 
 /// <summary>
@@ -13,11 +13,12 @@ using UnityEditor;
 /// </summary>
 public class Versions : MonoBehaviour
 {
-#if UNITY_IOS
-    [DllImport("__Internal")]
-    static extern string GetBundleVersion();
-#endif
-	bool Tap;
+    #if UNITY_IOS
+        [DllImport("__Internal")]
+        static extern string GetBundleVersion();
+    #endif
+
+    bool Tap;
 	[SerializeField]
 	Text version;
 	[SerializeField]
@@ -34,12 +35,12 @@ public class Versions : MonoBehaviour
 	}
 	public static string GetBuildNumber()
 	{
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
             return PlayerSettings.iOS.buildNumber;
-#elif UNITY_IOS
+        #elif UNITY_IOS
             return GetBundleVersion();
-#else
-		return null;
-#endif
+        #else
+		    return null;
+        #endif
 	}
 }

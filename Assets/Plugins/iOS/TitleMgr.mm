@@ -1,8 +1,9 @@
-﻿extern "C" {
-    char* GetBundleVersion()
+extern "C"
 {
-	NSString* bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleVersion"];
-	const char* s = [bundleVersion UTF8String];
-	return strcpy((char*)malloc(strlen(s) + 1), s);
-}
+    char* GetBundleVersion()//Objective-C バージョン表示用
+    {
+        NSString* bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleVersion"];
+        const char* s = [bundleVersion UTF8String];
+        return strcpy((char*)malloc(strlen(s) + 1), s);
+    }
 }
