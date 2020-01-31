@@ -23,11 +23,16 @@ public class Bird : SingletonMonoBehaviour<Bird>
     public bool CollisionBuilding;//ビルに当たったのか、trueにすると跳ね返る
     public GameObject Make;
 
+    [HideInInspector]
     public bool CrashBuilding;//イゴンヒ
+    [HideInInspector]
     public bool CrashZombie;//イゴンヒ
+    [HideInInspector]
     public bool isDamaged; //イゴンヒ
 
+    [HideInInspector]
     public Vector3 BuildingPos;
+    [HideInInspector]
     public Vector3 ZombiePos;
     private Vector2 oldPosition;
     private BirdAnimationController _BirdAnimationController;
@@ -96,19 +101,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
                 //Life -= 1;
                 Destroy(other.gameObject);
             }
-        }
+        }              
 
-        //建物に当たったら
-        if (other.gameObject.tag == "Building")
-        {
-            SoundManager.Instance.PlaySe(SE.AttackBuilding);
-            BuildingPos = other.gameObject.transform.position;
-            Debug.Log(BuildingPos);
-            Destroy(other.gameObject);
-            CrashBuilding = true;
-            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
-        }
         //穴に落ちたら
         if(other.tag == "Death")
         {
@@ -137,14 +131,14 @@ public class Bird : SingletonMonoBehaviour<Bird>
         }
     }
 
+    //必殺技を打てない場所を作成
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "CantSP")
         {
             cantSPBool = true;
-            Debug.Log("inCantsp");
+            //Debug.Log("inCantsp");
         }
-        //cantSPBool = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

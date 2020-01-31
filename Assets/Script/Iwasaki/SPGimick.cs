@@ -68,7 +68,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     void Start()
     {
         iconColor = birdIcon.color;
-        Gauge.fillAmount = 1f;
+        //Gauge.fillAmount = 1f;
     }
 
     // Update is called once per frame
