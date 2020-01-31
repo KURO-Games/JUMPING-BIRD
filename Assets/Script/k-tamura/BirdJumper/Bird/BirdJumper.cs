@@ -22,7 +22,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         {
             Bird.Instance.Fly = true;
             ThisTransformPos = gameObject.transform.position;
-            gameObject.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
+            gameObject.GetComponent<Rigidbody2D>().velocity=Vector4.zero;
             MouseButtonDown();
         }
         if (Input.GetMouseButton(0))
