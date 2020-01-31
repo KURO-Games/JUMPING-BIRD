@@ -9,6 +9,9 @@ public class Tutorial : MonoBehaviour
     [SerializeField]
     private Sprite TutorialImage2;
     private int TutorialImage = 1;
+
+    private bool ScaneLoading = false;
+
     void Start()
     {
 
@@ -24,8 +27,16 @@ public class Tutorial : MonoBehaviour
                 TutorialImage = 2;
             } else if(TutorialImage == 2)
             {
-                SceneLoadManager.LoadScene("MainGame");
+                StartCoroutine("NextScens");
             }
         }
+    }
+
+    private IEnumerator NextScens()
+    {
+        yield return new WaitUntil(() => !ScaneLoading);
+        SceneLoadManager.LoadScene("MainGame");
+        Debug.Log("abcdefg");
+        ScaneLoading = true;
     }
 }
