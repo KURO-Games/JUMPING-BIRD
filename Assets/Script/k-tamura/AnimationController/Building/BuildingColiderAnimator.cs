@@ -44,7 +44,12 @@ public class BuildingColiderAnimator : MonoBehaviour
             destroy = true;
             SoundManager.Instance.PlaySe(SE.AttackBuilding);
             Building.GetComponent<Animator>().SetTrigger(BoxColiderChoice.ToString());
-        }else
+            Bird.Instance.BuildingPos = this.gameObject.transform.position;
+            Bird.Instance.CrashBuilding = true;
+            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 3f;
+        }
+        else
         {
             return;
         }
