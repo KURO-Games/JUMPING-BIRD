@@ -47,19 +47,19 @@ public class ZombieState : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Bird")
-        {
-            HitPoint--;
-            if (HitPoint <= 0)
-            {
-                this.gameObject.GetComponent<Animator>().SetTrigger("");
-            }
-            else
-            {
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Bird")
+    //    {
+    //        HitPoint--;
+    //        if (HitPoint <= 0)
+    //        {
+    //            this.gameObject.GetComponent<Animator>().SetTrigger("");
+    //        }
+    //        else
+    //        {
 
-            }
-        } 
-    }
+    //        }
+    //    } 
+    //}
 }
