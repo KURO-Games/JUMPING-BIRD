@@ -204,7 +204,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 if (parent_trans.GetChild(i).GetComponent<Zombie>().inCamera == true)
                 {
                     GameObject.Destroy(parent_trans.GetChild(i).gameObject);
-                    counter.Kill++;
+                    counter.Kill--;
                 }        
             }
         }

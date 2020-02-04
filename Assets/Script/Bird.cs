@@ -90,7 +90,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
                     other.gameObject.GetComponent<Animator>().SetTrigger("");
                     Destroy(other.gameObject);
                     CrashZombie = true;
-                    CounterText.GetComponent<Counter>().Kill += 1;
+                    CounterText.GetComponent<Counter>().Kill -= 1;                    
                 }
                 SoundManager.Instance.PlaySe(SE.AttackZombie);
             }            

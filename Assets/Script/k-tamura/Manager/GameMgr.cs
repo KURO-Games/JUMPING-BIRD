@@ -25,6 +25,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     private int Wave2Zombies;
     [SerializeField]
     private int Wave3Zombies;
+    [SerializeField]
+    private Counter counter;
 
     private void Start()
     {
@@ -41,17 +43,20 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     {
         if (Wave == 1)
         {
-            wantKills = Wave1Zombies;
+            wantKills = Wave1Zombies;      
+            counter.Kill = Wave1Zombies;
         }
 
         if (Wave == 2)
         {
             wantKills = Wave2Zombies;
+            counter.Kill = Wave2Zombies;
         }
 
         if (Wave == 3)
         {
             wantKills = Wave3Zombies;
+            counter.Kill = Wave3Zombies;
         }
     }
 }

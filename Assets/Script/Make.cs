@@ -37,11 +37,6 @@ public class Make : SingletonMonoBehaviour<Make>
     private int _makeZombies=0, _makeBuildings=0;
     [HideInInspector]
     public bool makeZombies = true;
-    
-    private void Start()
-    {       
-        Invoke("MakeZombie", 5f);        
-    }
 
     public void MakeZombie()
     {
