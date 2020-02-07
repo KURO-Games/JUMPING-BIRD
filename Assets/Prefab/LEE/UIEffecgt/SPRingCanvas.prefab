@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: de7a2111d34fe8940aa253aa0b55cd85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2da31509e07ed6a449a6440106c9b9d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 380111226716806511}
   - component: {fileID: 7646391787774448260}
   - component: {fileID: 2728031957329520621}
+  - component: {fileID: 5385023679267275751}
   m_Layer: 5
   m_Name: SPRingCanvas
   m_TagString: Untagged
@@ -180,6 +181,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &5385023679267275751
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292956162043371285}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4163002534087344370
 GameObject:
   m_ObjectHideFlags: 0
@@ -5332,7 +5345,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0e8518440f26585439b4e286a3157c5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9e9ca0c34b0dc5e4480ff8d14094e73c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5630,7 +5643,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 006c9fc19b039d14e8eb50c119a39889, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df034699e2a12c347adba6a5e9c16abf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5699,6 +5712,7 @@ MonoBehaviour:
   SpecuakSkill: 0
   zombie: {fileID: 8034279527375736890, guid: 1a42740d47a314e83b0da08bfcdaae5c, type: 3}
   counter: {fileID: 0}
+  iconCanGroup: {fileID: 5385023679267275751}
 --- !u!225 &5005558184690335859
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -12,9 +12,9 @@ public class Zombie : MonoBehaviour
     private GameObject ThrowingObject;
     
     /// 標的のオブジェクト
-    [SerializeField, Tooltip("左の標的のオブジェクトをここに割り当てる")]
+    [SerializeField]
     private GameObject leftTargetObject;
-    [SerializeField, Tooltip("右の標的のオブジェクトをここに割り当てる")]
+    [SerializeField]
     private GameObject rightTargetObject;
 
     /// 射出角度
@@ -24,6 +24,7 @@ public class Zombie : MonoBehaviour
     private Vector3 targetPosition;
     //[HideInInspector]
     public bool inCamera;
+    private bool zombieJumpBool = true;
     enum ZonbieState
     {
         Wait,
@@ -54,7 +55,7 @@ public class Zombie : MonoBehaviour
         }
 
         float step = speed * Time.deltaTime;
-        if (Bird.Instance.Die == false)
+        if (Bird.Instance.Die == false && zombieJumpBool)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector2(Bird.Instance.bird().transform.position.x, this.transform.position.y), step);
             if (gameObject.transform.position.x + 5 > Bird.Instance.bird().transform.position.x && gameObject.transform.position.x - 5 < Bird.Instance.bird().transform.position.x)
@@ -113,6 +114,7 @@ public class Zombie : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == 0)
         {
+            zombieJumpBool = true;
             //this.rid2D.simulated = false;
             this.rid2D.velocity = Vector2.zero;
             this.rid2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
@@ -120,6 +122,7 @@ public class Zombie : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == -1)
         {
+            zombieJumpBool = true;
             //this.rid2D.simulated = false;
             this.rid2D.velocity = Vector2.zero;
             this.rid2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
@@ -128,6 +131,7 @@ public class Zombie : MonoBehaviour
 
     private void ThrowingZombie(Vector3 targetPosition)
     {
+        zombieJumpBool = false;
         // 射出角度
         float angle = ThrowingAngle;
 
