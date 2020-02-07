@@ -43,6 +43,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
     private bool doOnceAttack;
 
     public bool isEffect;
+    [HideInInspector]
+    public bool isGround; //イゴンヒ
 
     enum BirdState
     {
@@ -147,9 +149,21 @@ public class Bird : SingletonMonoBehaviour<Bird>
             rb2d.velocity = Vector2.zero;
             Attack = false;
             CollisionBuilding = false;
+
+            isGround = true;
+
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "Ground") isGround = false;
+
+    }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -162,6 +176,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
         {
             doOnceAttack = true;
         }
+
     }
     IEnumerator PositionYReset()
     {
