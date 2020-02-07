@@ -33,7 +33,9 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
         {
             _scale.x = scale.x * addScales;
             _scale.y = this.transform.localScale.y;
+           
         }
+
         this.transform.localScale = _scale;
     }
     /// <summary>
