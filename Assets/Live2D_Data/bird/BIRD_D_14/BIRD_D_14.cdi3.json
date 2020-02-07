@@ -1,0 +1,157 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "",
+			"Name": "目　開閉"
+		},
+		{
+			"Id": "Param25",
+			"GroupId": "",
+			"Name": "目キリッ"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "",
+			"Name": "目ぎゅっ"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "体上下"
+		},
+		{
+			"Id": "Param24",
+			"GroupId": "",
+			"Name": "首にゅっ"
+		},
+		{
+			"Id": "ParamMouthOpenY",
+			"GroupId": "",
+			"Name": "口　開閉"
+		},
+		{
+			"Id": "ParamBreath",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "アホ毛揺れ"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "羽ばたき表示"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "羽ばたき下回転"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "羽表示"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "羽反転表示"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "羽反転回転"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "頭上"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "頭下"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "体回転"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "しっぽ下"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "羽はばき表示"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "羽うしろ反転表示"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "体曲がり"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "足曲がり"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "足上下"
+		},
+		{
+			"Id": "Param22",
+			"GroupId": "",
+			"Name": "足左右"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "足先回転"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "足つかみ"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "羽ぱたぱた"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "おなかへこみ"
+		},
+		{
+			"Id": "kubi",
+			"GroupId": "",
+			"Name": "首にゅっ"
+		},
+		{
+			"Id": "Param23",
+			"GroupId": "",
+			"Name": "腹"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "パーツ"
+		}
+	]
+}
