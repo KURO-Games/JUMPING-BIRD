@@ -40,6 +40,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
     private GameObject DeathPos;
     [HideInInspector]
     public bool cantSPBool;
+    private bool doOnceAttack;
 
     public bool isEffect;
 
@@ -70,21 +71,40 @@ public class Bird : SingletonMonoBehaviour<Bird>
         return this.gameObject;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Zombie"&&Attack)
-        {                     
-            SoundManager.Instance.PlaySe(SE.AttackZombie);
-            Make.GetComponent<Make>().CanMakeBuilding = true;            
-            Make.GetComponent<Make>().ZombieQTY -= 1;
-            ZombiePos = other.transform.position;
-            //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
-            SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
-            Destroy(other.gameObject);
-            CrashZombie = true;
-            CounterText.GetComponent<Counter>().Kill += 1;
+        if (other.gameObject.tag == "Zombie")
+        {
+            doOnceAttack = true;
+            if (doOnceAttack && Attack)
+            {
+                doOnceAttack = false;
+                other.gameObject.GetComponent<ZombieState>().HitPoint--;
+                if (other.gameObject.GetComponent<ZombieState>().HitPoint <= 0)
+                {
+                    Make.GetComponent<Make>().CanMakeBuilding = true;
+                    Make.GetComponent<Make>().ZombieQTY -= 1;
+                    ZombiePos = other.transform.position;
+                    //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
+                    SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
+                    other.gameObject.GetComponent<Animator>().SetTrigger("");
+                    Destroy(other.gameObject);
+                    CrashZombie = true;
+                    CounterText.GetComponent<Counter>().Kill -= 1;                    
+                }
+                SoundManager.Instance.PlaySe(SE.AttackZombie);
+            }            
         }
 
+        //必殺技を打てない場所を作成
+        if (other.gameObject.tag == "CantSP")
+        {
+            cantSPBool = true;
+            //Debug.Log("inCantsp");
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.gameObject.tag == "Rock")
         {
             Debug.LogWarning("RockHit");
@@ -131,21 +151,16 @@ public class Bird : SingletonMonoBehaviour<Bird>
         }
     }
 
-    //必殺技を打てない場所を作成
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "CantSP")
-        {
-            cantSPBool = true;
-            //Debug.Log("inCantsp");
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "CantSP")
         {
             cantSPBool = false;            
+        }
+
+        if(collision.gameObject.tag == "Zombie")
+        {
+            doOnceAttack = true;
         }
     }
     IEnumerator PositionYReset()

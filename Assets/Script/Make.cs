@@ -31,19 +31,12 @@ public class Make : SingletonMonoBehaviour<Make>
     [SerializeField]
     private GameObject makeRight;
     [SerializeField]
-    private GameObject makeLeft2;
-    [SerializeField]
-    private GameObject makeRight2
-        ;
+    private GameObject makeOver;    
+    
     public bool CanMakeBuilding = false;
     private int _makeZombies=0, _makeBuildings=0;
     [HideInInspector]
     public bool makeZombies = true;
-    
-    private void Start()
-    {       
-        Invoke("MakeZombie", 5f);        
-    }
 
     public void MakeZombie()
     {
@@ -53,9 +46,7 @@ public class Make : SingletonMonoBehaviour<Make>
         {
             if (ZombieQTY < ZombieMax)
             {
-                _random = Random.Range(makeLeft.transform.position.x, makeRight.transform.position.x + 5);
-                _random2 = Random.Range(makeLeft2.transform.position.x - 5, makeRight2.transform.position.x + 10);
-                spownField = Random.Range(_random, _random);
+                MakeRandom();
                 GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + spownField, -5f, 1f), Quaternion.identity);
                 _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Default;
                 ZombieQTY += 1;
@@ -72,6 +63,7 @@ public class Make : SingletonMonoBehaviour<Make>
     {
         if (CanMakeBuilding == true && !SPGimick.Instance.SPGimickStart)
         {
+            MakeRandom();
             GameObject _building = Instantiate(Building, new Vector3(Bird.Instance.bird().transform.position.x + spownField, -2f, 2f), Quaternion.identity);
             _building.name = Building.name+_makeBuildings.ToString();
             _makeBuildings++;
@@ -83,5 +75,20 @@ public class Make : SingletonMonoBehaviour<Make>
     void Update()
     {        
         MakeBuilding();
+    }
+
+    private void MakeRandom()
+    {
+        _random = Random.Range(makeLeft.transform.position.x, makeRight.transform.position.x + 5);
+        _random2 = Random.Range(makeOver.transform.position.x - 5, makeOver.transform.position.x + 10);
+        spownField = Random.Range(1, 11);
+        if (spownField >= 1 && 6 > spownField)
+        {
+            spownField = _random2;
+        }
+        else
+        {
+            spownField = _random;
+        }
     }
 }
