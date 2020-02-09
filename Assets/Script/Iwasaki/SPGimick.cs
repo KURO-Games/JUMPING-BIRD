@@ -57,7 +57,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private GameObject SPEffect_OutLine;
     [SerializeField]
     private GameObject SPEffect_InLine;
-    private bool pushes;
+    public bool pushes;
 
     public bool SpectrumEffect; //鳥の残像発生 
     public bool SpecuakSkill;

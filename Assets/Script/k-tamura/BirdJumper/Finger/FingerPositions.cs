@@ -33,7 +33,9 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
         {
             _scale.x = scale.x * addScales;
             _scale.y = this.transform.localScale.y;
+           
         }
+
         this.transform.localScale = _scale;
     }
     /// <summary>
@@ -68,13 +70,15 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
             this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);
             SPGimick.Instance.HissatsuFlag = true;
+            transform.localScale = new Vector2(0.1f, 0.1f);
         }
 
         if (mouseDownTime > 2 && 4 >= mouseDownTime)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[1];
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
-            this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);            
+            this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);
+            transform.localScale = new Vector2(0.06f, 0.1f);
         }
 
         if (mouseDownTime > 0 && 2 >= mouseDownTime)
@@ -82,6 +86,8 @@ public class FingerPositions : SingletonMonoBehaviour<FingerPositions>
             this.gameObject.GetComponent<SpriteRenderer>().sprite = allowSprite[0];
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
             this.gameObject.transform.position = new Vector2(SPGimick.Instance.SPPos.transform.position.x, SPGimick.Instance.SPPos.transform.position.y + 1);
+            transform.localScale = new Vector2(0.04f, 0.1f);
+
         }
 
     }
