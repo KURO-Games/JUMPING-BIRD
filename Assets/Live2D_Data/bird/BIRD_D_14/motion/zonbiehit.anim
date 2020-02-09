@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: zonbiehit
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -2783,5 +2783,5 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: -19422
+    intParameter: 10938
     messageOptions: 1
