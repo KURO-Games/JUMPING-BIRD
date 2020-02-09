@@ -4,10 +4,7 @@ using UnityEditor;
  using UnityEditor.iOS.Xcode;
 #endif
 using UnityEditor.Callbacks;
-using System;
-using System.Linq;
 using System.IO;
-using System.Collections.Generic;
 
 public class BuildBatch : MonoBehaviour
 {
