@@ -65,6 +65,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private Zombie zombie;
     [SerializeField]
     private Counter counter;
+    public CanvasGroup iconCanGroup;
+
     void Start()
     {
         iconColor = birdIcon.color;

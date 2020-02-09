@@ -23,6 +23,8 @@ public class Counter : MonoBehaviour
     private Sprite[] waveSprites;
     [SerializeField]
     private Image mainSprite;
+    [SerializeField]
+    private GameObject highBuilding;
     void Start()
     {                
         StartCoroutine(imageFade(fadeTime));        
@@ -31,7 +33,7 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = "×" + Kill;
+        GetComponent<Text>().text = "× " + Kill;
         //Debug.Log(GameMgr.Instance.Wave + ":" + GameMgr.Instance.wantKills);
         //Debug.Log(Make.Instance.ZombieCount);
         if(Make.Instance.ZombieCount == GameMgr.Instance.wantKills - 1)
@@ -65,6 +67,7 @@ public class Counter : MonoBehaviour
             {
                 if (GameMgr.Instance.Wave == 3)
                 {
+                    highBuilding.gameObject.SetActive(false);
                     CameraFollow.Instance.AllowBool = true;
                     CameraFollow.Instance.goalCol.isTrigger = true;
                     return;
@@ -72,7 +75,7 @@ public class Counter : MonoBehaviour
                 Make.Instance.ZombieCount = 0;
                 doOnce = true;
                 //次のWaveに行くまでの時間
-                StartCoroutine(NextWave(2.5f));
+                StartCoroutine(NextWave(1.0f));
             }
 
 
@@ -97,17 +100,18 @@ public class Counter : MonoBehaviour
     //FadeIn用のCoroutine
     private IEnumerator imageFade(float FadeTime)
     {
-        Debug.Log("inFade");
+        //Debug.Log("inFade");
         mainSprite.sprite = waveSprites[GameMgr.Instance.Wave - 1];
         float time = 0f;
         while (canvasGroup.alpha < 1)
         {
-            Debug.Log("inFade");
+            //Debug.Log("inFade");
             canvasGroup.alpha = 1f * (time / FadeTime);
             time += Time.deltaTime;
             yield return null;
         }
         canvasGroup.alpha = 1;
+        yield return new WaitForSeconds(4.0f);
         StartCoroutine(TimeForFadeOut(fadeTime));
         yield return null;
     }
