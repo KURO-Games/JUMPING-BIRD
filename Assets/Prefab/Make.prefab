@@ -75,8 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50b08af1d85e41409c3618d92933674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Zombie: {fileID: 3814770416105961306, guid: 1a42740d47a314e83b0da08bfcdaae5c, type: 3}
-  Building: {fileID: 3873831486965272793, guid: 4473b39e2f64a4017837830378107688,
+  Zombie: {fileID: 3890016307497074576, guid: 1a42740d47a314e83b0da08bfcdaae5c, type: 3}
+  Building: {fileID: 5079340167971080318, guid: 4473b39e2f64a4017837830378107688,
     type: 3}
   Zombies: {fileID: 8070112997151214693}
   Buildings: {fileID: 1710174714785249118}
