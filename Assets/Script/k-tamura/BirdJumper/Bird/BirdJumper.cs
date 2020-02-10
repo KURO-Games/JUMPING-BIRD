@@ -18,12 +18,15 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private void Update()
     {
 
+        Debug.Log(BirdFingerDistance().y);
         if (Input.GetMouseButtonDown(0))//RayでBirdがタップされているか処理
         {
             Bird.Instance.Fly = true;
             ThisTransformPos = gameObject.transform.position;
             gameObject.GetComponent<Rigidbody2D>().velocity=Vector4.zero;
             MouseButtonDown();
+
+           
         }
         if (Input.GetMouseButton(0))
         {
@@ -69,7 +72,10 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     {
        
         CameraFollow.Instance.CameraPos(cameraPos);
-        FingerPositions.Instance.Scales(false,new Vector2( Vector2.Distance(Input.mousePosition, thisPosition), Vector2.Distance(Input.mousePosition, thisPosition)),0.001f);
+        if(!SPGimick.Instance.pushes)
+        {
+            FingerPositions.Instance.Scales(false, new Vector2(Vector2.Distance(Input.mousePosition, thisPosition), Vector2.Distance(Input.mousePosition, thisPosition)), 0.001f);
+        }
     }
     /// <summary>
     /// Mouseボタン離した時
@@ -84,8 +90,21 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
             if (AddForcePos.y >= 0) return;
             AddForcePos.x = 0;
         }
-        
+
+
+        /*イゴンヒ*/
+        if (Bird.Instance.isGround)//地面に当たったら
+        {
+            if (BirdFingerDistance().y < 0) //矢印が下向きなら
+            {
+                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+            }
+            else GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None; //矢印が上向きなら
+        }
+        /*イゴンヒ*/
+
         Instance.AddForces(AddForcePos * Speed);
+
 
         _Finger.SetActive(false);
     }

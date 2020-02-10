@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9036bff855ce545dd8fd4d455f141004, type: 3}
   m_Name: Fall.fade
   m_EditorClassIdentifier: 
-  MotionName: Assets/Live2D_Data/bird/BIRD_D_14/motion/Fall.motion3.json
+  MotionName: Fall.motion3.json
   FadeInTime: 1
   FadeOutTime: 1
   ParameterIds:

@@ -4,7 +4,9 @@ using UnityEditor.Callbacks;
 using System.IO;
 using UnityEditor.iOS.Xcode;
 #endif
-
+/// <summary>
+/// ビルドInfo.plist回避
+/// </summary>
 public class BuildProcess
 {
     [PostProcessBuild(1)]

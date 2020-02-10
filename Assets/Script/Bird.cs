@@ -43,6 +43,13 @@ public class Bird : SingletonMonoBehaviour<Bird>
     private bool doOnceAttack;
 
     public bool isEffect;
+    [SerializeField]
+    private GameObject birdShadow;
+    [SerializeField]
+    private float shadowScale = 1.5f;
+
+    [HideInInspector]
+    public bool isGround; //イゴンヒ
 
     enum BirdState
     {
@@ -100,6 +107,11 @@ public class Bird : SingletonMonoBehaviour<Bird>
         if (other.gameObject.tag == "CantSP")
         {
             cantSPBool = true;
+            if(SPGimick.Instance.Gauge.fillAmount == 1)
+            {
+                SPGimick.Instance.iconCanGroup.alpha = 0.6f;
+            }
+
             //Debug.Log("inCantsp");
         }
     }
@@ -144,24 +156,41 @@ public class Bird : SingletonMonoBehaviour<Bird>
         //地面に当たったら
         if (collision.gameObject.tag == "Ground")
         {
+        SoundManager.Instance.PlaySe(SE.AttackZombie);
+
             rb2d.velocity = Vector2.zero;
             Attack = false;
             CollisionBuilding = false;
+
+            isGround = true;
+
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "Ground") isGround = false;
+
+    }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "CantSP")
         {
-            cantSPBool = false;            
+            cantSPBool = false;
+            SPGimick.Instance.iconCanGroup.alpha = 1.0f;
+       
         }
 
         if(collision.gameObject.tag == "Zombie")
         {
             doOnceAttack = true;
         }
+
     }
     IEnumerator PositionYReset()
     {
@@ -197,6 +226,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
 
             oldPosition = transform.position;
         } 
+        ShadowCalculation();
+
     }
     private float AngleCal(Vector2 startpos, Vector2 targetpos)
     {
@@ -212,4 +243,10 @@ public class Bird : SingletonMonoBehaviour<Bird>
         yield return new WaitForSeconds(waitTime);
         this.rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }    
+    private void ShadowCalculation()
+    {
+        birdShadow.transform.position = new Vector3(this.transform.position.x, -5.7f, 0);
+        birdShadow.transform.localScale = new Vector3(this.transform.position.y * shadowScale, this.transform.position.y * shadowScale, 0);
+    }
+
 }
