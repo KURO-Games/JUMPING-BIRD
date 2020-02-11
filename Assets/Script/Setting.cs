@@ -20,6 +20,11 @@ public class Setting : MonoBehaviour
         StartCoroutine("goToTitle");
     }
 
+    private void Update()
+    {
+        Debug.Log(MultyInput());
+    }
+
     public void OnClick()
     {        
         SoundManager.PlayBgm(BGM.Settings);
@@ -32,7 +37,7 @@ public class Setting : MonoBehaviour
 
     private bool MultyInput()
     {
-        if (Input.touchCount >= 2)
+        if (Input.touchCount == 2 && !Bird.Instance.Die && !SPGimick.Instance.SPGimickStart)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
