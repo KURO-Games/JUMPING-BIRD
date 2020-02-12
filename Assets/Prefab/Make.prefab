@@ -83,10 +83,10 @@ MonoBehaviour:
   ZombieMax: 10
   ZombieQTY: 0
   ZombieCount: 0
-  Random1: 1
   MakeTime: 2
-  MakeMin: 20
-  MakeMax: 40
+  makeLeft: {fileID: 0}
+  makeRight: {fileID: 0}
+  makeOver: {fileID: 0}
   CanMakeBuilding: 1
   makeZombies: 1
 --- !u!1 &8070112997151214693
