@@ -22,11 +22,10 @@ public class BirdAnimationController : SingletonMonoBehaviour<BirdAnimationContr
     public enum BirdAnimParam
     {
         Normal,//0
-        FlyUp,//1
+        Flying,//1
         NormalFeather,//2
         Swoop,//3
         HitStone,//4
-        Ricochet,//5
         Fall,//6
         ZonbieHit,//7
     }
@@ -37,6 +36,11 @@ public class BirdAnimationController : SingletonMonoBehaviour<BirdAnimationContr
     /// <param name="_BirdAnimParam">BirdAnimParam(Enum)</param>
     public static void BirdAnimations(BirdAnimParam _BirdAnimParam)
     {
+        if(_BirdAnimParam==BirdAnimParam.HitStone)
+        {
+            Instance._anim.SetTrigger("HitStone");
+            return;
+        }
         //Debug.Log("num:"+(int)_BirdAnimParam +":"+ _BirdAnimParam);
         Instance._anim.SetInteger("BirdParam", (int)_BirdAnimParam);
     }

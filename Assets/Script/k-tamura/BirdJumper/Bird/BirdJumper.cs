@@ -39,7 +39,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         {
             Bird.Instance.Attack = true;
             MouseButtonUp(false);
-            BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.FlyUp);
+            BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Flying);
         }
 
 

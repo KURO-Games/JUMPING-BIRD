@@ -166,7 +166,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
             rb2d.velocity = Vector2.zero;
             Attack = false;
             CollisionBuilding = false;
-
+            BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Normal);
             isGround = true;
 
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -230,7 +230,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
             
             if (AngleCal(oldPosition, transform.position) < 0&&Attack)
             {
-                BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Ricochet);
+//                BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Ricochet);
             }
 
             oldPosition = transform.position;
