@@ -26,8 +26,7 @@ public class BirdAnimationController : SingletonMonoBehaviour<BirdAnimationContr
         NormalFeather,//2
         Swoop,//3
         HitStone,//4
-        Fall,//6
-        ZonbieHit,//7
+        ZonbieHit,//5
     }
     public BirdAnimParam birdAnimParam;
     /// <summary>

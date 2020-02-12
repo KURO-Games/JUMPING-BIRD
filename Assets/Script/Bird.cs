@@ -90,6 +90,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
                 other.gameObject.GetComponent<ZombieState>().HitPoint--;
                 if (other.gameObject.GetComponent<ZombieState>().HitPoint <= 0)
                 {
+                    BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.ZonbieHit);
                     Make.GetComponent<Make>().CanMakeBuilding = true;
                     Make.GetComponent<Make>().ZombieQTY -= 1;
                     ZombiePos = other.transform.position;
@@ -126,7 +127,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
                 Life -= 1;
                 SoundManager.Instance.PlaySe(SE.Damage);
                 Destroy(other.gameObject);
-
+                BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.HitStone);
                 isDamaged = true; // イゴンヒ
             }
             else

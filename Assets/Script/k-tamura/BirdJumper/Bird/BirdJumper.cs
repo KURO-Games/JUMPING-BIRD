@@ -12,6 +12,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private float Speed=2;
     [SerializeField]
     private GameObject _Finger;
+    private bool _isSwoop;
     [HideInInspector]
     public bool groundCheck;
     
@@ -39,7 +40,17 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
         {
             Bird.Instance.Attack = true;
             MouseButtonUp(false);
-            BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Flying);
+
+            if (Bird.Instance.isGround || _isSwoop)
+            {
+                BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Flying);
+                _isSwoop = false;
+            }
+            else
+            {
+                BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Swoop);
+                _isSwoop = true;
+            }
         }
 
 
