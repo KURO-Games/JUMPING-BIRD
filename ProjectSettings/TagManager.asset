@@ -16,6 +16,7 @@ TagManager:
   - Death
   - Goal
   - CantSP
+  - NoShadow
   layers:
   - Default
   - TransparentFX

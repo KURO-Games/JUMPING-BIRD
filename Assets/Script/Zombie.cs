@@ -25,6 +25,8 @@ public class Zombie : MonoBehaviour
     //[HideInInspector]
     public bool inCamera;
     private bool zombieJumpBool = true;
+    [SerializeField]
+    private GameObject zombieShadow;
     enum ZonbieState
     {
         Wait,
@@ -70,7 +72,7 @@ public class Zombie : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-        }    
+        }
     }
     void AttackReset()
     {
@@ -114,6 +116,7 @@ public class Zombie : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == 0)
         {
+            zombieShadow.gameObject.SetActive(true);
             zombieJumpBool = true;
             //this.rid2D.simulated = false;
             this.rid2D.velocity = Vector2.zero;
@@ -122,6 +125,7 @@ public class Zombie : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == -1)
         {
+            zombieShadow.gameObject.SetActive(true);
             zombieJumpBool = true;
             //this.rid2D.simulated = false;
             this.rid2D.velocity = Vector2.zero;
@@ -131,6 +135,8 @@ public class Zombie : MonoBehaviour
 
     private void ThrowingZombie(Vector3 targetPosition)
     {
+        zombieShadow.gameObject.SetActive(false);
+
         zombieJumpBool = false;
         // 射出角度
         float angle = ThrowingAngle;

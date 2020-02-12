@@ -51,6 +51,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
     [HideInInspector]
     public bool isGround; //イゴンヒ
 
+    private bool shadowBool = true;
     enum BirdState
     {
         wait,
@@ -149,6 +150,10 @@ public class Bird : SingletonMonoBehaviour<Bird>
             DisplayManager.Instance.DispMgr(true);
             StartCoroutine(SceneFades(5f));
         }
+        if (other.gameObject.tag == "NoShadow")
+        {
+            shadowBool = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -191,6 +196,10 @@ public class Bird : SingletonMonoBehaviour<Bird>
             doOnceAttack = true;
         }
 
+        if (collision.gameObject.tag == "NoShadow")
+        {
+            shadowBool = true;
+        }
     }
     IEnumerator PositionYReset()
     {
@@ -245,8 +254,15 @@ public class Bird : SingletonMonoBehaviour<Bird>
     }    
     private void ShadowCalculation()
     {
-        birdShadow.transform.position = new Vector3(this.transform.position.x, -5.7f, 0);
-        birdShadow.transform.localScale = new Vector3(this.transform.position.y * shadowScale, this.transform.position.y * shadowScale, 0);
+        if (this.transform.position.y <= 0 && shadowBool)
+        {
+            birdShadow.gameObject.SetActive(true);
+            birdShadow.transform.position = new Vector3(this.transform.position.x, -5.7f, 0);
+            birdShadow.transform.localScale = new Vector3(this.transform.position.y * shadowScale, this.transform.position.y * shadowScale, 0);
+        }
+        else
+        {
+            birdShadow.gameObject.SetActive(false);
+        }
     }
-
 }

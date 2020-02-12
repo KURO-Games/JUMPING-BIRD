@@ -64,7 +64,7 @@ public class Make : SingletonMonoBehaviour<Make>
         if (CanMakeBuilding == true && !SPGimick.Instance.SPGimickStart)
         {
             MakeRandom();
-            GameObject _building = Instantiate(Building, new Vector3(Bird.Instance.bird().transform.position.x + spownField, -2f, 2f), Quaternion.identity);
+            GameObject _building = Instantiate(Building, new Vector3(spownField, -2f, 2f), Quaternion.identity);
             _building.name = Building.name+_makeBuildings.ToString();
             _makeBuildings++;
             _building.transform.parent = Buildings.transform;
@@ -79,8 +79,8 @@ public class Make : SingletonMonoBehaviour<Make>
 
     private void MakeRandom()
     {
-        _random = Random.Range(makeLeft.transform.position.x, makeRight.transform.position.x + 5);
-        _random2 = Random.Range(makeOver.transform.position.x - 5, makeOver.transform.position.x + 10);
+        _random = Random.Range(makeLeft.transform.position.x, makeRight.transform.position.x + 10);
+        _random2 = Random.Range(makeOver.transform.position.x - 10, makeOver.transform.position.x + 5);
         spownField = Random.Range(1, 11);
         if (spownField >= 1 && 6 > spownField)
         {
