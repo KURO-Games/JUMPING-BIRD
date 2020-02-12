@@ -2171,7 +2171,8 @@ MonoBehaviour:
     type: 3}
   ThrowingAngle: 32.6
   inCamera: 0
-  camera: {fileID: 646378248634019085, guid: e7507e8b2764e354699236e71e0e6e7b, type: 3}
+  zombieShadow: {fileID: 4081104519579439428, guid: fe800bfea06a6fa46900037356cff5a8,
+    type: 3}
 --- !u!70 &90866235572778865
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

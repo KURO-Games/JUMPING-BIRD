@@ -2452,7 +2452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5295186059651035525
 Transform:
   m_ObjectHideFlags: 0
@@ -2594,7 +2594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d68a0f8476da54390af92c0a3ecbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CounterText: {fileID: 0}
+  CounterText: {fileID: 7441408022495174396, guid: 9993135bd25458340b6e9f748e6ec997,
+    type: 3}
   Life: 0
   Fly: 1
   Attack: 0
@@ -2611,7 +2612,8 @@ MonoBehaviour:
   DeathPos: {fileID: 0}
   cantSPBool: 0
   isEffect: 0
-  birdShadow: {fileID: 0}
+  birdShadow: {fileID: 36054964164927667, guid: ce7069c17a046d84ba9a2cfbbf978372,
+    type: 3}
   shadowScale: 0.08
   isGround: 0
 --- !u!70 &2434388983888438902
