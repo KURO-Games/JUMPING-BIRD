@@ -81,7 +81,7 @@ MonoBehaviour:
   Zombies: {fileID: 8070112997151214693}
   Buildings: {fileID: 1710174714785249118}
   ZombieMax: 10
-  ZombieQTY: 0
+  ZombieQTY: -1
   ZombieCount: 0
   MakeTime: 2
   makeLeft: {fileID: 0}
