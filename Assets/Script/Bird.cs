@@ -163,7 +163,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
         if (collision.gameObject.tag == "Ground")
         {
         SoundManager.Instance.PlaySe(SE.AttackZombie);
-
+            this.transform.rotation = Quaternion.Euler(0,0,0);
             rb2d.velocity = Vector2.zero;
             Attack = false;
             CollisionBuilding = false;
