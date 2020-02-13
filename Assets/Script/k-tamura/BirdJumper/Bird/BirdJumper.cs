@@ -98,7 +98,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
             if (BirdFingerDistance().y < 0) //矢印が下向きなら
             {
                 BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Swoop);
-                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
             else
             {
