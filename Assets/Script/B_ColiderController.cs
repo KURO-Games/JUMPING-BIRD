@@ -11,7 +11,7 @@ public class B_ColiderController : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Bird")
         {
@@ -26,9 +26,18 @@ public class B_ColiderController : MonoBehaviour
         }
     }
 
+    //void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Bird")
+    //    {
+    //        transform.GetChild(3).gameObject.SetActive(true);
+
+    //    }
+    //}
+
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2.0f);
         transform.GetChild(3).gameObject.SetActive(true);
 
     }
