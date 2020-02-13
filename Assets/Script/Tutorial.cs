@@ -36,7 +36,7 @@ public class Tutorial : MonoBehaviour
     {
         yield return new WaitUntil(() => !ScaneLoading);
         SceneLoadManager.LoadScene("MainGame");
-        Debug.Log("abcdefg");
+        //Debug.Log("abcdefg");
         ScaneLoading = true;
     }
 }

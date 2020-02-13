@@ -40,7 +40,7 @@ public class Back_YesNo : MonoBehaviour
         SceneLoadManager.LoadScene("Init");
         Time.timeScale = 1;
         ScaneLoading = true;
-        Debug.Log("tesasdasdasdt");
+        //Debug.Log("tesasdasdasdt");
 
     }
 

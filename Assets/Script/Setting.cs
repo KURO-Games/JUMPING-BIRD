@@ -22,7 +22,7 @@ public class Setting : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(MultyInput());
+        //Debug.Log(MultyInput());
     }
 
     public void OnClick()

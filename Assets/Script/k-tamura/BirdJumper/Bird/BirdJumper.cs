@@ -18,7 +18,7 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
     private void Update()
     {
 
-        Debug.Log(BirdFingerDistance().y);
+        //Debug.Log(BirdFingerDistance().y);
         if (Input.GetMouseButtonDown(0))//RayでBirdがタップされているか処理
         {
             Bird.Instance.Fly = true;
