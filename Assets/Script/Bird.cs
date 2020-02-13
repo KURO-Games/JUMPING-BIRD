@@ -50,6 +50,8 @@ public class Bird : SingletonMonoBehaviour<Bird>
 
     [HideInInspector]
     public bool isGround; //イゴンヒ
+    [HideInInspector]
+    public bool isClear; //イゴンヒ
 
     private bool shadowBool = true;
     enum BirdState
@@ -150,6 +152,9 @@ public class Bird : SingletonMonoBehaviour<Bird>
         {
             DisplayManager.Instance.DispMgr(true);
             StartCoroutine(SceneFades(5f));
+            GetComponent<BirdJumper>().enabled = false;    /*イゴンヒ*/
+            isClear = true;
+
         }
         if (other.gameObject.tag == "NoShadow")
         {

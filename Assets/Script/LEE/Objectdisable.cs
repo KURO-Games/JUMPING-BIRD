@@ -22,7 +22,7 @@ public class Objectdisable : MonoBehaviour
 
     IEnumerator Enable()
     {
-        yield return new WaitUntil(() => Bird.Instance.Die);
+        yield return new WaitUntil(() => Bird.Instance.Die || Bird.Instance.isClear);
         canvas.blocksRaycasts = false;
 
     }

@@ -28,7 +28,7 @@ public class Back_YesNo : MonoBehaviour
     {
         SoundManager.Instance.FadeOutBgm(1);
         GoTitle.gameObject.SetActive(false);
-        Bird.GetComponent<BirdJumper>().enabled = true;
+        BirdJumper.Instance.GetComponent<BirdJumper>().enabled = true;
         SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = true;
         Time.timeScale = 1;
     }
@@ -40,8 +40,6 @@ public class Back_YesNo : MonoBehaviour
         SceneLoadManager.LoadScene("Init");
         Time.timeScale = 1;
         ScaneLoading = true;
-        Debug.Log("tesasdasdasdt");
-
     }
 
 }

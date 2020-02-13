@@ -20,24 +20,22 @@ public class Setting : MonoBehaviour
         StartCoroutine("goToTitle");
     }
 
-    private void Update()
-    {
-        Debug.Log(MultyInput());
-    }
-
     public void OnClick()
     {        
         SoundManager.PlayBgm(BGM.Settings);
         GoTitle.gameObject.SetActive(true);
         Time.timeScale = 0;
-        Bird.Instance.GetComponent<BirdJumper>().enabled = false;
+        BirdJumper.Instance.GetComponent<BirdJumper>().enabled = false;
         SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = false;
         
     }
 
+    /*------------------------------------------イゴンヒ-------------------------------------*/
     private bool MultyInput()
     {
-        if (Input.touchCount == 2 && !Bird.Instance.Die && !SPGimick.Instance.SPGimickStart)
+        if (Input.touchCount == 2 && !Bird.Instance.Die
+                                  && !SPGimick.Instance.SPGimickStart
+                                  && !Bird.Instance.isClear)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
@@ -48,9 +46,9 @@ public class Setting : MonoBehaviour
         return false;
     }
 
-    IEnumerator Enable()
+    IEnumerator Enable()// ゲームクリアや鳥が死ぬ時メニューバー無視
     {
-        yield return new WaitUntil(() => Bird.Instance.Die);
+        yield return new WaitUntil(() => Bird.Instance.Die || Bird.Instance.isClear);
         canvas.blocksRaycasts = false;
 
     }
@@ -66,5 +64,5 @@ public class Setting : MonoBehaviour
         StartCoroutine("goToTitle");
 
     }
-
+    /*------------------------------------------イゴンヒ-------------------------------------*/
 }
