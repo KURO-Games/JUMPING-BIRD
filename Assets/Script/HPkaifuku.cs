@@ -16,7 +16,7 @@ public class HPkaifuku : MonoBehaviour
             {
                 timer_f = 0;
                 Bird.Instance.Life += 1;
-                Debug.Log("+1");
+                //Debug.Log("+1");
             }
         }
         if (Bird.Instance.Life == 3)

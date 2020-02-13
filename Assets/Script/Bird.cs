@@ -40,7 +40,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
     private GameObject DeathPos;
     [HideInInspector]
     public bool cantSPBool;
-    private bool doOnceAttack;
+    private bool doOnceAttack = true;
 
     public bool isEffect;
     [SerializeField]
@@ -85,11 +85,12 @@ public class Bird : SingletonMonoBehaviour<Bird>
     {
         if (other.gameObject.tag == "Zombie")
         {
-            doOnceAttack = true;
             if (doOnceAttack && Attack)
             {
+                Debug.Log(other.gameObject.GetComponent<ZombieState>().HitPoint);
                 doOnceAttack = false;
-                other.gameObject.GetComponent<ZombieState>().HitPoint--;
+                other.gameObject.GetComponent<ZombieState>().HitPoint -= 1;
+                SoundManager.Instance.PlaySe(SE.AttackZombie);
                 if (other.gameObject.GetComponent<ZombieState>().HitPoint <= 0)
                 {
                     BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.ZonbieHit);
@@ -102,8 +103,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
                     Destroy(other.gameObject);
                     CrashZombie = true;
                     CounterText.GetComponent<Counter>().Kill -= 1;                    
-                }
-                SoundManager.Instance.PlaySe(SE.AttackZombie);
+                }                
             }            
         }
 
@@ -123,7 +123,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
     {
         if (other.gameObject.tag == "Rock")
         {
-            Debug.LogWarning("RockHit");
+            //Debug.LogWarning("RockHit");
             if (Attack == false)
             {
                 Life -= 1;
@@ -219,8 +219,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
     }
 
     void Update()
-    {
-        
+    {        
         if (Die == false)　//もし死んでいなかったら
         {
             if (Life <= 0)　//ライフが0になったら

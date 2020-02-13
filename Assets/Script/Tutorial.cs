@@ -14,8 +14,6 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
-        ScaneLoading = false;
-        StartCoroutine("NextScens");
 
     }
 
@@ -29,15 +27,16 @@ public class Tutorial : MonoBehaviour
                 TutorialImage = 2;
             } else if(TutorialImage == 2)
             {
-                ScaneLoading = true;
+                StartCoroutine("NextScens");
             }
         }
     }
 
     private IEnumerator NextScens()
     {
-        yield return new WaitUntil(() => ScaneLoading);
+        yield return new WaitUntil(() => !ScaneLoading);
         SceneLoadManager.LoadScene("MainGame");
-        ScaneLoading = false;
+        //Debug.Log("abcdefg");
+        ScaneLoading = true;
     }
 }
