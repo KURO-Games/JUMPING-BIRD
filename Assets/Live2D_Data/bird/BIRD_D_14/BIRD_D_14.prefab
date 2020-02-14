@@ -2452,7 +2452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5295186059651035525
 Transform:
   m_ObjectHideFlags: 0
@@ -2552,7 +2552,7 @@ Animator:
   m_GameObject: {fileID: 7043914038790468303}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 499faef0383e74b8bb43ad88f99fdac4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2576,7 +2576,7 @@ Rigidbody2D:
   m_Mass: 1.18
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3.3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2616,6 +2616,7 @@ MonoBehaviour:
     type: 3}
   shadowScale: 0.08
   isGround: 0
+  isClear: 0
 --- !u!70 &2434388983888438902
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2644,7 +2645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929a2e0c0d8394a0c820ad5afbc45122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2.55
+  Speed: 1.5
   _Finger: {fileID: 6451463345167287941}
   groundCheck: 0
 --- !u!114 &1615538237928748826
