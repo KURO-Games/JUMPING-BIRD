@@ -77,6 +77,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         //Debug.Log("<color=blue>" + clip.name + ":" + volume + "</color>");
         Instance.audioSource_BGM.clip = clip;
         Instance.audioSource_BGM.volume = volume;
+        Instance.audioSource_BGM.loop = true;
         Instance.audioSource_BGM.Play();
     }
 
