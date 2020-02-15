@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 290, y: -190}
+  m_AnchoredPosition: {x: 290, y: 185}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2805045652049493404
@@ -363,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4694104944222370129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 290.00006, y: -190, z: 0}
+  m_LocalPosition: {x: 290.00006, y: 184.99997, z: 0}
   m_LocalScale: {x: 1.5000252, y: 1.5000252, z: 1}
   m_Children: []
   m_Father: {fileID: 4870445635077939535}
@@ -507,7 +507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5094083365922907723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 290.00006, y: -190, z: 0}
+  m_LocalPosition: {x: 290.00006, y: 184.99997, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 4870445635077939535}
@@ -5314,7 +5314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 290, y: -190}
+  m_AnchoredPosition: {x: 290, y: 184.99994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6059002527863229732
@@ -5380,7 +5380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5950429488460058371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 290.00006, y: -190, z: 0}
+  m_LocalPosition: {x: 290.00006, y: 184.99997, z: 0}
   m_LocalScale: {x: 1.5000252, y: 1.5000252, z: 1}
   m_Children: []
   m_Father: {fileID: 4870445635077939535}
@@ -5612,7 +5612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 289.99988, y: -190}
+  m_AnchoredPosition: {x: 289.99988, y: 184.99997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6517224013917707322
@@ -5708,6 +5708,7 @@ MonoBehaviour:
   SPEffect_Star: {fileID: 5094083365922907723}
   SPEffect_OutLine: {fileID: 5950429488460058371}
   SPEffect_InLine: {fileID: 4694104944222370129}
+  pushes: 0
   SpectrumEffect: 0
   SpecuakSkill: 0
   zombie: {fileID: 8034279527375736890, guid: 1a42740d47a314e83b0da08bfcdaae5c, type: 3}
