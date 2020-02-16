@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Counter : MonoBehaviour
+public class Counter : SingletonMonoBehaviour<Counter>
 {
     [HideInInspector]
-    public int Kill;
+    public int Kill = 0;
     [SerializeField]
     private GameObject Bird;
     bool DeBug = false; //debug用  
@@ -26,7 +26,7 @@ public class Counter : MonoBehaviour
     [SerializeField]
     private GameObject highBuilding;
     void Start()
-    {                
+    {
         StartCoroutine(imageFade(fadeTime));        
     }
 
@@ -36,7 +36,7 @@ public class Counter : MonoBehaviour
         GetComponent<Text>().text = "× " + Kill;
         //Debug.Log(GameMgr.Instance.Wave + ":" + GameMgr.Instance.wantKills);
         //Debug.Log(Make.Instance.ZombieCount);
-        if(Make.Instance.ZombieCount == GameMgr.Instance.wantKills - 1)
+        if (Make.Instance.ZombieCount == GameMgr.Instance.wantKills - 1)
         {
             //Debug.Log(GameMgr.Instance.Wave + " InBoss");
             Make.Instance.makeZombies = false;            

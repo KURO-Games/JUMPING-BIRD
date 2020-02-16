@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Bird : SingletonMonoBehaviour<Bird>
 {    
-    [SerializeField]
-    private GameObject CounterText;
 
     public int Life;//鳥のHP
     //public bool MouseInBird = false;
@@ -67,6 +65,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
 
     void Start()
     {
+        Debug.Log("kill" + Counter.Instance.Kill);
         _birdState = BirdState.wait;
         _BirdAnimationController = BirdAnimationController.Instance;
         Life = 3;
@@ -87,12 +86,14 @@ public class Bird : SingletonMonoBehaviour<Bird>
         {
             if (doOnceAttack && Attack)
             {
-                Debug.Log(other.gameObject.GetComponent<ZombieState>().HitPoint);
+                //Debug.Log(other.gameObject.GetComponent<ZombieState>().HitPoint);
                 doOnceAttack = false;
                 other.gameObject.GetComponent<ZombieState>().HitPoint -= 1;
                 SoundManager.Instance.PlaySe(SE.AttackZombie);
                 if (other.gameObject.GetComponent<ZombieState>().HitPoint <= 0)
                 {
+                    Debug.Log(Counter.Instance.Kill);
+                    Counter.Instance.Kill -= 1;
                     BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.ZonbieHit);
                     Make.GetComponent<Make>().CanMakeBuilding = true;
                     Make.GetComponent<Make>().ZombieQTY -= 1;
@@ -102,7 +103,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
                     other.gameObject.GetComponent<Animator>().SetTrigger("");
                     Destroy(other.gameObject);
                     CrashZombie = true;
-                    CounterText.GetComponent<Counter>().Kill -= 1;                    
+                                        
                 }                
             }            
         }

@@ -25,11 +25,10 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     private int Wave2Zombies;
     [SerializeField]
     private int Wave3Zombies;
-    [SerializeField]
-    private Counter counter;
 
     private void Start()
     {
+        Debug.Log("1:" + Counter.Instance.Kill);
         WaveChange();
         SoundManager.PlayBgm(BGM.Settings);
     }
@@ -44,19 +43,21 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         if (Wave == 1)
         {
             wantKills = Wave1Zombies;      
-            counter.Kill = Wave1Zombies;
+            Counter.Instance.Kill = Wave1Zombies;
+            Debug.Log("2"+ Counter.Instance.Kill);
+            
         }
 
         if (Wave == 2)
         {
             wantKills = Wave2Zombies;
-            counter.Kill = Wave2Zombies;
+            Counter.Instance.Kill = Wave2Zombies;
         }
 
         if (Wave == 3)
         {
             wantKills = Wave3Zombies;
-            counter.Kill = Wave3Zombies;
+            Counter.Instance.Kill = Wave3Zombies;
         }
     }
 }
