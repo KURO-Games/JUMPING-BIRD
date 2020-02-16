@@ -93,19 +93,19 @@ public class BirdJumper : SingletonMonoBehaviour<BirdJumper>
 
 
         /*イゴンヒ*/
-        //if (!Bird.Instance.isGround)//地面に当たったら
-        //{
+        if (Bird.Instance.isGround)//地面に当たったら
+        {
             if (BirdFingerDistance().y < 0) //矢印が下向きなら
             {
                 BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Swoop);
-                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
             }
             else
             {
                 BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.Flying);
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;//矢印が上向きなら
             }
-        //}
+        }
         /*イゴンヒ*/
         if (BirdFingerDistance().x < 0)
             this.transform.rotation = Quaternion.Euler(0, 180, 0);
