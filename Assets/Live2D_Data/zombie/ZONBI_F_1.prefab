@@ -2166,14 +2166,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rock: {fileID: 5297147740563826184, guid: 9013731b286818747b257ef24ec16b9c, type: 3}
-  leftTargetObject: {fileID: 691361438564864075, guid: 3c21c71e5ff7ed643af1c19b5f2d7323,
+  leftTargetObject: {fileID: 2262296993426039465, guid: 356d6a3ead4c31d459c374d2d4f10d07,
     type: 3}
-  rightTargetObject: {fileID: 6068398089558592994, guid: 4a53d2ea80e2cb34ea7faf0382b28e62,
+  rightTargetObject: {fileID: 1426631325413570300, guid: 1f47795533124fa46845895f55d31e35,
     type: 3}
   ThrowingAngle: 32.6
   inCamera: 0
-  zombieShadow: {fileID: 4081104519579439428, guid: fe800bfea06a6fa46900037356cff5a8,
-    type: 3}
+  zombieShadow: {fileID: 8739431428223200358}
 --- !u!70 &90866235572778865
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4658,6 +4657,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe800bfea06a6fa46900037356cff5a8, type: 3}
+--- !u!1 &8739431428223200358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4081104519579439428, guid: fe800bfea06a6fa46900037356cff5a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4749692751659334946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9100664315834818789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4586425420933406151, guid: fe800bfea06a6fa46900037356cff5a8,

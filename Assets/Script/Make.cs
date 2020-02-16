@@ -47,7 +47,7 @@ public class Make : SingletonMonoBehaviour<Make>
             if (ZombieQTY < ZombieMax)
             {
                 MakeRandom();
-                GameObject _zombie = Instantiate(Zombie, new Vector3(Bird.Instance.bird().transform.position.x + spownField, -5f, 1f), Quaternion.identity);
+                GameObject _zombie = Instantiate(Zombie, new Vector3(spownField, -5f, 1f), Quaternion.identity);
                 _zombie.gameObject.GetComponent<ZombieState>()._zombieStatus = ZombieState.ZombieStatus.Default;
                 ZombieQTY += 1;
                 ZombieCount++;
@@ -79,8 +79,8 @@ public class Make : SingletonMonoBehaviour<Make>
 
     private void MakeRandom()
     {
-        _random = Random.Range(makeLeft.transform.position.x, makeRight.transform.position.x + 10);
-        _random2 = Random.Range(makeOver.transform.position.x - 10, makeOver.transform.position.x + 5);
+        _random = Random.Range(makeLeft.transform.position.x, makeRight.transform.position.x + 5);
+        _random2 = Random.Range(makeOver.transform.position.x - 5, makeOver.transform.position.x + 5);
         spownField = Random.Range(1, 11);
         if (spownField >= 1 && 6 > spownField)
         {

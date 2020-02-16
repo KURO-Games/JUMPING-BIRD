@@ -27,6 +27,7 @@ public class Zombie : MonoBehaviour
     private bool zombieJumpBool = true;
     [SerializeField]
     private GameObject zombieShadow;
+    private bool isFry = false;
     enum ZonbieState
     {
         Wait,
@@ -114,8 +115,9 @@ public class Zombie : MonoBehaviour
             ThrowingZombie(targetPosition);
         }
 
-        if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == 0)
+        if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == 0 && isFry)
         {
+            isFry = false;
             zombieShadow.gameObject.SetActive(true);
             zombieJumpBool = true;
             //this.rid2D.simulated = false;
@@ -123,8 +125,9 @@ public class Zombie : MonoBehaviour
             this.rid2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
 
-        if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == -1)
+        if (collision.gameObject.tag == "Ground" && this.transform.localRotation.y == -1 && isFry)
         {
+            isFry = false;
             zombieShadow.gameObject.SetActive(true);
             zombieJumpBool = true;
             //this.rid2D.simulated = false;
@@ -136,6 +139,7 @@ public class Zombie : MonoBehaviour
     private void ThrowingZombie(Vector3 targetPosition)
     {
         zombieShadow.gameObject.SetActive(false);
+        isFry = true;
 
         zombieJumpBool = false;
         // 射出角度

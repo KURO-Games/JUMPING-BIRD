@@ -61,10 +61,6 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
 
     public bool SpectrumEffect; //鳥の残像発生 
     public bool SpecuakSkill;
-    [SerializeField]
-    private Zombie zombie;
-    [SerializeField]
-    private Counter counter;
     public CanvasGroup iconCanGroup;
 
     void Start()
@@ -166,9 +162,9 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 //DestroyChildObject(zombieParent);
 
                 Zombie.speed = 1;
-                FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];
-                Make.Instance.MakeZombie();
+                FingerPositions.Instance.getGameObj().GetComponent<SpriteRenderer>().sprite = FingerPositions.Instance.allowSprite[3];                
                 AfterSPBool();
+                Make.Instance.MakeZombie();
                 //真下に鳥を飛ばす
                 Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
                 SpectrumEffect = true; // 追加者　イゴンヒ
@@ -184,6 +180,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         Bird.Instance.Attack = true;
         Bird.Instance.CollisionBuilding = true;
         rePosBool = true;
+        SPGimickStart = false;
     }
 
     private void BeforeSPBool()
@@ -206,7 +203,8 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 if (parent_trans.GetChild(i).GetComponent<Zombie>().inCamera == true)
                 {
                     GameObject.Destroy(parent_trans.GetChild(i).gameObject);
-                    counter.Kill--;
+                    Counter.Instance.Kill -= 1;
+                    Make.Instance.ZombieQTY -= 1;
                 }        
             }
         }
@@ -216,8 +214,6 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private IEnumerator SPBeforePos()
     {
         yield return new WaitForSeconds(1.5f);
-        SPGimickStart = false;
-        Make.Instance.MakeZombie();
         yield return null;
     }
 }

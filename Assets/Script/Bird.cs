@@ -20,8 +20,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
     //public bool IsJump; //連続のジャンプを防ぐためのもの
     //public bool FirstJumpLimit;
     public bool Die;//死んだのか
-    public bool CollisionBuilding;//ビルに当たったのか、trueにすると跳ね返る
-    public GameObject Make;
+    public bool CollisionBuilding;//ビルに当たったのか、trueにすると跳ね返る    
 
     [HideInInspector]
     public bool CrashBuilding;//イゴンヒ
@@ -87,22 +86,22 @@ public class Bird : SingletonMonoBehaviour<Bird>
         {
             if (doOnceAttack && Attack)
             {
-                Debug.Log(other.gameObject.GetComponent<ZombieState>().HitPoint);
+                //Debug.Log(other.gameObject.GetComponent<ZombieState>().HitPoint);
                 doOnceAttack = false;
                 other.gameObject.GetComponent<ZombieState>().HitPoint -= 1;
                 SoundManager.Instance.PlaySe(SE.AttackZombie);
                 if (other.gameObject.GetComponent<ZombieState>().HitPoint <= 0)
                 {
+                    Counter.Instance.Kill -= 1;
                     BirdAnimationController.BirdAnimations(BirdAnimationController.BirdAnimParam.ZonbieHit);
-                    Make.GetComponent<Make>().CanMakeBuilding = true;
-                    Make.GetComponent<Make>().ZombieQTY -= 1;
+                    Make.Instance.CanMakeBuilding = true;
+                    Make.Instance.ZombieQTY -= 1;
                     ZombiePos = other.transform.position;
                     //360度をSPゲージのMAX値である20で割り、それを3ポイント分加算
                     SPGimick.Instance.Gauge.fillAmount += (1f / 20f) * 2f;
                     other.gameObject.GetComponent<Animator>().SetTrigger("");
                     Destroy(other.gameObject);
-                    CrashZombie = true;
-                    CounterText.GetComponent<Counter>().Kill -= 1;                    
+                    CrashZombie = true;                  
                 }                
             }            
         }
@@ -156,6 +155,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
             isClear = true;
 
         }
+
         if (other.gameObject.tag == "NoShadow")
         {
             shadowBool = false;
@@ -167,7 +167,7 @@ public class Bird : SingletonMonoBehaviour<Bird>
         //地面に当たったら
         if (collision.gameObject.tag == "Ground")
         {
-        SoundManager.Instance.PlaySe(SE.AttackZombie);
+            SoundManager.Instance.PlaySe(SE.AttackZombie);
             this.transform.rotation = Quaternion.Euler(0,0,0);
             rb2d.velocity = Vector2.zero;
             Attack = false;
