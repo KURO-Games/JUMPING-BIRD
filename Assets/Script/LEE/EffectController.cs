@@ -54,12 +54,14 @@ public class EffectController : MonoBehaviour
             SPGimick.Instance.SpectrumEffect = false;
         }
 
-        if(SPGimick.Instance.SpecuakSkill && Bird.Instance.rb2d.velocity == Vector2.zero)//追加 イゴンヒ
+        if(SPGimick.Instance.SpecuakSkill && Bird.Instance.isGround)//追加 イゴンヒ
         {
             Instantiate(SkillEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
             Instantiate(firEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
             Instantiate(GroundEffect, Bird.Instance.bird().transform.position, Quaternion.identity);
-           
+
+            BirdJumper.Instance.GetComponent<BirdJumper>().enabled = true;
+
             SPGimick.Instance.SpecuakSkill = false;
         }
 

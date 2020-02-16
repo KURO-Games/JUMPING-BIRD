@@ -57,7 +57,7 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
     private GameObject SPEffect_OutLine;
     [SerializeField]
     private GameObject SPEffect_InLine;
-    public bool pushes;
+    public bool pushes = false;
 
     public bool SpectrumEffect; //鳥の残像発生 
     public bool SpecuakSkill;
@@ -148,8 +148,9 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
         {
             //矢印の色を秒数によって変更する
             FingerPositions.Instance.AllowColorChange();
+
         }
-        if (Input.GetMouseButtonUp(0) && pushes)
+        if (Input.GetMouseButtonUp(0) && pushes && FingerPositions.Instance.mouseDownTime > 4)
         {
             //Debug.Log("Release");            
             FingerPositions.Instance.getGameObj().SetActive(false);
@@ -169,6 +170,9 @@ public class SPGimick : SingletonMonoBehaviour<SPGimick>
                 Bird.Instance.bird().GetComponent<Rigidbody2D>().AddForce(new Vector2(0, SPSpeed), ForceMode2D.Impulse);
                 SpectrumEffect = true; // 追加者　イゴンヒ
                 SpecuakSkill = true;// 追加者　イゴンヒ
+
+                BirdJumper.Instance.GetComponent<BirdJumper>().enabled = false;
+
                 StartCoroutine(SPBeforePos());
             }
         }
