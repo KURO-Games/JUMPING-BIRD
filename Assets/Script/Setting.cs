@@ -14,21 +14,21 @@ public class Setting : MonoBehaviour
     void Start()
     {
         //GoTitle.gameObject.SetActive(false);        
-        canvas = GetComponent<CanvasGroup>();
-        canvas.blocksRaycasts = true;
+        //canvas = GetComponent<CanvasGroup>();
+        //canvas.blocksRaycasts = true;
         StartCoroutine("Enable");
         StartCoroutine("goToTitle");
     }
 
-    public void OnClick()
-    {        
-        SoundManager.PlayBgm(BGM.Settings);
-        GoTitle.gameObject.SetActive(true);
-        Time.timeScale = 0;
-        BirdJumper.Instance.GetComponent<BirdJumper>().enabled = false;
-        SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = false;
+    //public void OnClick()
+    //{        
+    //    SoundManager.PlayBgm(BGM.Settings);
+    //    GoTitle.gameObject.SetActive(true);
+    //    Time.timeScale = 0;
+    //    BirdJumper.Instance.GetComponent<BirdJumper>().enabled = false;
+    //    SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = false;
         
-    }
+    //}
 
     /*------------------------------------------イゴンヒ-------------------------------------*/
     private bool MultyInput()
