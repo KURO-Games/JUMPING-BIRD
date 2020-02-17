@@ -16,8 +16,8 @@ public class Setting : MonoBehaviour
         //GoTitle.gameObject.SetActive(false);        
         //canvas = GetComponent<CanvasGroup>();
         //canvas.blocksRaycasts = true;
-        StartCoroutine("Enable");
-        StartCoroutine("goToTitle");
+    //    StartCoroutine("Enable");
+    //    StartCoroutine("goToTitle");
     }
 
     //public void OnClick()
@@ -27,10 +27,24 @@ public class Setting : MonoBehaviour
     //    Time.timeScale = 0;
     //    BirdJumper.Instance.GetComponent<BirdJumper>().enabled = false;
     //    SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        
+
     //}
 
     /*------------------------------------------イゴンヒ-------------------------------------*/
+
+    private void Update()
+    {
+        if(MultyInput())
+        {
+            SoundManager.PlayBgm(BGM.Settings);
+            GoTitle.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            Bird.Instance.GetComponent<BirdJumper>().enabled = false;
+            SPIcon.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+
+    }
+
     private bool MultyInput()
     {
         if (Input.touchCount == 2 && !Bird.Instance.Die
@@ -46,16 +60,11 @@ public class Setting : MonoBehaviour
         return false;
     }
 
-    IEnumerator Enable()// ゲームクリアや鳥が死ぬ時メニューバー無視
-    {
-        yield return new WaitUntil(() => Bird.Instance.Die || Bird.Instance.isClear);
-        canvas.blocksRaycasts = false;
-
-    }
+    
 
     IEnumerator goToTitle()
     {
-        yield return new WaitUntil(() => MultyInput());
+        yield return new WaitUntil(() => MultyInput() || !Bird.Instance.Die);
         SoundManager.PlayBgm(BGM.Settings);
         GoTitle.gameObject.SetActive(true);
         Time.timeScale = 0;
