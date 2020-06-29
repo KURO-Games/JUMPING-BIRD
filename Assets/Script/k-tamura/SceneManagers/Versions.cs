@@ -37,10 +37,10 @@ public class Versions : MonoBehaviour
 	{
         #if UNITY_EDITOR
             return PlayerSettings.iOS.buildNumber;
-        #elif UNITY_IOS
+		#elif UNITY_IOS
             return GetBundleVersion();
-        #else
-		    return null;
-        #endif
+		#else
+		    return "";
+		#endif
 	}
 }
